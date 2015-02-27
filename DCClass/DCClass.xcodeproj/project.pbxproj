@@ -1,0 +1,464 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		1C9D40341A9F7700001AE677 /* Framework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 1C9D40351A9F7700001AE677 /* Build configuration list for PBXAggregateTarget "Framework" */;
+			buildPhases = (
+				1C9D403A1A9F771E001AE677 /* ShellScript */,
+			);
+			dependencies = (
+				1C9D40391A9F770A001AE677 /* PBXTargetDependency */,
+			);
+			name = Framework;
+			productName = Framework;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		1C9D40151A9F71A0001AE677 /* DCColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D40101A9F71A0001AE677 /* DCColor.m */; };
+		1C9D40161A9F71A0001AE677 /* DCSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D40121A9F71A0001AE677 /* DCSideMenuViewController.m */; };
+		1C9D40171A9F71A0001AE677 /* DCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D40141A9F71A0001AE677 /* DCViewController.m */; };
+		1C9D40201A9F7276001AE677 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9D401B1A9F7241001AE677 /* UIKit.framework */; };
+		1C9D40231A9F728C001AE677 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9D40211A9F7285001AE677 /* Foundation.framework */; };
+		1C9D40251A9F72D4001AE677 /* DCClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C9D3FF81A9F717F001AE677 /* DCClass.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C9D40261A9F72D7001AE677 /* DCViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C9D40131A9F71A0001AE677 /* DCViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C9D40271A9F72D9001AE677 /* DCColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C9D400F1A9F71A0001AE677 /* DCColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C9D40281A9F72DB001AE677 /* DCSideMenuViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C9D40111A9F71A0001AE677 /* DCSideMenuViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C9D407E1AA0CB50001AE677 /* DCTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C9D407C1AA0CB50001AE677 /* DCTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C9D407F1AA0CB50001AE677 /* DCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9D407D1AA0CB50001AE677 /* DCTableViewCell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1C9D40381A9F770A001AE677 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1C9D3FED1A9F717F001AE677 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1C9D3FF41A9F717F001AE677;
+			remoteInfo = DCClass;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1C9D3FF31A9F717F001AE677 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1C9D3FF51A9F717F001AE677 /* libDCClass.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDCClass.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C9D3FF81A9F717F001AE677 /* DCClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCClass.h; sourceTree = "<group>"; };
+		1C9D40061A9F717F001AE677 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C9D400F1A9F71A0001AE677 /* DCColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCColor.h; sourceTree = "<group>"; };
+		1C9D40101A9F71A0001AE677 /* DCColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCColor.m; sourceTree = "<group>"; };
+		1C9D40111A9F71A0001AE677 /* DCSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSideMenuViewController.h; sourceTree = "<group>"; };
+		1C9D40121A9F71A0001AE677 /* DCSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSideMenuViewController.m; sourceTree = "<group>"; };
+		1C9D40131A9F71A0001AE677 /* DCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCViewController.h; sourceTree = "<group>"; };
+		1C9D40141A9F71A0001AE677 /* DCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCViewController.m; sourceTree = "<group>"; };
+		1C9D401B1A9F7241001AE677 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1C9D40211A9F7285001AE677 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1C9D407C1AA0CB50001AE677 /* DCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTableViewCell.h; sourceTree = "<group>"; };
+		1C9D407D1AA0CB50001AE677 /* DCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTableViewCell.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1C9D3FF21A9F717F001AE677 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C9D40201A9F7276001AE677 /* UIKit.framework in Frameworks */,
+				1C9D40231A9F728C001AE677 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C9D3FEC1A9F717F001AE677 = {
+			isa = PBXGroup;
+			children = (
+				1C9D3FF71A9F717F001AE677 /* DCClass */,
+				1C9D40041A9F717F001AE677 /* DCClassTests */,
+				1C9D3FF61A9F717F001AE677 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1C9D3FF61A9F717F001AE677 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1C9D3FF51A9F717F001AE677 /* libDCClass.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1C9D3FF71A9F717F001AE677 /* DCClass */ = {
+			isa = PBXGroup;
+			children = (
+				1C9D3FF81A9F717F001AE677 /* DCClass.h */,
+				1C9D401A1A9F721E001AE677 /* View Controller */,
+				1C9D40181A9F7207001AE677 /* Color */,
+				1C9D40191A9F7212001AE677 /* Side Menu */,
+				1C9D407B1AA0CB34001AE677 /* Table View Cell */,
+				1C9D401D1A9F725E001AE677 /* Frameworks */,
+			);
+			path = DCClass;
+			sourceTree = "<group>";
+		};
+		1C9D40041A9F717F001AE677 /* DCClassTests */ = {
+			isa = PBXGroup;
+			children = (
+				1C9D40051A9F717F001AE677 /* Supporting Files */,
+			);
+			path = DCClassTests;
+			sourceTree = "<group>";
+		};
+		1C9D40051A9F717F001AE677 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1C9D40061A9F717F001AE677 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1C9D40181A9F7207001AE677 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				1C9D400F1A9F71A0001AE677 /* DCColor.h */,
+				1C9D40101A9F71A0001AE677 /* DCColor.m */,
+			);
+			name = Color;
+			sourceTree = "<group>";
+		};
+		1C9D40191A9F7212001AE677 /* Side Menu */ = {
+			isa = PBXGroup;
+			children = (
+				1C9D40111A9F71A0001AE677 /* DCSideMenuViewController.h */,
+				1C9D40121A9F71A0001AE677 /* DCSideMenuViewController.m */,
+			);
+			name = "Side Menu";
+			sourceTree = "<group>";
+		};
+		1C9D401A1A9F721E001AE677 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1C9D40131A9F71A0001AE677 /* DCViewController.h */,
+				1C9D40141A9F71A0001AE677 /* DCViewController.m */,
+			);
+			name = "View Controller";
+			sourceTree = "<group>";
+		};
+		1C9D401D1A9F725E001AE677 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1C9D40211A9F7285001AE677 /* Foundation.framework */,
+				1C9D401B1A9F7241001AE677 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1C9D407B1AA0CB34001AE677 /* Table View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				1C9D407C1AA0CB50001AE677 /* DCTableViewCell.h */,
+				1C9D407D1AA0CB50001AE677 /* DCTableViewCell.m */,
+			);
+			name = "Table View Cell";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		1C9D40241A9F72B5001AE677 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C9D40251A9F72D4001AE677 /* DCClass.h in Headers */,
+				1C9D40261A9F72D7001AE677 /* DCViewController.h in Headers */,
+				1C9D40271A9F72D9001AE677 /* DCColor.h in Headers */,
+				1C9D40281A9F72DB001AE677 /* DCSideMenuViewController.h in Headers */,
+				1C9D407E1AA0CB50001AE677 /* DCTableViewCell.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1C9D3FF41A9F717F001AE677 /* DCClass */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C9D40091A9F717F001AE677 /* Build configuration list for PBXNativeTarget "DCClass" */;
+			buildPhases = (
+				1C9D3FF11A9F717F001AE677 /* Sources */,
+				1C9D3FF21A9F717F001AE677 /* Frameworks */,
+				1C9D3FF31A9F717F001AE677 /* CopyFiles */,
+				1C9D40241A9F72B5001AE677 /* Headers */,
+				1C9D40331A9F7638001AE677 /* Build Framework */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DCClass;
+			productName = DCClass;
+			productReference = 1C9D3FF51A9F717F001AE677 /* libDCClass.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1C9D3FED1A9F717F001AE677 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = cooler;
+				TargetAttributes = {
+					1C9D3FF41A9F717F001AE677 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					1C9D40341A9F7700001AE677 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 1C9D3FF01A9F717F001AE677 /* Build configuration list for PBXProject "DCClass" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1C9D3FEC1A9F717F001AE677;
+			productRefGroup = 1C9D3FF61A9F717F001AE677 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1C9D3FF41A9F717F001AE677 /* DCClass */,
+				1C9D40341A9F7700001AE677 /* Framework */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1C9D40331A9F7638001AE677 /* Build Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Framework";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nexport FRAMEWORK_LOCN=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework\"\n\n# Create the path to the real Headers die\nmkdir -p \"${FRAMEWORK_LOCN}/Versions/A/Headers\"\n\n# Create the required symlinks\n/bin/ln -sfh A \"${FRAMEWORK_LOCN}/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${FRAMEWORK_LOCN}/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \\\n\"${FRAMEWORK_LOCN}/${PRODUCT_NAME}\"\n\n# Copy the public headers into the framework\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \\\n\"${FRAMEWORK_LOCN}/Versions/A/Headers\"";
+		};
+		1C9D403A1A9F771E001AE677 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\n# If we're already inside this script then die\nif [ -n \"$RW_MULTIPLATFORM_BUILD_IN_PROGRESS\" ]; then\nexit 0\nfi\nexport RW_MULTIPLATFORM_BUILD_IN_PROGRESS=1\n\nRW_FRAMEWORK_NAME=${PROJECT_NAME}\nRW_INPUT_STATIC_LIB=\"lib${PROJECT_NAME}.a\"\nRW_FRAMEWORK_LOCATION=\"${BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.framework\"\n\nfunction build_static_library {\n    # Will rebuild the static library as specified\n    #     build_static_library sdk\n    xcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" \\\n    -target \"${TARGET_NAME}\" \\\n    -configuration \"${CONFIGURATION}\" \\\n    -sdk \"${1}\" \\\n    ONLY_ACTIVE_ARCH=NO \\\n    BUILD_DIR=\"${BUILD_DIR}\" \\\n    OBJROOT=\"${OBJROOT}\" \\\n    BUILD_ROOT=\"${BUILD_ROOT}\" \\\n    SYMROOT=\"${SYMROOT}\" $ACTION\n}\n\nfunction make_fat_library {\n    # Will smash 2 static libs together\n    #     make_fat_library in1 in2 out\n    xcrun lipo -create \"${1}\" \"${2}\" -output \"${3}\"\n}\n\n# 1 - Extract the platform (iphoneos/iphonesimulator) from the SDK name\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]; then\nRW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 2 - Extract the version from the SDK\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]; then\nRW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 3 - Determine the other platform\nif [ \"$RW_SDK_PLATFORM\" == \"iphoneos\" ]; then\nRW_OTHER_PLATFORM=iphonesimulator\nelse\nRW_OTHER_PLATFORM=iphoneos\nfi\n\n# 4 - Find the build directory\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$RW_SDK_PLATFORM$ ]]; then\nRW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${RW_OTHER_PLATFORM}\"\nelse\necho \"Could not find other platform build directory.\"\nexit 1\nfi\n\n# Build the other platform.\nbuild_static_library \"${RW_OTHER_PLATFORM}${RW_SDK_VERSION}\"\n\n# If we're currently building for iphonesimulator, then need to rebuild\n#   to ensure that we get both i386 and x86_64\nif [ \"$RW_SDK_PLATFORM\" == \"iphonesimulator\" ]; then\nbuild_static_library \"${SDK_NAME}\"\nfi\n\n# Join the 2 static libs into 1 and push into the .framework\nmake_fat_library \"${BUILT_PRODUCTS_DIR}/${RW_INPUT_STATIC_LIB}\" \\\n\"${RW_OTHER_BUILT_PRODUCTS_DIR}/${RW_INPUT_STATIC_LIB}\" \\\n\"${RW_FRAMEWORK_LOCATION}/Versions/A/${RW_FRAMEWORK_NAME}\"\n\n# Ensure that the framework is present in both platform's build directories\ncp -a \"${RW_FRAMEWORK_LOCATION}/Versions/A/${RW_FRAMEWORK_NAME}\" \\\n\"${RW_OTHER_BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.framework/Versions/A/${RW_FRAMEWORK_NAME}\"\n\n# Copy the framework to the user's desktop\nditto \"${RW_FRAMEWORK_LOCATION}\" \"../Framework/${RW_FRAMEWORK_NAME}.framework\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1C9D3FF11A9F717F001AE677 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C9D40151A9F71A0001AE677 /* DCColor.m in Sources */,
+				1C9D40161A9F71A0001AE677 /* DCSideMenuViewController.m in Sources */,
+				1C9D407F1AA0CB50001AE677 /* DCTableViewCell.m in Sources */,
+				1C9D40171A9F71A0001AE677 /* DCViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1C9D40391A9F770A001AE677 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1C9D3FF41A9F717F001AE677 /* DCClass */;
+			targetProxy = 1C9D40381A9F770A001AE677 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1C9D40071A9F717F001AE677 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					armv7s,
+				);
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				STRIP_STYLE = "non-global";
+			};
+			name = Debug;
+		};
+		1C9D40081A9F717F001AE677 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					armv7s,
+				);
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				STRIP_STYLE = "non-global";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1C9D400A1A9F717F001AE677 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Debug;
+		};
+		1C9D400B1A9F717F001AE677 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Release;
+		};
+		1C9D40361A9F7700001AE677 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1C9D40371A9F7700001AE677 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1C9D3FF01A9F717F001AE677 /* Build configuration list for PBXProject "DCClass" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C9D40071A9F717F001AE677 /* Debug */,
+				1C9D40081A9F717F001AE677 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C9D40091A9F717F001AE677 /* Build configuration list for PBXNativeTarget "DCClass" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C9D400A1A9F717F001AE677 /* Debug */,
+				1C9D400B1A9F717F001AE677 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C9D40351A9F7700001AE677 /* Build configuration list for PBXAggregateTarget "Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C9D40361A9F7700001AE677 /* Debug */,
+				1C9D40371A9F7700001AE677 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1C9D3FED1A9F717F001AE677 /* Project object */;
+}

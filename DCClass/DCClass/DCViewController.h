@@ -27,7 +27,7 @@
 - (void)configureView;
 - (void)cleanView;
 
-
+- (CGFloat)statusBarHeight;
 - (CGFloat)heightForLabel:(UILabel *)label andWidth:(CGFloat)width;
 - (CGSize)sizeForLabel:(UILabel *)label withMaxWidth:(CGFloat)width;
 

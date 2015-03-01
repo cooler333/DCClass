@@ -10,11 +10,24 @@
 #import <UIKit/UIKit.h>
 
 
-@interface DCTableViewCell : UITableViewCell
+@protocol DCTableViewCellProtocol <NSObject>
 
-- (void)configureCellForDataDictionary:(NSDictionary *)dataDictionary;
+@required
+- (void)configureCell;
+
+@end
+
+
+@interface DCTableViewCell : UITableViewCell <DCTableViewCellProtocol>
+
+
 - (CGFloat)heightForCell;
-- (CGFloat)heightForLabel:(UILabel *)label andWidth:(CGFloat)width;
 - (void)configureCellForHighlighedState:(BOOL)isHighlighed;
+- (void)configureCell;
+
+
+- (CGFloat)heightForLabel:(UILabel *)label andWidth:(CGFloat)width;
+- (void)configureCellForDataDictionary:(NSDictionary *)dataDictionary;
+
 
 @end

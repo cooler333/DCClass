@@ -21,6 +21,20 @@
   return self;
 }
 
+- (CGFloat)heightForCell {
+  [self configureCell];
+  return 44.0f;
+}
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+  [self configureCell];
+}
+
+- (void)configureCell {
+  [NSException raise:NSInternalInconsistencyException format:@"You must override \"%@\" method in a \"%@\" ", NSStringFromSelector(_cmd), NSStringFromClass([self class])];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
   [super setSelected:selected animated:animated];
   [self configureCellHighlighed];
@@ -43,12 +57,11 @@
   // ...
 }
 
-- (CGFloat)heightForCell {
-  return 44.0f;
-}
-
 - (CGFloat)heightForLabel:(UILabel *)label andWidth:(CGFloat)width {
-  CGSize size = [label sizeThatFits:CGSizeMake(width, FLT_MAX)];
+//  NSLog(@"heightForLabel width: %@", @(width));
+  CGSize size = [label sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)];
+//  NSLog(@"heightForLabel width: %@", @(size.width));
+//  NSLog(@"heightForLabel height: %@", @(size.height));
   return size.height;
 }
 

@@ -10,12 +10,32 @@
 #import "DCViewController.h"
 
 
+@protocol DCSideMenuViewControllerDataSource <NSObject>
+
+- (UIViewController *)viewControllerForMenuItemAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
+
+@protocol DCSideMenuViewControllerDelegate <NSObject>
+
+- (void)willSelectMenuItemAtIndexPath:(NSIndexPath *)indexPath;
+- (void)didSelectMenuItemAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
+
 @interface DCSideMenuViewController : DCViewController
 
+@property(nonatomic,readonly) NSIndexPath *selectedMenuItemIndexPath;
+
 @property(nonatomic) CGFloat menuWidthInPercent;
-//@property(nonatomic) 
 
+@property(nonatomic,weak) id <DCSideMenuViewControllerDataSource> dataSource;
+@property(nonatomic,weak) id <DCSideMenuViewControllerDelegate>   delegate;
 
-- (instancetype)initWithMenuVC:(UIViewController *)menuVC contentVC:(UIViewController *)contentVC;
+- (instancetype)initWithMenuVC:(UIViewController *)menuVC;
+
+- (void)selectMenuItemAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

@@ -22,7 +22,7 @@
   self.edgesForExtendedLayout = UIRectEdgeNone;
   self.view.backgroundColor = [DCColor testColor];
   
-  _rect = CGRectZero;
+  _rect = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -30,30 +30,30 @@
   [self _configureView];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  [self _configureView];
-}
+//- (void)viewDidAppear:(BOOL)animated {
+//  [super viewDidAppear:animated];
+//  [self _configureView];
+//}
 
 - (void)viewWillLayoutSubviews {
   [super viewWillLayoutSubviews];
   [self _configureView];
 }
 
-- (void)viewDidLayoutSubviews {
-  [super viewDidLayoutSubviews];
-  [self _configureView];
-}
+//- (void)viewDidLayoutSubviews {
+//  [super viewDidLayoutSubviews];
+//  [self _configureView];
+//}
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
   [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
   [self _configureView];
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-  [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-  [self _configureView];
-}
+//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+//  [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+//  [self _configureView];
+//}
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];

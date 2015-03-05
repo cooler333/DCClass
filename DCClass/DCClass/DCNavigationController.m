@@ -31,18 +31,7 @@
 }
 
 - (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
-  NSLog(@"positionForBar");
   return UIBarPositionTopAttached;
-}
-
-- (instancetype)initWithRootViewController:(UIViewController *)rootViewController {
-  self = [super initWithRootViewController:rootViewController];
-  if (self) {
-//    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu_icon"] style:UIBarButtonItemStyleBordered target:self action:@selector(presentLeftMenuViewController:)];
-//    leftBarButtonItem.tintColor = [DCColor cyanColor];    
-//    rootViewController.navigationItem.leftBarButtonItem = leftBarButtonItem;
-  }
-  return self;
 }
 
 //- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {

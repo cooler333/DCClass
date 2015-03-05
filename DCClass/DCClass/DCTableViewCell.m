@@ -58,10 +58,7 @@
 }
 
 - (CGFloat)heightForLabel:(UILabel *)label andWidth:(CGFloat)width {
-//  NSLog(@"heightForLabel width: %@", @(width));
   CGSize size = [label sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)];
-//  NSLog(@"heightForLabel width: %@", @(size.width));
-//  NSLog(@"heightForLabel height: %@", @(size.height));
   return size.height;
 }
 

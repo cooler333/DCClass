@@ -20,7 +20,6 @@
   [super viewDidLoad];
   self.automaticallyAdjustsScrollViewInsets = NO;
   self.edgesForExtendedLayout = UIRectEdgeNone;
-  self.view.backgroundColor = [DCColor testColor];
   
   _rect = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
 }

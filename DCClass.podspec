@@ -30,6 +30,8 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'SideMenuViewController' do |ss|
+    ss.dependency 'DCClass/ViewController'
+
     ss.source_files     = 'DCClass/DCSideMenuViewController.{h,m}'
     ss.ios.frameworks   = 'UIKit'
   end
@@ -40,6 +42,8 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'ViewController' do |ss|
+    ss.dependency 'DCClass/Color'
+    
     ss.source_files     = 'DCClass/DCViewController.{h,m}'
     ss.ios.frameworks   = 'UIKit'
   end

@@ -1,0 +1,9 @@
+source 'https://github.com/CocoaPods/Specs'
+
+xcodeproj 'DCClass iOS Test'
+workspace '../DCClass'
+inhibit_all_warnings!
+
+platform :ios, '7.0'
+
+pod 'DCClass', :path => '../'

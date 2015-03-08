@@ -1,15 +1,52 @@
-Pod::Spec.new do |spec|
-  spec.name         = "DCClass"
-  spec.version      = "0.0.1"
-  spec.summary      = "iOS App Helper."
-  spec.license      = { :type => 'MIT' }
-  spec.homepage     = 'https://github.com/cooler333/DCClass'
-  spec.author       = { "Dmitry Coolerov" => "utm4@mail.ru" }
-  spec.summary      = 'ARC and GCD Compatible Reachability Class for iOS and OS X.'
-  spec.source       = { :git => 'https://github.com/cooler333/DCClass.git', :tag => 'v0.0.1' }
-  spec.public_header_files = 'DCClass/DCClass/*.h', 'DCClass/KeychainWrapper/KeychainWrapper.h' 
-  spec.source_files = 'DCClass/DCClass/*.{h,m}', 'DCClass/KeychainWrapper/*.{h,m}'
-  spec.platform     = :ios, "7.0"
-  spec.framework    = 'UIKit', 'Foundation'
-  spec.dependency     'AFNetworking', '~> 2.0'
+Pod::Spec.new do |s|
+  s.name        = 'DCClass'
+  s.version     = '0.0.1'
+  s.license     = 'MIT'
+  s.summary     = 'iOS App Helper.'
+  s.homepage    = 'https://github.com/cooler333/DCClass'
+  s.social_media_url = 'https://twitter.com/Cooler333'
+  s.author       = { 'Dmitry Coolerov' => 'utm4@mail.ru' }
+  s.source       = { :git => 'https://github.com/cooler333/DCClass.git', :tag => s.version, :submodules => true }
+  s.requires_arc = true
+  
+  s.ios.deployment_target = '7.0'
+
+  s.public_header_files = 'DCClass/*.h', 'DCClass/KeychainWrapper/KeychainWrapper.h'
+  s.source_files = 'DCClass/DCClass.h'
+
+  s.subspec 'APIManager' do |ss|
+    ss.source_files = 'DCClass/DCAPIManager.{h,m}'
+    ss.dependency   'AFNetworking', '~> 2.5.1' 
+  end
+
+  s.subspec 'Color' do |ss|
+    ss.source_files     = 'DCClass/DCColor.{h,m}'
+    ss.ios.frameworks   = 'UIKit'
+  end
+
+  s.subspec 'NavigationController' do |ss|
+    ss.source_files     = 'DCClass/DCNavigationController.{h,m}'
+    ss.ios.frameworks   = 'UIKit'
+  end
+
+  s.subspec 'SideMenuViewController' do |ss|
+    ss.source_files     = 'DCClass/DCSideMenuViewController.{h,m}'
+    ss.ios.frameworks   = 'UIKit'
+  end
+
+  s.subspec 'TableViewCell' do |ss|
+    ss.source_files     = 'DCClass/DCTableViewCell.{h,m}'
+    ss.ios.frameworks   = 'UIKit'
+  end
+
+  s.subspec 'ViewController' do |ss|
+    ss.source_files     = 'DCClass/DCViewController.{h,m}'
+    ss.ios.frameworks   = 'UIKit'
+  end
+
+  s.subspec 'KeychainWrapper' do |ss|
+    ss.source_files         = 'DCClass/DCKeychainWrapper.{h,m}', 'DCClass/KeychainWrapper/KeychainWrapper.{h,m}'
+    ss.ios.frameworks       = 'Security', 'Foundation'
+  end
+
 end

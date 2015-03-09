@@ -29,7 +29,6 @@
 		1CB9A7F91AACDBB100D85CE5 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB9A7EE1AACDBB100D85CE5 /* AFURLRequestSerialization.m */; };
 		1CB9A7FA1AACDBB100D85CE5 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB9A7F01AACDBB100D85CE5 /* AFURLResponseSerialization.m */; };
 		1CB9A7FB1AACDBB100D85CE5 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB9A7F21AACDBB100D85CE5 /* AFURLSessionManager.m */; };
-		1CB9A7FE1AACDBEC00D85CE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CB9A7FD1AACDBEC00D85CE5 /* Main.storyboard */; };
 		1CD3C9F61AADB75800C8A674 /* APIManagerExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3C9F51AADB75800C8A674 /* APIManagerExampleViewController.m */; };
 		1CD3C9FF1AADBC4200C8A674 /* MenuTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3C9F81AADBC4200C8A674 /* MenuTableHeaderView.m */; };
 		1CD3CA001AADBC4200C8A674 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3C9FA1AADBC4200C8A674 /* MenuTableViewCell.m */; };
@@ -91,7 +90,6 @@
 		1CB9A7F01AACDBB100D85CE5 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		1CB9A7F11AACDBB100D85CE5 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		1CB9A7F21AACDBB100D85CE5 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		1CB9A7FC1AACDBEC00D85CE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1CD3C9F41AADB75800C8A674 /* APIManagerExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManagerExampleViewController.h; sourceTree = "<group>"; };
 		1CD3C9F51AADB75800C8A674 /* APIManagerExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManagerExampleViewController.m; sourceTree = "<group>"; };
 		1CD3C9F71AADBC4200C8A674 /* MenuTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableHeaderView.h; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 				1CB9A7671AACB91500D85CE5 /* AppDelegate.m */,
 				1CB9A7691AACB91500D85CE5 /* ViewController.h */,
 				1CB9A76A1AACB91500D85CE5 /* ViewController.m */,
-				1CB9A7FD1AACDBEC00D85CE5 /* Main.storyboard */,
 				1CB9A76F1AACB91500D85CE5 /* Images.xcassets */,
 				1CB9A7711AACB91500D85CE5 /* LaunchScreen.xib */,
 				1CB9A7621AACB91500D85CE5 /* Supporting Files */,
@@ -366,7 +363,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CB9A7FE1AACDBEC00D85CE5 /* Main.storyboard in Resources */,
 				1CB9A7731AACB91500D85CE5 /* LaunchScreen.xib in Resources */,
 				1CB9A7701AACB91500D85CE5 /* Images.xcassets in Resources */,
 			);
@@ -424,15 +420,6 @@
 				1CB9A7721AACB91500D85CE5 /* Base */,
 			);
 			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-		1CB9A7FD1AACDBEC00D85CE5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1CB9A7FC1AACDBEC00D85CE5 /* Base */,
-			);
-			name = Main.storyboard;
-			path = "../../Test/DCClass iOS Test";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -1,13 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "group:DCClass"
+      name = "DCClass">
+      <FileRef
+         location = "group:DCAPIManager.h">
+      </FileRef>
+      <FileRef
+         location = "group:DCAPIManager.m">
+      </FileRef>
+      <FileRef
+         location = "group:DCClass.h">
+      </FileRef>
+      <FileRef
+         location = "group:DCColor.h">
+      </FileRef>
+      <FileRef
+         location = "group:DCColor.m">
+      </FileRef>
+      <FileRef
+         location = "group:DCKeychainWrapper.h">
+      </FileRef>
+      <FileRef
+         location = "group:DCKeychainWrapper.m">
+      </FileRef>
+      <FileRef
+         location = "group:DCNavigationController.h">
+      </FileRef>
+      <FileRef
+         location = "group:DCNavigationController.m">
+      </FileRef>
+      <FileRef
+         location = "group:DCSideMenuViewController.h">
+      </FileRef>
+      <FileRef
+         location = "group:DCSideMenuViewController.m">
+      </FileRef>
+      <FileRef
+         location = "group:DCTableViewCell.h">
+      </FileRef>
+      <FileRef
+         location = "group:DCTableViewCell.m">
+      </FileRef>
+      <FileRef
+         location = "group:DCViewController.h">
+      </FileRef>
+      <FileRef
+         location = "group:DCViewController.m">
+      </FileRef>
+      <Group
+         location = "group:KeychainWrapper"
+         name = "KeychainWrapper">
+         <FileRef
+            location = "group:KeychainWrapper.h">
+         </FileRef>
+         <FileRef
+            location = "group:KeychainWrapper.m">
+         </FileRef>
+      </Group>
+   </Group>
    <FileRef
       location = "group:Example/DCClass iOS Example.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Test/DCClass iOS Test.xcodeproj">
+      location = "group:Tests/DCClass Tests.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Test/Pods/Pods.xcodeproj">
+      location = "group:Tests/Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

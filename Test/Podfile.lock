@@ -20,22 +20,24 @@ PODS:
   - AFNetworking/UIKit (2.5.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - DCClass (0.0.1):
-    - DCClass/APIManager (= 0.0.1)
-    - DCClass/Color (= 0.0.1)
-    - DCClass/KeychainWrapper (= 0.0.1)
-    - DCClass/NavigationController (= 0.0.1)
-    - DCClass/SideMenuViewController (= 0.0.1)
-    - DCClass/TableViewCell (= 0.0.1)
-    - DCClass/ViewController (= 0.0.1)
-  - DCClass/APIManager (0.0.1):
-    - AFNetworking (~> 2.5.1)
-  - DCClass/Color (0.0.1)
-  - DCClass/KeychainWrapper (0.0.1)
-  - DCClass/NavigationController (0.0.1)
-  - DCClass/SideMenuViewController (0.0.1)
-  - DCClass/TableViewCell (0.0.1)
-  - DCClass/ViewController (0.0.1)
+  - DCClass (0.0.3):
+    - DCClass/APIManager (= 0.0.3)
+    - DCClass/Color (= 0.0.3)
+    - DCClass/KeychainWrapper (= 0.0.3)
+    - DCClass/NavigationController (= 0.0.3)
+    - DCClass/SideMenuViewController (= 0.0.3)
+    - DCClass/TableViewCell (= 0.0.3)
+    - DCClass/ViewController (= 0.0.3)
+  - DCClass/APIManager (0.0.3):
+    - AFNetworking (= 2.5.1)
+  - DCClass/Color (0.0.3)
+  - DCClass/KeychainWrapper (0.0.3)
+  - DCClass/NavigationController (0.0.3)
+  - DCClass/SideMenuViewController (0.0.3):
+    - DCClass/ViewController
+  - DCClass/TableViewCell (0.0.3)
+  - DCClass/ViewController (0.0.3):
+    - DCClass/Color
 
 DEPENDENCIES:
   - DCClass (from `../`)
@@ -46,6 +48,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
-  DCClass: 929210994b3cb619511d45048e340b8cb35635fc
+  DCClass: 85a8170941d203756566cdeac77bf051a6aa1c0b
 
 COCOAPODS: 0.35.0

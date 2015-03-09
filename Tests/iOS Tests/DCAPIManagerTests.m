@@ -34,8 +34,20 @@ NSString * const DCClassTestsBaseURLString = @"https://httpbin.org/";
   [super tearDown];
 }
 
-- (void)testConnect {
-    XCTAssert(YES, @"Pass");
+- (void)testDateFormatter {
+  // Set the flag to YES
+  if ([DCAPIManager sharedManager].dateFormatter == nil) {
+    XCTAssert(NO, @"Not Pass");
+  }
+  XCTAssert(YES, @"Pass");
+}
+
+- (void)testBaseURL {
+  NSString *absoluteString = [DCAPIManager sharedManager].baseURL.absoluteString;
+  if (absoluteString == nil) {
+    XCTAssert(NO, @"Not Pass");
+  }
+  XCTAssert(YES, @"Pass");
 }
 
 @end

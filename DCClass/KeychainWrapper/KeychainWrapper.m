@@ -14,9 +14,6 @@
 // Used for saving the users name to NSUserDefaults
 #define USERNAME @"username"
 
-// Used to specify the Application used in Keychain accessing
-#define APP_NAME [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]
-
 // Used to help secure the PIN
 // Ideally, this is randomly generated, but to avoid unneccessary complexity and overhead of storing the Salt seperately we will standardize on this key.
 // !!KEEP IT A SECRET!!
@@ -46,12 +43,16 @@ typedef enum {
     // Specify we are using a Password (vs Certificate, Internet Password, etc)
     [searchDictionary setObject:(__bridge id)kSecClassGenericPassword forKey:(__bridge id)kSecClass];
     // Uniquely identify this keychain accesser
-    [searchDictionary setObject:APP_NAME forKey:(__bridge id)kSecAttrService];
+    id bundleIdentifier = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+    if (bundleIdentifier == nil) {
+        bundleIdentifier = @"Test";
+    }
+    [searchDictionary setObject:bundleIdentifier forKey:(__bridge id)(kSecAttrService)];
 	
     // Uniquely identify the account who will be accessing the keychain
     NSData *encodedIdentifier = [identifier dataUsingEncoding:NSUTF8StringEncoding];
-    [searchDictionary setObject:encodedIdentifier forKey:(__bridge id)kSecAttrGeneric];
-    [searchDictionary setObject:encodedIdentifier forKey:(__bridge id)kSecAttrAccount];
+    [searchDictionary setObject:encodedIdentifier forKey:(__bridge id)(kSecAttrGeneric)];
+    [searchDictionary setObject:encodedIdentifier forKey:(__bridge id)(kSecAttrAccount)];
 	
     return searchDictionary; 
 }
@@ -94,7 +95,7 @@ typedef enum {
    
     NSMutableDictionary *dictionary = [self setupSearchDirectoryForIdentifier:identifier];
     NSData *valueData = [value dataUsingEncoding:NSUTF8StringEncoding];
-    [dictionary setObject:valueData forKey:(__bridge id)kSecValueData];
+    [dictionary setObject:valueData forKey:(__bridge id)(kSecValueData)];
    
     // Protect the keychain entry so its only valid when the device is unlocked
     [dictionary setObject:(__bridge id)kSecAttrAccessibleWhenUnlocked forKey:(__bridge id)kSecAttrAccessible];

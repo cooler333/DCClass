@@ -13,11 +13,11 @@
 @implementation DCKeychainWrapper
 
 + (NSString *)keychainTokenString {
-  return [self keychainStringFromMatchingIdentifier:kTokenStringKeychainKey];
+  return [super keychainStringFromMatchingIdentifier:kTokenStringKeychainKey];
 }
 
 + (BOOL)setKeychainTokenString:(NSString *)tokenString {
-  return [self createKeychainValue:tokenString forIdentifier:kTokenStringKeychainKey];
+  return [super createKeychainValue:tokenString forIdentifier:kTokenStringKeychainKey];
 }
 
 + (void)deleteKeychainTokenString {
@@ -25,11 +25,11 @@
 }
 
 + (NSString *)keychainIDString {
-  return [self keychainStringFromMatchingIdentifier:kIDStringKeychainKey];
+  return [super keychainStringFromMatchingIdentifier:kIDStringKeychainKey];
 }
 
 + (BOOL)setKeychainIDString:(NSString *)IDString {
-  return [self createKeychainValue:IDString forIdentifier:kIDStringKeychainKey];
+  return [super createKeychainValue:IDString forIdentifier:kIDStringKeychainKey];
 }
 
 + (void)deleteKeychainIDString {

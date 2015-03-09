@@ -27,4 +27,4 @@ Follow Dmitry Coolerov on Twitter ([@Cooler333](https://twitter.com/Cooler333))
 
 ## License
 
-AFNetworking is available under the MIT license. See the LICENSE file for more info.
+DCClass is available under the MIT license. See the LICENSE file for more info.

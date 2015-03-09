@@ -40,4 +40,14 @@
   XCTAssertTrue(isRemoved, @"Pass");
 }
 
+- (void)testTokenString {
+  [DCKeychainWrapper setKeychainTokenString:@"AFADfdfsdLHJDFHjsdjfsdfs"];
+  BOOL isSetting = [[DCKeychainWrapper keychainTokenString] isEqualToString:@"AFADfdfsdLHJDFHjsdjfsdfs"];
+  XCTAssertTrue(isSetting, @"Pass");
+  
+  [DCKeychainWrapper deleteKeychainTokenString];
+  BOOL isRemoved = [DCKeychainWrapper keychainTokenString] == nil;
+  XCTAssertTrue(isRemoved, @"Pass");
+}
+
 @end

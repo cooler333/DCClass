@@ -11,6 +11,9 @@
          location = "group:DCAPIManager.m">
       </FileRef>
       <FileRef
+         location = "group:DCLog.h">
+      </FileRef>
+      <FileRef
          location = "group:DCClass.h">
       </FileRef>
       <FileRef

@@ -9,6 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DCLog.h"
 #import "DCAPIManager.h"
 #import "DCColor.h"
 #import "DCKeychainWrapper.h"

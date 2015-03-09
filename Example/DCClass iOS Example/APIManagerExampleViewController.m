@@ -12,6 +12,7 @@
 #import "DCAPIManager.h"
 #import "DCColor.h"
 #import "UIImageView+AFNetworking.h"
+#import "DCLog.h"
 
 
 @interface APIManagerExampleViewController ()
@@ -74,7 +75,7 @@
                                                        error:&error];
   NSString *JSONString;
   if (!jsonData) {
-    NSLog(@"bv_jsonStringWithPrettyPrint: error: %@", error.localizedDescription);
+    DCLog(@"bv_jsonStringWithPrettyPrint: error: %@", error.localizedDescription);
     JSONString = @"{}";
   } else {
     JSONString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];

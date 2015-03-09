@@ -11,8 +11,8 @@ Pod::Spec.new do |s|
   
   s.ios.deployment_target = '7.0'
 
-  s.public_header_files = 'DCClass/*.h', 'DCClass/KeychainWrapper/KeychainWrapper.h'
-  s.source_files = 'DCClass/DCClass.h'
+  s.public_header_files = 'DCClass/*.h', 'DCClass/DCLog.h', 'DCClass/KeychainWrapper/KeychainWrapper.h'
+  s.source_files = 'DCClass/DCClass.h', 'DCClass/DCLog.h'
 
   s.subspec 'APIManager' do |ss|
     ss.source_files = 'DCClass/DCAPIManager.{h,m}'

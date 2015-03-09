@@ -133,8 +133,8 @@
 		1CB9A7561AACB91500D85CE5 = {
 			isa = PBXGroup;
 			children = (
-				1CB9A7C11AACD94C00D85CE5 /* Vendor */,
 				1CB9A7611AACB91500D85CE5 /* Classes */,
+				1CB9A7C11AACD94C00D85CE5 /* Vendor */,
 				1CB9A7601AACB91500D85CE5 /* Products */,
 			);
 			sourceTree = "<group>";

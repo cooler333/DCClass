@@ -3,7 +3,7 @@ include FileUtils::Verbose
 namespace :test do
   task :prepare do
     mkdir_p "Tests/DCClass Tests.xcodeproj/xcshareddata/xcschemes"
-    cp Dir.glob('Tests/Schemes/*.xcscheme'), "Tests/DCClass Tests/xcshareddata/xcschemes/"
+    cp Dir.glob('Tests/Schemes/*.xcscheme'), "Tests/DCClass Tests.xcodeproj/xcshareddata/xcschemes/"
   end
   
   desc "Run the DCClass Tests for iOS"

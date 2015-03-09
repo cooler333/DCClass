@@ -13,7 +13,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1C24F5371AADE3E10087CE18 /* iOS Test Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Test Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C24F5371AADE3E10087CE18 /* iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C24F5431AADE65B0087CE18 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C24F5441AADE65B0087CE18 /* iOS_Test_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOS_Test_Tests.m; sourceTree = "<group>"; };
 		A00C03361995AAF8266E15BB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -55,7 +55,7 @@
 		1CB9A7991AACD56E00D85CE5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1C24F5371AADE3E10087CE18 /* iOS Test Tests.xctest */,
+				1C24F5371AADE3E10087CE18 /* iOS Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,7 +96,7 @@
 			);
 			name = "iOS Tests";
 			productName = "iOS Test Tests";
-			productReference = 1C24F5371AADE3E10087CE18 /* iOS Test Tests.xctest */;
+			productReference = 1C24F5371AADE3E10087CE18 /* iOS Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */

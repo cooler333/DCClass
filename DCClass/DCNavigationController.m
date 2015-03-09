@@ -34,17 +34,4 @@
   return UIBarPositionTopAttached;
 }
 
-//- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
-//  [super pushViewController:viewController animated:animated];
-//  
-//  UINavigationBar *nb = viewController.navigationController.navigationBar;
-//  UIImage *backIndicatorImage = [UIImage imageNamed:@"back_bar_button_item"];
-//  backIndicatorImage = [backIndicatorImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//  nb.backIndicatorImage = backIndicatorImage;
-//  nb.backIndicatorTransitionMaskImage = backIndicatorImage;
-//  
-//  UIBarButtonItem *nbbbi = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
-//  viewController.navigationItem.backBarButtonItem = nbbbi;
-//}
-
 @end

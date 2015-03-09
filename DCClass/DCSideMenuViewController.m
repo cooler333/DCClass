@@ -11,12 +11,6 @@
 
 #import "DCColor.h"
 
-typedef NS_ENUM(NSUInteger, DCMenuState) {
-  DCMenuStateOpened,
-  DCMenuStateClosed,
-  DCMenuStateUnknown
-};
-
 
 @interface DCSideMenuViewController () <UIGestureRecognizerDelegate>
 
@@ -124,13 +118,19 @@ typedef NS_ENUM(NSUInteger, DCMenuState) {
 
 - (void)selectMenuItemAtIndexPath:(NSIndexPath *)indexPath {
   if (self.selectedMenuItemIndexPath == nil || indexPath.row != self.selectedMenuItemIndexPath.row || indexPath.section != self.selectedMenuItemIndexPath.section) {
+    NSIndexPath *oldSelectedMenuItemIndexPath = [self.selectedMenuItemIndexPath copy];
+    [self willDeselectMenuItemAtIndexPath:oldSelectedMenuItemIndexPath];
+    
     self.selectedMenuItemIndexPath = indexPath;
+    [self willSelectMenuItemAtIndexPath:indexPath];
     
     UIViewController *vc = [self.dataSource viewControllerForMenuItemAtIndexPath:self.selectedMenuItemIndexPath];
     if (vc != nil) {
       [_contentViewController willMoveToParentViewController:nil];
       [_contentViewController removeFromParentViewController];
       [_contentViewController.view removeFromSuperview];
+      
+      [self didDeselectMenuItemAtIndexPath:oldSelectedMenuItemIndexPath];
       
       [self addChildViewController:vc];
       [vc didMoveToParentViewController:self];
@@ -153,6 +153,7 @@ typedef NS_ENUM(NSUInteger, DCMenuState) {
       [self.contentView addSubview:vc.view];
       
       _contentViewController = vc;
+      [self didSelectMenuItemAtIndexPath:indexPath];
     }
   }
   [self closeMenu:0.25f];
@@ -372,6 +373,18 @@ typedef NS_ENUM(NSUInteger, DCMenuState) {
 }
 
 #pragma mark - DCSideMenuViewControllerDelegate
+
+- (void)willDeselectMenuItemAtIndexPath:(NSIndexPath *)indexPath {
+  if ([self.delegate respondsToSelector:@selector(willDeselectMenuItemAtIndexPath:)]) {
+    [self.delegate willDeselectMenuItemAtIndexPath:indexPath];
+  }
+}
+
+- (void)didDeselectMenuItemAtIndexPath:(NSIndexPath *)indexPath {
+  if ([self.delegate respondsToSelector:@selector(didDeselectMenuItemAtIndexPath:)]) {
+    [self.delegate didDeselectMenuItemAtIndexPath:indexPath];
+  }
+}
 
 - (void)willSelectMenuItemAtIndexPath:(NSIndexPath *)indexPath {
   if ([self.delegate respondsToSelector:@selector(willSelectMenuItemAtIndexPath:)]) {

@@ -9,6 +9,12 @@
 
 #import "DCViewController.h"
 
+typedef NS_ENUM(NSUInteger, DCMenuState) {
+  DCMenuStateOpened,
+  DCMenuStateClosed,
+  DCMenuStateUnknown
+};
+
 
 @protocol DCSideMenuViewControllerDataSource <NSObject>
 
@@ -19,6 +25,9 @@
 
 @protocol DCSideMenuViewControllerDelegate <NSObject>
 
+- (void)willDeselectMenuItemAtIndexPath:(NSIndexPath *)indexPath;
+- (void)didDeselectMenuItemAtIndexPath:(NSIndexPath *)indexPath;
+
 - (void)willSelectMenuItemAtIndexPath:(NSIndexPath *)indexPath;
 - (void)didSelectMenuItemAtIndexPath:(NSIndexPath *)indexPath;
 
@@ -27,7 +36,14 @@
 
 @interface DCSideMenuViewController : DCViewController
 
+@property(nonatomic,readonly) UIViewController *menuViewController;
+@property(nonatomic,readonly) UIView *menuView;
+
+@property(nonatomic,readonly) UIViewController *contentViewController;
+@property(nonatomic,readonly) UIView *contentView;
+
 @property(nonatomic,readonly) NSIndexPath *selectedMenuItemIndexPath;
+@property(nonatomic,readonly) DCMenuState menuState;
 
 @property(nonatomic) CGFloat menuWidthInPercent;
 

@@ -82,12 +82,12 @@
   return MIN(statusBarSize.width, statusBarSize.height);
 }
 
-- (CGFloat)heightForLabel:(UILabel *)label andWidth:(CGFloat)width {
+- (CGFloat)heightForLabel:(UILabel *)label withMaxWidth:(CGFloat)width {
   return [self sizeForLabel:label withMaxWidth:width].height;
 }
 
 - (CGSize)sizeForLabel:(UILabel *)label withMaxWidth:(CGFloat)width {
-  return [label sizeThatFits:CGSizeMake(width, FLT_MAX)];
+  return [label sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)];
 }
 
 #pragma mark - Memory MGMT

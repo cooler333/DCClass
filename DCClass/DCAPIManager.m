@@ -37,16 +37,12 @@ static DCAPIManager *_sharedManager = nil;
 + (void)setSharedManagerWithBaseURL:(NSURL *)baseURL {
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    _sharedManager = [[self allocWithZone:NULL] initWithBaseURL:baseURL];
+    _sharedManager = [[super alloc] initWithBaseURL:baseURL];
   });
 }
 
 + (instancetype)sharedManager {
   return _sharedManager;
-}
-
-+ (instancetype)allocWithZone:(struct _NSZone *)zone {
-  return [DCAPIManager sharedManager];
 }
 
 - (instancetype)initWithBaseURL:(NSURL *)url {
@@ -68,36 +64,66 @@ static DCAPIManager *_sharedManager = nil;
   return self;
 }
 
-- (NSURLSessionDataTask *)POSTWithParameters:(NSDictionary *)parameters constructingBodyWithBlock:(void (^)(id<AFMultipartFormData>))block success:(void (^)(NSURLSessionDataTask *, NSArray *responseArray))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+- (id)isResponseObjectConforms:(id)responseObject {
+  if (responseObject != nil && [responseObject isKindOfClass:[NSArray class]]) {
+    return responseObject;
+  }
+  if (responseObject != nil && [responseObject isKindOfClass:[NSDictionary class]]) {
+    return [NSArray arrayWithObject:responseObject];
+  }
+  return nil;
+}
+
+- (NSURLSessionDataTask *)GET:(NSString *)URLString parameters:(NSDictionary *)parameters success:(void (^)(NSURLSessionDataTask *, NSArray *))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+  if (isObjectEmpty(URLString)) {
+    URLString = @"";
+  }
   NSMutableDictionary *newParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
-  
-  NSURLSessionDataTask *URLSessionDataTask = [super POST:@"" parameters:newParameters constructingBodyWithBlock:block success:^(NSURLSessionDataTask *task, id responseObject) {
+  NSURLSessionDataTask *URLSessionDataTask = [super GET:URLString parameters:newParameters success:^(NSURLSessionDataTask *task, id responseObject) {
     NSInteger statusCode = [(NSHTTPURLResponse *)task.response statusCode];
-    if ([[responseObject valueForKey:@"success"] boolValue]) {  // success = 1
-      id dataArray = [responseObject valueForKey:@"data"];
-      if (dataArray != nil && [dataArray isKindOfClass:[NSArray class]]) {  // data is array
-        if (success) {
-          [self printLogWithURLString:@"" parameters:newParameters responseObject:responseObject statusCode:statusCode error:nil];
-          success(task, [responseObject valueForKey:@"data"]);
-        }
-      } else {  // data is nil or data is not an array
-        if (failure) {
-          NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
-          [errorDetail setValue:@"Data object nil or isn't an array" forKey:NSLocalizedDescriptionKey];
-          NSError *error = [NSError errorWithDomain:@"API Error: POST" code:200 userInfo:errorDetail];
-          [self printLogWithURLString:@"" parameters:newParameters responseObject:nil statusCode:statusCode error:error];
-          failure(task, error);
-        }
+    responseObject = [self isResponseObjectConforms:responseObject];
+    if (isObjectNotEmpty(responseObject)) {
+      if (success) {
+        [self printLogWithURLString:@"" parameters:newParameters responseObject:responseObject statusCode:statusCode error:nil];
+        success(task, responseObject);
       }
-    } else {  // success = 0
+    } else {
       if (failure) {
         NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
-        id errors = [responseObject valueForKey:@"errors"];
-        if (isObjectNotEmpty(errors)) {
-          [errorDetail setValue:[NSString stringWithFormat:@"%@", errors] forKey:NSLocalizedDescriptionKey];
-        } else {
-          [errorDetail setValue:@"Empty errors array" forKey:NSLocalizedDescriptionKey];
-        }
+        [errorDetail setValue:@"Data object nil or isn't an array" forKey:NSLocalizedDescriptionKey];
+        NSError *error = [NSError errorWithDomain:@"API Error: POST" code:200 userInfo:errorDetail];
+        [self printLogWithURLString:@"" parameters:newParameters responseObject:nil statusCode:statusCode error:error];
+        failure(task, error);
+      }
+    }
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    if (failure) {
+      NSInteger statusCode = [(NSHTTPURLResponse *)task.response statusCode];
+      [self printLogWithURLString:@"" parameters:newParameters responseObject:nil statusCode:statusCode error:error];
+      failure(task, error);
+    }
+  }];
+  return URLSessionDataTask;
+}
+
+- (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(NSDictionary *)parameters constructingBodyWithBlock:(void (^)(id<AFMultipartFormData>))block success:(void (^)(NSURLSessionDataTask *, NSArray *responseArray))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+  if (isObjectEmpty(URLString)) {
+    URLString = @"";
+  }
+  NSMutableDictionary *newParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
+  
+  NSURLSessionDataTask *URLSessionDataTask = [super POST:URLString parameters:newParameters constructingBodyWithBlock:block success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSInteger statusCode = [(NSHTTPURLResponse *)task.response statusCode];
+    responseObject = [self isResponseObjectConforms:responseObject];
+    if (isObjectNotEmpty(responseObject)) {
+      if (success) {
+        [self printLogWithURLString:@"" parameters:newParameters responseObject:responseObject statusCode:statusCode error:nil];
+        success(task, responseObject);
+      }
+    } else {
+      if (failure) {
+        NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
+        [errorDetail setValue:@"Data object nil or isn't an array" forKey:NSLocalizedDescriptionKey];
         NSError *error = [NSError errorWithDomain:@"API Error: POST" code:200 userInfo:errorDetail];
         [self printLogWithURLString:@"" parameters:newParameters responseObject:nil statusCode:statusCode error:error];
         failure(task, error);
@@ -113,7 +139,11 @@ static DCAPIManager *_sharedManager = nil;
   return URLSessionDataTask;
 }
 
-- (NSURLSessionDataTask *)POSTWithParameters:(NSDictionary *)parameters success:(void (^)(NSURLSessionDataTask *task, NSArray *responseArray))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+- (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(NSDictionary *)parameters success:(void (^)(NSURLSessionDataTask *task, NSArray *responseArray))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+  if (isObjectEmpty(URLString)) {
+    URLString = @"";
+  }
+  
   NSMutableDictionary *newParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
   
 //  NSString *tokenString = [KeychainWrapper keychainTokenString];
@@ -127,35 +157,18 @@ static DCAPIManager *_sharedManager = nil;
   //  [newParameters setValue:@"1" forKey:@"access_id"];
   
   
-  NSURLSessionDataTask *URLSessionDataTask = [super POST:@"" parameters:newParameters success:^(NSURLSessionDataTask *task, id responseObject) {
+  NSURLSessionDataTask *URLSessionDataTask = [super POST:URLString parameters:newParameters success:^(NSURLSessionDataTask *task, id responseObject) {
     NSInteger statusCode = [(NSHTTPURLResponse *)task.response statusCode];
-    if ([[responseObject valueForKey:@"success"] boolValue]) {  // success = 1
-      id dataArray = [responseObject valueForKey:@"data"];
-      if (dataArray != nil && [dataArray isKindOfClass:[NSArray class]]) {  // data is array
-        if (success) {
-          [self printLogWithURLString:@"" parameters:newParameters responseObject:responseObject statusCode:statusCode error:nil];
-          success(task, [responseObject valueForKey:@"data"]);
-        }
-      } else {  // data is nil or data is not an array
-        if (failure) {
-          NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
-          [errorDetail setValue:@"Data object nil or isn't an array" forKey:NSLocalizedDescriptionKey];
-          NSError *error = [NSError errorWithDomain:@"API Error: POST" code:200 userInfo:errorDetail];
-          [self printLogWithURLString:@"" parameters:newParameters responseObject:nil statusCode:statusCode error:error];
-          failure(task, error);
-        }
+    responseObject = [self isResponseObjectConforms:responseObject];
+    if (isObjectNotEmpty(responseObject)) {
+      if (success) {
+        [self printLogWithURLString:@"" parameters:newParameters responseObject:responseObject statusCode:statusCode error:nil];
+        success(task, responseObject);
       }
-    } else {  // success = 0
+    } else {
       if (failure) {
         NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
-        id errors = [responseObject valueForKey:@"errors"];
-        if (isObjectNotEmpty(errors)) {
-          if ([errors isKindOfClass:[NSArray class]]) {
-            [errorDetail setValue:[NSString stringWithFormat:@"%@", [errors objectAtIndex:0]] forKey:NSLocalizedDescriptionKey];
-          }
-        } else {
-          [errorDetail setValue:@"Empty errors array" forKey:NSLocalizedDescriptionKey];
-        }
+        [errorDetail setValue:@"Data object nil or isn't an array" forKey:NSLocalizedDescriptionKey];
         NSError *error = [NSError errorWithDomain:@"API Error: POST" code:200 userInfo:errorDetail];
         [self printLogWithURLString:@"" parameters:newParameters responseObject:nil statusCode:statusCode error:error];
         failure(task, error);
@@ -172,6 +185,7 @@ static DCAPIManager *_sharedManager = nil;
 }
 
 - (void)printLogWithURLString:(NSString *)URLString parameters:(NSDictionary *)parameters responseObject:(id)responseObject statusCode:(NSInteger)statusCode error:(NSError *)error {
+#ifdef DEBUG
   NSMutableString *logString = [NSMutableString string];
   
   [logString appendFormat:@"Path: %@\n", [self.baseURL.absoluteString stringByAppendingString:URLString]];
@@ -331,6 +345,7 @@ static DCAPIManager *_sharedManager = nil;
         "%@"
         "####################################################################################################################\n",
         logString);
+#endif
 }
 
 @end

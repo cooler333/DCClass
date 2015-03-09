@@ -9,6 +9,11 @@
 
 #import "AppDelegate.h"
 
+#import "DCColor.h"
+
+#import "MenuViewController.h"
+#import "SideMenuViewController.h"
+
 
 @interface AppDelegate ()
 
@@ -20,6 +25,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Override point for customization after application launch.
+  self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+  
+  MenuViewController *menuVC = [[MenuViewController alloc] init];
+  menuVC.view.backgroundColor = [UIColor whiteColor];
+  
+  SideMenuViewController *sideMenuVC = [[SideMenuViewController alloc] initWithMenuVC:menuVC];
+  sideMenuVC.menuWidthInPercent = 0.7f;
+  [sideMenuVC selectMenuItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+  sideMenuVC.view.backgroundColor = [DCColor cyanColor];
+  
+  self.window.rootViewController = sideMenuVC;
+  [self.window makeKeyAndVisible];
+  
   return YES;
 }
 

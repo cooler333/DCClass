@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  AppDelegate.h
 //  DCClass iOS Example
 //
 //  Created by Dmitriy Utmanov on 08/03/15.
@@ -7,10 +7,9 @@
 //
 
 
-#import "DCViewController.h"
+#import "DCTableViewCell.h"
 
 
-@interface ViewController : DCViewController
+@interface MenuTableViewCell : DCTableViewCell
 
 @end
-

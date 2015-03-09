@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'APIManager' do |ss|
     ss.source_files = 'DCClass/DCAPIManager.{h,m}'
-    ss.dependency   'AFNetworking', '~> 2.5.1' 
+    ss.dependency   'AFNetworking', '2.5.1' 
   end
 
   s.subspec 'Color' do |ss|

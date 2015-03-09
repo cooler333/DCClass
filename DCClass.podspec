@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.source_files = 'DCClass/DCClass.h', 'DCClass/DCLog.h'
 
   s.subspec 'APIManager' do |ss|
-    ss.source_files = 'DCClass/DCAPIManager.{h,m}'
+    ss.source_files = 'DCClass/DCAPIManager.{h,m}', 'DCClass/DCLog.h'
     ss.dependency   'AFNetworking', '2.5.1' 
   end
 

@@ -9,6 +9,18 @@
 
 #import "AFHTTPSessionManager.h"
 
+static inline BOOL isObjectEmpty(id object) {
+  return object == nil ||
+  object == Nil ||
+  object == [NSNull null] ||
+  ([object respondsToSelector:@selector(length)] && [(NSData*)object length] == 0) ||
+  ([object respondsToSelector:@selector(count)]  && [(NSArray*)object count] == 0);
+}
+
+static inline BOOL isObjectNotEmpty(id object) {
+  return !isObjectEmpty(object);
+}
+
 
 @interface DCAPIManager : AFHTTPSessionManager
 

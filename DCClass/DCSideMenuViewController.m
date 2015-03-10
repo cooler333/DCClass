@@ -52,6 +52,7 @@
     _tapView = [[UIView alloc] initWithFrame:CGRectZero];
     
     _menuWidthInPercent = 0.5f;
+    _menuTopOffsetInPercent = 0.05f;
   }
   return self;
 }
@@ -237,17 +238,7 @@
       
       
       CGFloat menuViewRatio = (endPoint.x - (CGRectGetWidth(self.rect) / 2.0f)) / (CGRectGetWidth(self.rect) * self.menuWidthInPercent);
-      
-      CGFloat scale =  (1.0f * (1.0f - menuViewRatio));
-      CGFloat step = 1.0f - 0.95f;
-      scale = 0.95 + step * scale;
-      if (scale < 0.95f) {
-        scale = 0.95f;
-      }
-      if (scale > 1.0f) {
-        scale = 1.0f;
-      }
-      self.contentView.transform = CGAffineTransformScale(CGAffineTransformIdentity, scale, scale);
+      self.contentView.center = CGPointMake(endPoint.x, CGRectGetHeight(self.rect) / 2.0f + CGRectGetHeight(self.rect) * self.menuTopOffsetInPercent * menuViewRatio);
       
       menuViewRatio = (1.0f - menuViewRatio) / 2.0f;
       
@@ -292,8 +283,7 @@
 //    CGFloat velocity = animationDuration * CGRectGetWidth(self.rect) * self.menuWidthInPercent;
     
     [UIView animateWithDuration:animationDuration delay:0.0f usingSpringWithDamping:0.3f initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-      self.contentView.center = CGPointMake((CGRectGetWidth(self.rect) /  2.0f) + (CGRectGetWidth(self.rect) * self.menuWidthInPercent), self.startPoint.y);
-      self.contentView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95f, 0.95f);
+      self.contentView.center = CGPointMake((CGRectGetWidth(self.rect) /  2.0f) + (CGRectGetWidth(self.rect) * self.menuWidthInPercent), CGRectGetHeight(self.rect) / 2.0f + CGRectGetHeight(self.rect) * self.menuTopOffsetInPercent);
 
       CGRect menuViewFrame = self.menuView.frame;
       menuViewFrame.origin = CGPointMake(0.0f, 0.0f);
@@ -313,9 +303,8 @@
     self.menuPanGestureRecognizer.enabled = NO;
     
     [UIView animateWithDuration:animationDuration delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
-      self.contentView.center = CGPointMake(CGRectGetWidth(self.rect) /  2.0f, self.startPoint.y);
-      self.contentView.transform = CGAffineTransformIdentity;
-
+      self.contentView.center = CGPointMake(CGRectGetWidth(self.rect) /  2.0f, CGRectGetHeight(self.rect) / 2.0f);
+      
       CGRect menuViewFrame = self.menuView.frame;
       menuViewFrame.origin = CGPointMake(-CGRectGetWidth(self.rect) * self.menuWidthInPercent * 0.5f, 0.0f);
       self.menuView.frame = menuViewFrame;

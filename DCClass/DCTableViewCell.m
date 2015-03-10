@@ -31,6 +31,15 @@
   [self configureCell];
 }
 
+- (void)prepareForReuse {
+  [super prepareForReuse];
+  [self updateView];
+}
+
+- (void)updateView {
+  // Do some additional actions
+}
+
 - (void)configureCell {
   [NSException raise:NSInternalInconsistencyException format:@"You must override \"%@\" method in a \"%@\" ", NSStringFromSelector(_cmd), NSStringFromClass([self class])];
 }

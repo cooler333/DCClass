@@ -24,6 +24,7 @@
 - (CGFloat)heightForCell;
 - (void)configureCellForHighlighedState:(BOOL)isHighlighed;
 - (void)configureCell;
+- (void)updateView;
 
 
 - (CGFloat)heightForLabel:(UILabel *)label andWidth:(CGFloat)width;

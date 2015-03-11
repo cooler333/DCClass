@@ -12,4 +12,7 @@
 
 @interface DCNavigationController : UINavigationController
 
+@property(nonatomic) UIColor *customTintColor;
+@property(nonatomic) UIColor *customBarTintColor;
+
 @end

@@ -28,10 +28,30 @@
   navBar.barStyle = UIBarStyleDefault;
   navBar.translucent = NO;
   navBar.shadowImage = [[UIImage alloc] init];
+  
+  navBar.tintColor = self.customTintColor;
+  navBar.barTintColor = self.customBarTintColor;
+
 }
 
 - (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
   return UIBarPositionTopAttached;
+}
+
+- (void)setCustomTintColor:(UIColor *)customTintColor {
+  if (_customTintColor != customTintColor) {
+    _customTintColor = customTintColor;
+    UINavigationBar *navBar = self.navigationBar;
+    navBar.tintColor = customTintColor;
+  }
+}
+
+- (void)setCustomBarTintColor:(UIColor *)customBarTintColor {
+  if (_customBarTintColor != customBarTintColor) {
+    _customBarTintColor = customBarTintColor;
+    UINavigationBar *navBar = self.navigationBar;
+    navBar.barTintColor = customBarTintColor;
+  }
 }
 
 @end

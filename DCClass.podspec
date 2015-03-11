@@ -11,46 +11,67 @@ Pod::Spec.new do |s|
   
   s.ios.deployment_target = '7.0'
 
-  s.public_header_files = 'DCClass/*.h','DCClass/KeychainWrapper/KeychainWrapper.h'
-  s.source_files = 'DCClass/DCClass.h', 'DCClass/DCLog.h', 'DCClass/DCCheckDevice.h'
+  s.public_header_files = 'DCClass/*.h'
+  s.source_files = 'DCClass/DCClass.h'
+
+
+  s.subspec 'Log' do |ss|
+    ss.ios.frameworks = 'Foundation'
+
+    ss.source_files = 'DCClass/DCLog.h'
+  end
+
+  s.subspec 'CheckDevice' do |ss|
+    ss.ios.frameworks = 'Foundation'
+
+    ss.source_files = 'DCClass/DCCheckDevice.h'
+  end
 
   s.subspec 'APIManager' do |ss|
-    ss.source_files = 'DCClass/DCAPIManager.{h,m}', 'DCClass/DCLog.h'
-    ss.dependency   'AFNetworking', '~> 2.0' 
+    ss.dependency 'AFNetworking', '~> 2.0' 
+    ss.dependency 'DCClass/Log'
+
+    ss.source_files = 'DCClass/DCAPIManager.{h,m}'
   end
 
   s.subspec 'Color' do |ss|
-    ss.source_files     = 'DCClass/DCColor.{h,m}'
     ss.ios.frameworks   = 'UIKit'
+
+    ss.source_files     = 'DCClass/DCColor.{h,m}'
   end
 
   s.subspec 'NavigationController' do |ss|
-    ss.source_files     = 'DCClass/DCNavigationController.{h,m}'
     ss.ios.frameworks   = 'UIKit'
+   
+    ss.source_files     = 'DCClass/DCNavigationController.{h,m}'
   end
 
   s.subspec 'SideMenuViewController' do |ss|
-    ss.dependency 'DCClass/ViewController'
-
-    ss.source_files     = 'DCClass/DCSideMenuViewController.{h,m}'
     ss.ios.frameworks   = 'UIKit'
+    ss.dependency 'DCClass/ViewController'
+   
+    ss.source_files     = 'DCClass/DCSideMenuViewController.{h,m}'
   end
 
   s.subspec 'TableViewCell' do |ss|
-    ss.source_files     = 'DCClass/DCTableViewCell.{h,m}'
     ss.ios.frameworks   = 'UIKit'
+   
+    ss.source_files     = 'DCClass/DCTableViewCell.{h,m}'
   end
 
   s.subspec 'ViewController' do |ss|
+    ss.ios.frameworks   = 'UIKit'
     ss.dependency 'DCClass/Color'
+    ss.dependency 'DCClass/CheckDevice'
     
     ss.source_files     = 'DCClass/DCViewController.{h,m}'
-    ss.ios.frameworks   = 'UIKit'
   end
 
   s.subspec 'KeychainWrapper' do |ss|
-    ss.source_files         = 'DCClass/DCKeychainWrapper.{h,m}', 'DCClass/KeychainWrapper/KeychainWrapper.{h,m}'
-    ss.ios.frameworks       = 'Security', 'Foundation'
+    ss.ios.frameworks   = 'Security', 'Foundation'
+
+    ss.public_header_files = 'DCClass/KeychainWrapper/KeychainWrapper.h'
+    ss.source_files        = 'DCClass/DCKeychainWrapper.{h,m}', 'DCClass/KeychainWrapper/KeychainWrapper.{h,m}'
   end
 
 end

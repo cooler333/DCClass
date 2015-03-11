@@ -32,8 +32,6 @@
 @implementation APIManagerExampleViewController
 
 - (void)viewDidLoad {
-  [DCAPIManager setSharedManagerWithBaseURL:[NSURL URLWithString:@"http://httpbin.org/"]];
-
   [super viewDidLoad];
   // Do any additional setup after loading the view.
 
@@ -114,9 +112,10 @@
   
   // Full URL: http://httpbin.org/get or http://domain.com/somePage
   NSDictionary *params = @{@"Key": @"Value", @"Key 2": @"Value 2"};
-  [[DCAPIManager sharedManager] GET:@"get" parameters:params success:^(NSURLSessionDataTask *task, NSArray *responseArray) {
-    NSDictionary *dataDictionary = responseArray[0];
-    self.textView.text = [self stringFromJSONDataDictionary:dataDictionary];
+  [[DCAPIManager sharedManager] GET:@"get" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+    if ([responseObject isKindOfClass:[NSDictionary class]]) {
+      self.textView.text = [self stringFromJSONDataDictionary:responseObject];
+    }
     
     [self.activityIndicatorView removeFromSuperview];
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -134,9 +133,10 @@
   
   // Full URL: http://httpbin.org/post or http://domain.com/somePage
   NSDictionary *params = @{@"Key": @"Value", @"Key 2": @"Value 2"};
-  [[DCAPIManager sharedManager] POST:@"post" parameters:params success:^(NSURLSessionDataTask *task, NSArray *responseArray) {
-    NSDictionary *dataDictionary = responseArray[0];
-    self.textView.text = [self stringFromJSONDataDictionary:dataDictionary];
+  [[DCAPIManager sharedManager] POST:@"post" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+    if ([responseObject isKindOfClass:[NSDictionary class]]) {
+      self.textView.text = [self stringFromJSONDataDictionary:responseObject];
+    }
     
     [self.activityIndicatorView removeFromSuperview];
   } failure:^(NSURLSessionDataTask *task, NSError *error) {

@@ -31,6 +31,9 @@ static DCAPIManager *_sharedManager = nil;
 }
 
 + (instancetype)sharedManager {
+  if (_sharedManager == nil) {
+    [DCAPIManager setSharedManagerWithBaseURL:[NSURL URLWithString:@"http://httpbin.org/"]];
+  }
   return _sharedManager;
 }
 
@@ -58,12 +61,12 @@ static DCAPIManager *_sharedManager = nil;
     return responseObject;
   }
   if (responseObject != nil && [responseObject isKindOfClass:[NSDictionary class]]) {
-    return [NSArray arrayWithObject:responseObject];
+    return responseObject;
   }
   return nil;
 }
 
-- (NSURLSessionDataTask *)GET:(NSString *)URLString parameters:(NSDictionary *)parameters success:(void (^)(NSURLSessionDataTask *, NSArray *))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+- (NSURLSessionDataTask *)GET:(NSString *)URLString parameters:(NSDictionary *)parameters success:(void (^)(NSURLSessionDataTask *, id responseObject))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
   if (isObjectEmpty(URLString)) {
     URLString = @"";
   }
@@ -80,8 +83,8 @@ static DCAPIManager *_sharedManager = nil;
     } else {
       if (failure) {
         NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
-        [errorDetail setValue:@"Data object nil or isn't an array" forKey:NSLocalizedDescriptionKey];
-        NSError *error = [NSError errorWithDomain:@"API Error: POST" code:200 userInfo:errorDetail];
+        [errorDetail setValue:@"Response object nil or isn't an array or dictionary" forKey:NSLocalizedDescriptionKey];
+        NSError *error = [NSError errorWithDomain:@"API Error: GET" code:200 userInfo:errorDetail];
         [self printLogWithURLString:URLString parameters:newParameters responseObject:nil statusCode:statusCode error:error];
         failure(task, error);
       }
@@ -96,7 +99,7 @@ static DCAPIManager *_sharedManager = nil;
   return URLSessionDataTask;
 }
 
-- (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(NSDictionary *)parameters constructingBodyWithBlock:(void (^)(id<AFMultipartFormData>))block success:(void (^)(NSURLSessionDataTask *, NSArray *responseArray))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+- (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(NSDictionary *)parameters constructingBodyWithBlock:(void (^)(id<AFMultipartFormData>))block success:(void (^)(NSURLSessionDataTask *, id responseObject))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
   if (isObjectEmpty(URLString)) {
     URLString = @"";
   }
@@ -113,7 +116,7 @@ static DCAPIManager *_sharedManager = nil;
     } else {
       if (failure) {
         NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
-        [errorDetail setValue:@"Data object nil or isn't an array" forKey:NSLocalizedDescriptionKey];
+        [errorDetail setValue:@"Response object nil or isn't an array or dictionary" forKey:NSLocalizedDescriptionKey];
         NSError *error = [NSError errorWithDomain:@"API Error: POST" code:200 userInfo:errorDetail];
         [self printLogWithURLString:URLString parameters:newParameters responseObject:nil statusCode:statusCode error:error];
         failure(task, error);
@@ -129,7 +132,7 @@ static DCAPIManager *_sharedManager = nil;
   return URLSessionDataTask;
 }
 
-- (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(NSDictionary *)parameters success:(void (^)(NSURLSessionDataTask *task, NSArray *responseArray))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+- (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(NSDictionary *)parameters success:(void (^)(NSURLSessionDataTask *, id responseObject))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
   if (isObjectEmpty(URLString)) {
     URLString = @"";
   }
@@ -146,7 +149,7 @@ static DCAPIManager *_sharedManager = nil;
     } else {
       if (failure) {
         NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
-        [errorDetail setValue:@"Data object nil or isn't an array" forKey:NSLocalizedDescriptionKey];
+        [errorDetail setValue:@"Response object nil or isn't an array or dictionary" forKey:NSLocalizedDescriptionKey];
         NSError *error = [NSError errorWithDomain:@"API Error: POST" code:200 userInfo:errorDetail];
         [self printLogWithURLString:URLString parameters:newParameters responseObject:nil statusCode:statusCode error:error];
         failure(task, error);

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'DCClass'
-  s.version     = '0.0.8'
+  s.version     = '0.0.9'
   s.license     = 'MIT'
   s.summary     = 'iOS App Helper.'
   s.homepage    = 'https://github.com/cooler333/DCClass'
@@ -11,8 +11,8 @@ Pod::Spec.new do |s|
   
   s.ios.deployment_target = '7.0'
 
-  s.public_header_files = 'DCClass/*.h', 'DCClass/DCLog.h', 'DCClass/DCCheckDevice.h' ,'DCClass/KeychainWrapper/KeychainWrapper.h'
-  s.source_files = 'DCClass/DCClass.h', 'DCClass/DCLog.h'
+  s.public_header_files = 'DCClass/*.h','DCClass/KeychainWrapper/KeychainWrapper.h'
+  s.source_files = 'DCClass/DCClass.h', 'DCClass/DCLog.h', 'DCClass/DCCheckDevice.h'
 
   s.subspec 'APIManager' do |ss|
     ss.source_files = 'DCClass/DCAPIManager.{h,m}', 'DCClass/DCLog.h'

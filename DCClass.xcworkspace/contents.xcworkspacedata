@@ -14,6 +14,9 @@
          location = "group:DCLog.h">
       </FileRef>
       <FileRef
+         location = "group:DCCheckDevice.h">
+      </FileRef>
+      <FileRef
          location = "group:DCClass.h">
       </FileRef>
       <FileRef

@@ -169,7 +169,12 @@
         UINavigationController *nvc = (UINavigationController *)vc;
         UINavigationBar *navigationBar = nvc.navigationBar;
         
-        UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"side_menu_icon"] style:UIBarButtonItemStylePlain target:self action:@selector(openMenuViewController:)];
+        NSArray *bundle             = [NSBundle allBundles];
+        
+        NSString *str = [NSString stringWithFormat:@"%@/%@", @"", @"menu_icon"];
+        UIImage *menuIconImage = [UIImage imageNamed:str];
+        
+        UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:menuIconImage style:UIBarButtonItemStylePlain target:self action:@selector(openMenuViewController:)];
         leftBarButtonItem.tintColor = navigationBar.tintColor;
         UIViewController *firstVC = nvc.viewControllers[0];
         firstVC.navigationItem.leftBarButtonItem = leftBarButtonItem;

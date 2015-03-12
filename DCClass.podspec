@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'DCClass'
-  s.version     = '0.0.11'
+  s.version     = '0.0.12'
   s.license     = 'MIT'
   s.summary     = 'iOS App Helper.'
   s.homepage    = 'https://github.com/cooler333/DCClass'
@@ -13,8 +13,6 @@ Pod::Spec.new do |s|
 
   s.public_header_files = 'DCClass/*.h'
   s.source_files = 'DCClass/DCClass.h'
-  s.resource_bundle = { 'ImagesBundle' => ['DCClass/Images.xcassets'] }
-
 
   s.subspec 'Log' do |ss|
     ss.ios.frameworks = 'Foundation'
@@ -52,6 +50,7 @@ Pod::Spec.new do |s|
     ss.dependency 'DCClass/ViewController'
    
     ss.source_files     = 'DCClass/DCSideMenuViewController.{h,m}'
+    ss.resource_bundle = { 'ImagesBundle' => ['DCClass/Images.xcassets', 'DCClass/Images/*.png'] }
   end
 
   s.subspec 'TableViewCell' do |ss|

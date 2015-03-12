@@ -9,25 +9,37 @@
 
 #import "DCBundleHelper.h"
 
+#import "DCLog.h"
+
 
 @implementation DCBundleHelper
 
-+ (NSBundle *)bundleWithIdentifier:(NSString *)localeIdentifier {
++ (NSBundle *)bundleWithIdentifier:(NSString *)identifier {
   static NSBundle *classBundle  = nil;
   static NSBundle *momentBundle = nil;
   static dispatch_once_t once;
   dispatch_once(&once, ^{
-    classBundle = [NSBundle bundleForClass:[self class]];
+    Class aClass = [self class];
+    classBundle = [NSBundle bundleForClass:aClass];
     
-    NSString *bundlePath = [classBundle pathForResource:localeIdentifier ofType:@"bundle"];
+    NSString *bundlePath = [classBundle pathForResource:identifier ofType:@"bundle"];
     momentBundle = [NSBundle bundleWithPath:bundlePath];
   });
+  
+  DCLog(@"momentBundle: %@", momentBundle);
+  DCLog(@"classBundle: %@", classBundle);
+  
   return momentBundle ?: classBundle;
 }
 
 + (UIImage *)getImageNamed:(NSString *)name fromBundleWithIdentifier:(NSString *)identifier {
-  NSString *imagePath = [NSString stringWithFormat:@"%@/%@", [self bundleWithIdentifier:identifier].resourcePath, name];
-  UIImage *image = [UIImage imageNamed:imagePath];
+  NSURL *bundleURL = [NSURL URLWithString:[self bundleWithIdentifier:identifier].bundlePath];
+  
+  NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
+  NSString *str = [bundle pathForResource:@"menu_icon" ofType:@"png"];
+  
+  NSString *imagePath = [NSString stringWithFormat:@"%@", name];
+  UIImage *image = [UIImage imageNamed:str];
   return image;
 }
 

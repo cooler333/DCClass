@@ -11,6 +11,7 @@
 #import <XCTest/XCTest.h>
 
 #import <DCClass/DCBundleHelper.h>
+#import <DCClass/DCLog.h>
 
 
 @interface DCBundleHelperTests : XCTestCase
@@ -33,18 +34,13 @@
 - (void)testBundle {
   // This is an example of a functional test case.
   NSBundle *bundle = [DCBundleHelper bundleWithIdentifier:kDCImageBundleName];
+  DCLog(@"bundle: %@", bundle);
   XCTAssert(bundle != nil, @"Pass");
   
   NSString *imageName = @"menu_icon";
   UIImage *image = [DCBundleHelper getImageNamed:imageName fromBundleWithIdentifier:kDCImageBundleName];
+  DCLog(@"image: %@", image);
   XCTAssertTrue(image != nil, @"Pass");
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
 }
 
 @end

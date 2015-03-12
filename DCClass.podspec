@@ -57,7 +57,9 @@ Pod::Spec.new do |s|
     ss.ios.frameworks   = 'UIKit'
     ss.resource_bundle = {
       'ImageBundle' => [
-        'DCClass/Resources/Images.xcassets'
+        'DCClass/Resources/DCImages.xcassets',
+        'DCClass/Resources/**/*.png',
+        'DCClass/Resources/*.png'
       ]
     }
     ss.source_files     = 'DCClass/DCBundleHelper.{h,m}'

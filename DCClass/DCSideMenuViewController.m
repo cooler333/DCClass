@@ -169,8 +169,6 @@
         UINavigationController *nvc = (UINavigationController *)vc;
         UINavigationBar *navigationBar = nvc.navigationBar;
         
-        NSArray *bundle             = [NSBundle allBundles];
-        
         NSString *str = [NSString stringWithFormat:@"%@/%@", @"", @"menu_icon"];
         UIImage *menuIconImage = [UIImage imageNamed:str];
         

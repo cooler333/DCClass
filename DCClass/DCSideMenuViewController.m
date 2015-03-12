@@ -144,10 +144,10 @@
 - (void)selectMenuItemAtIndexPath:(NSIndexPath *)indexPath {
   if (self.selectedMenuItemIndexPath == nil || indexPath.row != self.selectedMenuItemIndexPath.row || indexPath.section != self.selectedMenuItemIndexPath.section) {
     NSIndexPath *oldSelectedMenuItemIndexPath = [self.selectedMenuItemIndexPath copy];
-    [self willDeselectMenuItemAtIndexPath:oldSelectedMenuItemIndexPath];
+    [self _willDeselectMenuItemAtIndexPath:oldSelectedMenuItemIndexPath];
     
     self.selectedMenuItemIndexPath = indexPath;
-    [self willSelectMenuItemAtIndexPath:indexPath];
+    [self _willSelectMenuItemAtIndexPath:indexPath];
     
     UIViewController *vc = [self.dataSource viewControllerForMenuItemAtIndexPath:self.selectedMenuItemIndexPath];
     if (vc != nil) {
@@ -155,7 +155,7 @@
       [_contentViewController removeFromParentViewController];
       [_contentViewController.view removeFromSuperview];
       
-      [self didDeselectMenuItemAtIndexPath:oldSelectedMenuItemIndexPath];
+      [self _didDeselectMenuItemAtIndexPath:oldSelectedMenuItemIndexPath];
       
       [self addChildViewController:vc];
       [vc didMoveToParentViewController:self];
@@ -181,7 +181,7 @@
       [self.contentView addSubview:vc.view];
       
       _contentViewController = vc;
-      [self didSelectMenuItemAtIndexPath:indexPath];
+      [self _didSelectMenuItemAtIndexPath:indexPath];
     }
   }
   [self closeMenu:0.25f];
@@ -385,25 +385,25 @@
 
 #pragma mark - DCSideMenuViewControllerDelegate
 
-- (void)willDeselectMenuItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)_willDeselectMenuItemAtIndexPath:(NSIndexPath *)indexPath {
   if ([self.delegate respondsToSelector:@selector(willDeselectMenuItemAtIndexPath:)]) {
     [self.delegate willDeselectMenuItemAtIndexPath:indexPath];
   }
 }
 
-- (void)didDeselectMenuItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)_didDeselectMenuItemAtIndexPath:(NSIndexPath *)indexPath {
   if ([self.delegate respondsToSelector:@selector(didDeselectMenuItemAtIndexPath:)]) {
     [self.delegate didDeselectMenuItemAtIndexPath:indexPath];
   }
 }
 
-- (void)willSelectMenuItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)_willSelectMenuItemAtIndexPath:(NSIndexPath *)indexPath {
   if ([self.delegate respondsToSelector:@selector(willSelectMenuItemAtIndexPath:)]) {
     [self.delegate willSelectMenuItemAtIndexPath:indexPath];
   }
 }
 
-- (void)didSelectMenuItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)_didSelectMenuItemAtIndexPath:(NSIndexPath *)indexPath {
   if ([self.delegate respondsToSelector:@selector(didSelectMenuItemAtIndexPath:)]) {
     [self.delegate didSelectMenuItemAtIndexPath:indexPath];
   }

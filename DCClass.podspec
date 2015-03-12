@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'DCClass'
-  s.version     = '0.0.12'
+  s.version     = '0.0.13'
   s.license     = 'MIT'
   s.summary     = 'iOS App Helper.'
   s.homepage    = 'https://github.com/cooler333/DCClass'
@@ -48,9 +48,19 @@ Pod::Spec.new do |s|
   s.subspec 'SideMenuViewController' do |ss|
     ss.ios.frameworks   = 'UIKit'
     ss.dependency 'DCClass/ViewController'
+    ss.dependency 'DCClass/DCBundleHelper'
    
     ss.source_files     = 'DCClass/DCSideMenuViewController.{h,m}'
-    ss.resource_bundle = { 'ImagesBundle' => ['DCClass/Images.xcassets', 'DCClass/Images/*.png'] }
+  end
+
+  s.subspec 'DCBundleHelper' do |ss|
+    ss.ios.frameworks   = 'UIKit'
+    ss.resource_bundle = {
+      'ImageBundle' => [
+        'DCClass/Resources/Images.xcassets'
+      ]
+    }
+    ss.source_files     = 'DCClass/DCBundleHelper.{h,m}'
   end
 
   s.subspec 'TableViewCell' do |ss|

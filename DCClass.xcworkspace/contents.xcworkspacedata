@@ -65,6 +65,12 @@
             location = "group:KeychainWrapper.m">
          </FileRef>
       </Group>
+      <FileRef
+         location = "group:DCBundleHelper.h">
+      </FileRef>
+      <FileRef
+         location = "group:DCBundleHelper.m">
+      </FileRef>
    </Group>
    <FileRef
       location = "group:Example/DCClass iOS Example.xcodeproj">

@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-#import "DCAPIManager.h"
+#import <DCClass/DCAPIManager.h>
 
 NSString * const DCClassTestsBaseURLString = @"https://httpbin.org/";
 

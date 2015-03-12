@@ -9,7 +9,7 @@
 
 #import "DCSideMenuViewController.h"
 
-#import "DCColor.h"
+#import "DCBundleHelper.h"
 
 
 @interface DCSideMenuViewController () <UIGestureRecognizerDelegate>

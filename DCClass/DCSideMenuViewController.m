@@ -168,9 +168,8 @@
       if ([vc isKindOfClass:[UINavigationController class]]) {
         UINavigationController *nvc = (UINavigationController *)vc;
         UINavigationBar *navigationBar = nvc.navigationBar;
-        
-        NSString *str = [NSString stringWithFormat:@"%@/%@", @"", @"menu_icon"];
-        UIImage *menuIconImage = [UIImage imageNamed:str];
+
+        UIImage *menuIconImage = [DCBundleHelper getImageNamed:@"menu_icon" fromBundleWithIdentifier:kDCImageBundleName];
         
         UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:menuIconImage style:UIBarButtonItemStylePlain target:self action:@selector(openMenuViewController:)];
         leftBarButtonItem.tintColor = navigationBar.tintColor;

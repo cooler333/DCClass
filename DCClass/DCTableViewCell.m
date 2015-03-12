@@ -28,7 +28,7 @@
 
 - (void)layoutSubviews {
   [super layoutSubviews];
-  [self configureCell];
+  [self _configureCell];
 }
 
 - (void)prepareForReuse {
@@ -38,6 +38,15 @@
 
 - (void)updateView {
   // Do some additional actions
+}
+
+
+- (void)_configureCell {
+  CGRect rect = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.contentView.bounds), CGRectGetHeight(self.contentView.bounds));
+  if (!CGRectEqualToRect(rect, self.rect)) {
+    _rect = rect;
+    [self configureCell];
+  }
 }
 
 - (void)configureCell {

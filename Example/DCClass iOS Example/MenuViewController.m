@@ -45,8 +45,6 @@ static NSString * const kPrototypeMenuTableViewCellReuseIdentifier = @"kPrototyp
   self.tableView.tableHeaderView = [[MenuTableHeaderView alloc] initWithFrame:CGRectZero];
   
   [self.view addSubview:self.tableView];
-  
-  [self configureView];
 }
 
 - (void)configureView {

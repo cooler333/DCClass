@@ -31,11 +31,6 @@
   
   navBar.tintColor = self.customTintColor;
   navBar.barTintColor = self.customBarTintColor;
-
-}
-
-- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
-  return UIBarPositionTopAttached;
 }
 
 - (void)setCustomTintColor:(UIColor *)customTintColor {
@@ -52,6 +47,17 @@
     UINavigationBar *navBar = self.navigationBar;
     navBar.barTintColor = customBarTintColor;
   }
+}
+
+- (void)viewWillLayoutSubviews {
+  [super viewWillLayoutSubviews];
+  NSLog(@"viewWillLayoutSubviews: %@", @(self.topLayoutGuide.length));
+}
+
+- (void)viewDidLayoutSubviews {
+  [super viewDidLayoutSubviews];
+  NSLog(@"%@", NSStringFromCGRect([self.navigationBar frame]));
+  NSLog(@"viewDidLayoutSubviews: %@", @(self.topLayoutGuide.length));
 }
 
 @end

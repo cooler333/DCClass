@@ -13,6 +13,7 @@ Pod::Spec.new do |s|
 
   s.public_header_files = 'DCClass/*.h'
   s.source_files = 'DCClass/DCClass.h'
+  s.resource_bundle = { 'ImagesBundle' => ['DCClass/Images.xcassets'] }
 
 
   s.subspec 'Log' do |ss|

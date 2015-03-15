@@ -29,7 +29,7 @@ static CGFloat const kMenuTableViewCellMinHeight = 44.0f;
 
 - (void)configureCell {
   CGRect rect = self.contentView.bounds;
-  CGFloat width = CGRectGetWidth(rect) * 0.5f;
+  CGFloat width = CGRectGetWidth(rect);
   
   CGFloat textLabelWidth = width - 30.0f * 2.0f;
   CGFloat textLabelHeght = [self heightForLabel:self.textLabel andWidth:textLabelWidth];

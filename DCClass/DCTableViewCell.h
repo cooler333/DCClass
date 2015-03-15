@@ -20,10 +20,12 @@
 
 @interface DCTableViewCell : UITableViewCell <DCTableViewCellProtocol>
 
+@property(nonatomic,readonly) CGRect rect;
 
 - (CGFloat)heightForCell;
 - (void)configureCellForHighlighedState:(BOOL)isHighlighed;
 - (void)configureCell;
+- (void)updateView;
 
 
 - (CGFloat)heightForLabel:(UILabel *)label andWidth:(CGFloat)width;

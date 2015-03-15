@@ -28,10 +28,36 @@
   navBar.barStyle = UIBarStyleDefault;
   navBar.translucent = NO;
   navBar.shadowImage = [[UIImage alloc] init];
+  
+  navBar.tintColor = self.customTintColor;
+  navBar.barTintColor = self.customBarTintColor;
 }
 
-- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
-  return UIBarPositionTopAttached;
+- (void)setCustomTintColor:(UIColor *)customTintColor {
+  if (_customTintColor != customTintColor) {
+    _customTintColor = customTintColor;
+    UINavigationBar *navBar = self.navigationBar;
+    navBar.tintColor = customTintColor;
+  }
+}
+
+- (void)setCustomBarTintColor:(UIColor *)customBarTintColor {
+  if (_customBarTintColor != customBarTintColor) {
+    _customBarTintColor = customBarTintColor;
+    UINavigationBar *navBar = self.navigationBar;
+    navBar.barTintColor = customBarTintColor;
+  }
+}
+
+- (void)viewWillLayoutSubviews {
+  [super viewWillLayoutSubviews];
+  NSLog(@"viewWillLayoutSubviews: %@", @(self.topLayoutGuide.length));
+}
+
+- (void)viewDidLayoutSubviews {
+  [super viewDidLayoutSubviews];
+  NSLog(@"%@", NSStringFromCGRect([self.navigationBar frame]));
+  NSLog(@"viewDidLayoutSubviews: %@", @(self.topLayoutGuide.length));
 }
 
 @end

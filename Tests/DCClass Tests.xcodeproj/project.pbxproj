@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		155A26C2DBBD401FF78F9244 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C326BF8921F9BF7645A7A890 /* libPods.a */; };
+		1C0643D01AB1EFB60008CDA3 /* DCBundleHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0643CF1AB1EFB60008CDA3 /* DCBundleHelperTests.m */; };
 		1C24F5461AADE65B0087CE18 /* DCAPIManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C24F5441AADE65B0087CE18 /* DCAPIManagerTests.m */; };
 		1C66FB6D1AADFEDF00FA328E /* DCColorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C66FB6C1AADFEDF00FA328E /* DCColorTests.m */; };
 		1C66FB6F1AAE034D00FA328E /* DCKeychainWrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C66FB6E1AAE034D00FA328E /* DCKeychainWrapperTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C0643CF1AB1EFB60008CDA3 /* DCBundleHelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCBundleHelperTests.m; sourceTree = "<group>"; };
 		1C24F5371AADE3E10087CE18 /* iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C24F5431AADE65B0087CE18 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C24F5441AADE65B0087CE18 /* DCAPIManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCAPIManagerTests.m; sourceTree = "<group>"; };
@@ -43,6 +45,7 @@
 				1C24F5441AADE65B0087CE18 /* DCAPIManagerTests.m */,
 				1C66FB6C1AADFEDF00FA328E /* DCColorTests.m */,
 				1C66FB6E1AAE034D00FA328E /* DCKeychainWrapperTests.m */,
+				1C0643CF1AB1EFB60008CDA3 /* DCBundleHelperTests.m */,
 			);
 			path = "iOS Tests";
 			sourceTree = "<group>";
@@ -175,7 +178,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -184,6 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C0643D01AB1EFB60008CDA3 /* DCBundleHelperTests.m in Sources */,
 				1C66FB6D1AADFEDF00FA328E /* DCColorTests.m in Sources */,
 				1C66FB6F1AAE034D00FA328E /* DCKeychainWrapperTests.m in Sources */,
 				1C24F5461AADE65B0087CE18 /* DCAPIManagerTests.m in Sources */,

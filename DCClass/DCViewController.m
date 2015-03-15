@@ -20,8 +20,6 @@
   [super viewDidLoad];
   self.automaticallyAdjustsScrollViewInsets = NO;
   self.edgesForExtendedLayout = UIRectEdgeNone;
-  
-  _rect = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -29,30 +27,30 @@
   [self _configureView];
 }
 
-//- (void)viewDidAppear:(BOOL)animated {
-//  [super viewDidAppear:animated];
-//  [self _configureView];
-//}
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [self _configureView];
+}
 
 - (void)viewWillLayoutSubviews {
   [super viewWillLayoutSubviews];
   [self _configureView];
 }
 
-//- (void)viewDidLayoutSubviews {
-//  [super viewDidLayoutSubviews];
-//  [self _configureView];
-//}
+- (void)viewDidLayoutSubviews {
+  [super viewDidLayoutSubviews];
+  [self _configureView];
+}
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
   [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
   [self _configureView];
 }
 
-//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-//  [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-//  [self _configureView];
-//}
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+  [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+  [self _configureView];
+}
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
@@ -101,6 +99,15 @@
 
 - (void)cleanView {
   [NSException raise:NSInternalInconsistencyException format:@"You must override \"%@\" method in a \"%@\" ", NSStringFromSelector(_cmd), NSStringFromClass([self class])];
+}
+
+#pragma mark - Data MGMT
+
+- (void)configureViewForDataDictionary:(NSDictionary *)dataDictionary {
+  _dataDictionary = [NSDictionary dictionary];
+  if (dataDictionary != nil) {
+    _dataDictionary = [NSDictionary dictionaryWithDictionary:dataDictionary];
+  }
 }
 
 @end

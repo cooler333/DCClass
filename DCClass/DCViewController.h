@@ -9,6 +9,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "DCCheckDevice.h"
+
 
 @protocol DCViewControllerProtocol <NSObject>
 
@@ -22,9 +24,10 @@
 
 
 @property(nonatomic,readonly) CGRect rect;
-
+@property(nonatomic,strong,readonly) NSDictionary *dataDictionary;
 
 - (void)configureView;
+- (void)configureViewForDataDictionary:(NSDictionary *)dataDictionary;
 - (void)cleanView;
 
 - (CGFloat)statusBarHeight;

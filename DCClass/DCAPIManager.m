@@ -12,19 +12,6 @@
 #import "DCLog.h"
 
 
-static inline BOOL isObjectEmpty(id object) {
-  return object == nil ||
-  object == Nil ||
-  object == [NSNull null] ||
-  ([object respondsToSelector:@selector(length)] && [(NSData*)object length] == 0) ||
-  ([object respondsToSelector:@selector(count)]  && [(NSArray*)object count] == 0);
-}
-
-static inline BOOL isObjectNotEmpty(id object) {
-  return !isObjectEmpty(object);
-}
-
-
 @interface DCAPIManager ()
 
 @property(nonatomic,strong) NSDateFormatter *dateFormatter;
@@ -44,6 +31,9 @@ static DCAPIManager *_sharedManager = nil;
 }
 
 + (instancetype)sharedManager {
+  if (_sharedManager == nil) {
+    [DCAPIManager setSharedManagerWithBaseURL:[NSURL URLWithString:@"http://httpbin.org/"]];
+  }
   return _sharedManager;
 }
 
@@ -54,7 +44,7 @@ static DCAPIManager *_sharedManager = nil;
     JSONRequestSerializer.stringEncoding = NSUTF8StringEncoding;
     self.requestSerializer = JSONRequestSerializer;
     
-    NSJSONReadingOptions JSONReadingOptions = (NSJSONReadingOptions)(NSJSONReadingAllowFragments|NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves);
+    NSJSONReadingOptions JSONReadingOptions = (NSJSONReadingOptions)(NSJSONReadingAllowFragments|NSJSONReadingMutableLeaves);
     AFJSONResponseSerializer *JSONResponseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:JSONReadingOptions];
     JSONResponseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", nil];
     self.responseSerializer = JSONResponseSerializer;
@@ -71,44 +61,45 @@ static DCAPIManager *_sharedManager = nil;
     return responseObject;
   }
   if (responseObject != nil && [responseObject isKindOfClass:[NSDictionary class]]) {
-    return [NSArray arrayWithObject:responseObject];
+    return responseObject;
   }
   return nil;
 }
 
-- (NSURLSessionDataTask *)GET:(NSString *)URLString parameters:(NSDictionary *)parameters success:(void (^)(NSURLSessionDataTask *, NSArray *))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+- (NSURLSessionDataTask *)GET:(NSString *)URLString parameters:(NSDictionary *)parameters success:(void (^)(NSURLSessionDataTask *, id responseObject))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
   if (isObjectEmpty(URLString)) {
     URLString = @"";
   }
   NSMutableDictionary *newParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
+  
   NSURLSessionDataTask *URLSessionDataTask = [super GET:URLString parameters:newParameters success:^(NSURLSessionDataTask *task, id responseObject) {
     NSInteger statusCode = [(NSHTTPURLResponse *)task.response statusCode];
     responseObject = [self isResponseObjectConforms:responseObject];
     if (isObjectNotEmpty(responseObject)) {
       if (success) {
-        [self printLogWithURLString:@"" parameters:newParameters responseObject:responseObject statusCode:statusCode error:nil];
+        [self printLogWithURLString:URLString parameters:newParameters responseObject:responseObject statusCode:statusCode error:nil];
         success(task, responseObject);
       }
     } else {
       if (failure) {
         NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
-        [errorDetail setValue:@"Data object nil or isn't an array" forKey:NSLocalizedDescriptionKey];
-        NSError *error = [NSError errorWithDomain:@"API Error: POST" code:200 userInfo:errorDetail];
-        [self printLogWithURLString:@"" parameters:newParameters responseObject:nil statusCode:statusCode error:error];
+        [errorDetail setValue:@"Response object nil or isn't an array or dictionary" forKey:NSLocalizedDescriptionKey];
+        NSError *error = [NSError errorWithDomain:@"API Error: GET" code:200 userInfo:errorDetail];
+        [self printLogWithURLString:URLString parameters:newParameters responseObject:nil statusCode:statusCode error:error];
         failure(task, error);
       }
     }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    NSInteger statusCode = [(NSHTTPURLResponse *)task.response statusCode];
     if (failure) {
-      NSInteger statusCode = [(NSHTTPURLResponse *)task.response statusCode];
-      [self printLogWithURLString:@"" parameters:newParameters responseObject:nil statusCode:statusCode error:error];
+      [self printLogWithURLString:URLString parameters:newParameters responseObject:nil statusCode:statusCode error:error];
       failure(task, error);
     }
   }];
   return URLSessionDataTask;
 }
 
-- (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(NSDictionary *)parameters constructingBodyWithBlock:(void (^)(id<AFMultipartFormData>))block success:(void (^)(NSURLSessionDataTask *, NSArray *responseArray))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+- (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(NSDictionary *)parameters constructingBodyWithBlock:(void (^)(id<AFMultipartFormData>))block success:(void (^)(NSURLSessionDataTask *, id responseObject))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
   if (isObjectEmpty(URLString)) {
     URLString = @"";
   }
@@ -119,67 +110,55 @@ static DCAPIManager *_sharedManager = nil;
     responseObject = [self isResponseObjectConforms:responseObject];
     if (isObjectNotEmpty(responseObject)) {
       if (success) {
-        [self printLogWithURLString:@"" parameters:newParameters responseObject:responseObject statusCode:statusCode error:nil];
+        [self printLogWithURLString:URLString parameters:newParameters responseObject:responseObject statusCode:statusCode error:nil];
         success(task, responseObject);
       }
     } else {
       if (failure) {
         NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
-        [errorDetail setValue:@"Data object nil or isn't an array" forKey:NSLocalizedDescriptionKey];
+        [errorDetail setValue:@"Response object nil or isn't an array or dictionary" forKey:NSLocalizedDescriptionKey];
         NSError *error = [NSError errorWithDomain:@"API Error: POST" code:200 userInfo:errorDetail];
-        [self printLogWithURLString:@"" parameters:newParameters responseObject:nil statusCode:statusCode error:error];
+        [self printLogWithURLString:URLString parameters:newParameters responseObject:nil statusCode:statusCode error:error];
         failure(task, error);
       }
     }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     NSInteger statusCode = [(NSHTTPURLResponse *)task.response statusCode];
     if (failure) {
-      [self printLogWithURLString:@"" parameters:newParameters responseObject:nil statusCode:statusCode error:error];
+      [self printLogWithURLString:URLString parameters:newParameters responseObject:nil statusCode:statusCode error:error];
       failure(task, error);
     }
   }];
   return URLSessionDataTask;
 }
 
-- (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(NSDictionary *)parameters success:(void (^)(NSURLSessionDataTask *task, NSArray *responseArray))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+- (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(NSDictionary *)parameters success:(void (^)(NSURLSessionDataTask *, id responseObject))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
   if (isObjectEmpty(URLString)) {
     URLString = @"";
   }
-  
   NSMutableDictionary *newParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
-  
-//  NSString *tokenString = [KeychainWrapper keychainTokenString];
-//  NSString *IDString = [KeychainWrapper keychainIDString];
-//  if (isObjectNotEmpty(tokenString) && isObjectNotEmpty(IDString)) {
-//    [newParameters setValue:tokenString forKey:@"access_token"];
-//    [newParameters setValue:IDString forKey:@"access_id"];
-//  }
-  
-  //  [newParameters setValue:@"fe7c088fa5b950ecc44fa469e67b03dd7eb9226a" forKey:@"access_token"];
-  //  [newParameters setValue:@"1" forKey:@"access_id"];
-  
   
   NSURLSessionDataTask *URLSessionDataTask = [super POST:URLString parameters:newParameters success:^(NSURLSessionDataTask *task, id responseObject) {
     NSInteger statusCode = [(NSHTTPURLResponse *)task.response statusCode];
     responseObject = [self isResponseObjectConforms:responseObject];
     if (isObjectNotEmpty(responseObject)) {
       if (success) {
-        [self printLogWithURLString:@"" parameters:newParameters responseObject:responseObject statusCode:statusCode error:nil];
+        [self printLogWithURLString:URLString parameters:newParameters responseObject:responseObject statusCode:statusCode error:nil];
         success(task, responseObject);
       }
     } else {
       if (failure) {
         NSMutableDictionary *errorDetail = [NSMutableDictionary dictionary];
-        [errorDetail setValue:@"Data object nil or isn't an array" forKey:NSLocalizedDescriptionKey];
+        [errorDetail setValue:@"Response object nil or isn't an array or dictionary" forKey:NSLocalizedDescriptionKey];
         NSError *error = [NSError errorWithDomain:@"API Error: POST" code:200 userInfo:errorDetail];
-        [self printLogWithURLString:@"" parameters:newParameters responseObject:nil statusCode:statusCode error:error];
+        [self printLogWithURLString:URLString parameters:newParameters responseObject:nil statusCode:statusCode error:error];
         failure(task, error);
       }
     }
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     NSInteger statusCode = [(NSHTTPURLResponse *)task.response statusCode];
     if (failure) {
-      [self printLogWithURLString:@"" parameters:newParameters responseObject:nil statusCode:statusCode error:error];
+      [self printLogWithURLString:URLString parameters:newParameters responseObject:nil statusCode:statusCode error:error];
       failure(task, error);
     }
   }];

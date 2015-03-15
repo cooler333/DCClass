@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 
 #import "DCLog.h"
+#import "DCCheckDevice.h"
 #import "DCAPIManager.h"
 #import "DCColor.h"
 #import "DCKeychainWrapper.h"
@@ -17,3 +18,4 @@
 #import "DCSideMenuViewController.h"
 #import "DCTableViewCell.h"
 #import "DCViewController.h"
+#import "DCBundleHelper.h"

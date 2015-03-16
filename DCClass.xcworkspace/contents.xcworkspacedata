@@ -11,7 +11,13 @@
          location = "group:DCAPIManager.m">
       </FileRef>
       <FileRef
-         location = "group:DCLog.h">
+         location = "group:DCBundleHelper.h">
+      </FileRef>
+      <FileRef
+         location = "group:DCBundleHelper.m">
+      </FileRef>
+      <FileRef
+         location = "group:DCCheckDevice.h">
       </FileRef>
       <FileRef
          location = "group:DCClass.h">
@@ -27,6 +33,9 @@
       </FileRef>
       <FileRef
          location = "group:DCKeychainWrapper.m">
+      </FileRef>
+      <FileRef
+         location = "group:DCLog.h">
       </FileRef>
       <FileRef
          location = "group:DCNavigationController.h">
@@ -60,6 +69,19 @@
          </FileRef>
          <FileRef
             location = "group:KeychainWrapper.m">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Resources"
+         name = "Resources">
+         <FileRef
+            location = "group:menu_icon.png">
+         </FileRef>
+         <FileRef
+            location = "group:menu_icon@2x.png">
+         </FileRef>
+         <FileRef
+            location = "group:menu_icon@3x.png">
          </FileRef>
       </Group>
    </Group>

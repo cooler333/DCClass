@@ -233,6 +233,8 @@
         self.menuState = DCMenuStateUnknown;
         
         if ([UIApplication sharedApplication].statusBarHidden == NO) {
+          [UIView setAnimationsEnabled:NO];
+
           self.statusBarSize = CGSizeMake(CGRectGetWidth(self.rect), [self statusBarHeight]);
           
           UIView *snapshotView = [self getSnapshotView];
@@ -248,6 +250,8 @@
           CGRect contentControllerViewFrame = self.contentControllerView.frame;
           contentControllerViewFrame.origin.y += self.statusBarSize.height;
           self.contentControllerView.frame = contentControllerViewFrame;
+          
+          [UIView setAnimationsEnabled:YES];
         }
       }
       break;
@@ -342,11 +346,15 @@
     menuViewFrame.origin = CGPointMake(-menuWidth * 0.5f, 0.0f);
     self.menuView.frame = menuViewFrame;
   } completion:^(BOOL finished) {
+    [UIView setAnimationsEnabled:NO];
+
     self.contentControllerView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.rect), CGRectGetHeight(self.rect));
 
     self.customStatusBarState = NO;
     self.statusBarHidden = NO;
     [self setNeedsStatusBarAppearanceUpdate];
+    
+    [UIView setAnimationsEnabled:YES];
 
     [UIView animateWithDuration:0.2 animations:^{
       self.snapshotView.alpha = 0.0;

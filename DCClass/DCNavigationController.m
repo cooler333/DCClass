@@ -19,14 +19,15 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.view.backgroundColor = [UIColor whiteColor];
+  self.view.backgroundColor = [UIColor greenColor];
   
-  self.automaticallyAdjustsScrollViewInsets = NO;
-  self.edgesForExtendedLayout = UIRectEdgeNone;
+//  self.automaticallyAdjustsScrollViewInsets = NO;
+//  self.edgesForExtendedLayout = UIRectEdgeNone;
+//  self.hidesBarsWhenVerticallyCompact = NO;
   
   UINavigationBar *navBar = self.navigationBar;
   navBar.barStyle = UIBarStyleDefault;
-  navBar.translucent = NO;
+//  navBar.translucent = NO;
   navBar.shadowImage = [[UIImage alloc] init];
   
   navBar.tintColor = self.customTintColor;
@@ -47,17 +48,6 @@
     UINavigationBar *navBar = self.navigationBar;
     navBar.barTintColor = customBarTintColor;
   }
-}
-
-- (void)viewWillLayoutSubviews {
-  [super viewWillLayoutSubviews];
-  NSLog(@"viewWillLayoutSubviews: %@", @(self.topLayoutGuide.length));
-}
-
-- (void)viewDidLayoutSubviews {
-  [super viewDidLayoutSubviews];
-  NSLog(@"%@", NSStringFromCGRect([self.navigationBar frame]));
-  NSLog(@"viewDidLayoutSubviews: %@", @(self.topLayoutGuide.length));
 }
 
 @end

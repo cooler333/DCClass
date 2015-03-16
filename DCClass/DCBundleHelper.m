@@ -15,32 +15,34 @@
 @implementation DCBundleHelper
 
 + (NSBundle *)bundleWithIdentifier:(NSString *)identifier {
-  static NSBundle *classBundle  = nil;
-  static NSBundle *momentBundle = nil;
-  static dispatch_once_t once;
-  dispatch_once(&once, ^{
-    Class aClass = [self class];
-    classBundle = [NSBundle bundleForClass:aClass];
-    
-    NSString *bundlePath = [classBundle pathForResource:identifier ofType:@"bundle"];
-    momentBundle = [NSBundle bundleWithPath:bundlePath];
+  static NSBundle *bundle = nil;
+  static dispatch_once_t predicate;
+  dispatch_once(&predicate, ^{
+    NSString *mainBundlePath = [[NSBundle bundleForClass:[DCBundleHelper class]] resourcePath];
+    NSString *frameworkBundlePath = [mainBundlePath stringByAppendingPathComponent:kDCImageBundleKey];
+    bundle = [NSBundle bundleWithPath:frameworkBundlePath];
   });
-  
-  DCLog(@"momentBundle: %@", momentBundle);
-  DCLog(@"classBundle: %@", classBundle);
-  
-  return momentBundle ?: classBundle;
+  return bundle;
 }
 
-+ (UIImage *)getImageNamed:(NSString *)name fromBundleWithIdentifier:(NSString *)identifier {
-  NSURL *bundleURL = [NSURL URLWithString:[self bundleWithIdentifier:identifier].bundlePath];
++ (UIImage *)getImageNamed:(NSString *)imageName {
+  NSString *resourcePath = [[NSBundle bundleForClass:[DCBundleHelper class]] resourcePath];
+  NSString *bundlePath = [resourcePath stringByAppendingPathComponent:kDCImageBundleKey];
+  NSString *imagePath = [bundlePath stringByAppendingPathComponent:imageName];
   
-  NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
-  NSString *str = [bundle pathForResource:@"menu_icon" ofType:@"png"];
-  
-  NSString *imagePath = [NSString stringWithFormat:@"%@", name];
-  UIImage *image = [UIImage imageNamed:str];
-  return image;
+  if ([UIScreen instancesRespondToSelector:@selector(scale)] && (int)[[UIScreen mainScreen] scale] == 2.0) {
+    NSString *path2x = [[imagePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@@2x.%@", [[imagePath lastPathComponent] stringByDeletingPathExtension], [imagePath pathExtension]]];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path2x]) {
+      return [[UIImage alloc] initWithContentsOfFile:path2x];
+    }
+  }
+  if ([UIScreen instancesRespondToSelector:@selector(scale)] && (int)[[UIScreen mainScreen] scale] == 3.0) {
+    NSString *path2x = [[imagePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@@3x.%@", [[imagePath lastPathComponent] stringByDeletingPathExtension], [imagePath pathExtension]]];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path2x]) {
+      return [[UIImage alloc] initWithContentsOfFile:path2x];
+    }
+  }
+  return [[UIImage alloc] initWithContentsOfFile:imageName];
 }
 
 @end

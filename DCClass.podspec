@@ -73,7 +73,6 @@ Pod::Spec.new do |s|
 
   s.subspec 'ViewController' do |ss|
     ss.ios.frameworks   = 'UIKit'
-    ss.dependency 'DCClass/Color'
     ss.dependency 'DCClass/CheckDevice'
     
     ss.source_files     = 'DCClass/DCViewController.{h,m}'

@@ -73,9 +73,6 @@
       </FileRef>
    </Group>
    <FileRef
-      location = "group:Example/DCClass iOS Example.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Tests/DCClass Tests.xcodeproj">
    </FileRef>
    <FileRef

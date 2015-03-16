@@ -10,6 +10,7 @@
 #import "DCSideMenuViewController.h"
 
 #import "DCBundleHelper.h"
+#import <DCClass/DCColor.h>
 
 
 @interface DCSideMenuViewController () <UIGestureRecognizerDelegate>
@@ -19,14 +20,16 @@
 
 @property(nonatomic) UIViewController *contentViewController;
 @property(nonatomic) UIView *contentView;
+@property(nonatomic) UIView *topView;
 
 @property(nonatomic) UIView *tapView;
 
 @property(nonatomic) NSIndexPath *selectedMenuItemIndexPath;
 
-@property(nonatomic) UIView *snapshotView;
-@property(nonatomic) BOOL statusBarHidden;
-@property(nonatomic) CGSize statusBarSize;
+//@property(nonatomic) UIView *snapshotView;
+//@property(nonatomic) BOOL statusBarHidden;
+//@property(nonatomic) BOOL customStatusBarState;
+//@property(nonatomic) CGSize statusBarSize;
 
 @property(nonatomic) UIPanGestureRecognizer *menuPanGestureRecognizer;
 @property(nonatomic) UITapGestureRecognizer *menuTapGestureRecognizer;
@@ -50,22 +53,10 @@
     _menuView = [[UIView alloc] initWithFrame:CGRectZero];
     _contentView = [[UIView alloc] initWithFrame:CGRectZero];
     _tapView = [[UIView alloc] initWithFrame:CGRectZero];
-    
+    _topView = [[UIView alloc] initWithFrame:CGRectZero];
     _menuWidthInPercent = 0.5f;
-    _menuTopOffsetInPercent = 0.05f;
   }
   return self;
-}
-
-- (NSUInteger)supportedInterfaceOrientations {
-  if (self.menuState == DCMenuStateClosed) {
-    return UIInterfaceOrientationMaskAll;
-  }
-  return UIInterfaceOrientationMaskPortrait;
-}
-
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-  return UIInterfaceOrientationPortrait;
 }
 
 - (void)viewDidLoad {
@@ -75,7 +66,10 @@
   [self.view addSubview:self.menuView];
   [self.menuView addSubview:self.menuViewController.view];
   
+  [self.view addSubview:self.topView];
+  self.topView.backgroundColor = [DCColor orangeColor];
   [self.view addSubview:self.contentView];
+  self.contentView.backgroundColor = [DCColor testColor];
   
   self.menuPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
   self.menuPanGestureRecognizer.delegate = self;
@@ -86,57 +80,71 @@
 }
 
 - (void)configureView {
-  self.menuPanGestureRecognizer.enabled = NO;
-  self.menuState = DCMenuStateClosed;
+//  self.statusBarHidden = NO;
+//  [self setNeedsStatusBarAppearanceUpdate];
+//  
+//  self.customStatusBarState = NO;
+//  [self setNeedsStatusBarAppearanceUpdate];
   
   CGFloat menuWidth = CGRectGetWidth(self.rect) * self.menuWidthInPercent;
   self.menuView.frame = CGRectMake(-menuWidth * 0.5f, 0.0f, menuWidth, CGRectGetHeight(self.rect));
   self.menuViewController.view.frame = CGRectMake(0.0f, 0.0f, menuWidth, CGRectGetHeight(self.rect));
   
   self.contentView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.rect), CGRectGetHeight(self.rect));
-  self.contentViewController.view.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.rect), CGRectGetHeight(self.rect));
+  self.contentViewController.view.frame = CGRectMake(0.0f, CGRectGetMinY(self.rect), CGRectGetWidth(self.rect), CGRectGetHeight(self.rect));
+  self.topView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.rect), [self statusBarHeight]);
   self.tapView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.rect), CGRectGetHeight(self.rect));
   
-  [self setNeedsStatusBarAppearanceUpdate];
-  if (self.snapshotView != nil) {
-    [self.snapshotView removeFromSuperview];
-    self.snapshotView = nil;
-  }
+  self.menuState = DCMenuStateClosed;
   
-  self.menuPanGestureRecognizer.enabled = YES;
+  
+  
+//  self.statusBarHidden = NO;
+//  [self setNeedsStatusBarAppearanceUpdate];
+//  
+//  self.customStatusBarState = NO;
+//  [self setNeedsStatusBarAppearanceUpdate];
+//  
+//  [self.snapshotView removeFromSuperview];
+//  self.snapshotView = nil;
+  
+  [self.tapView removeFromSuperview];
+  
+  NSLog(@"SB: %@", [[UIApplication sharedApplication] isStatusBarHidden] ? @"SB HIDDEN" : @"SB NOT HIDDEN");
 }
 
 - (void)cleanView {
   // ...
 }
 
-- (void)setStatusBarHidden:(BOOL)statusBarHidden {
-  if (_statusBarHidden != statusBarHidden) {
-    _statusBarHidden = statusBarHidden;
-    [self setNeedsStatusBarAppearanceUpdate];
-  }
-}
-
-- (BOOL)prefersStatusBarHidden {
-  return self.statusBarHidden;
-}
+//- (BOOL)prefersStatusBarHidden {
+//  return self.statusBarHidden;
+//}
 
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
   return UIStatusBarAnimationNone;
 }
 
 - (UIViewController *)childViewControllerForStatusBarHidden {
-  if (self.menuState == DCMenuStateClosed) {
-    return self.contentViewController;
-  }
-  return nil;
+//  if (self.customStatusBarState == YES) {
+//    return nil;
+//  }
+  return self.contentViewController;
 }
 
 - (UIViewController *)childViewControllerForStatusBarStyle {
-  if (self.menuState == DCMenuStateClosed) {
-     return self.contentViewController;
-  }
-  return nil;
+  return self.contentViewController;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+//  if (self.menuState == DCMenuStateClosed) {
+    return UIInterfaceOrientationMaskAll;
+//  }
+//  return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+  return UIInterfaceOrientationPortrait;
 }
 
 #pragma mark - Public Methods
@@ -157,19 +165,14 @@
       
       [self _didDeselectMenuItemAtIndexPath:oldSelectedMenuItemIndexPath];
       
-      [self addChildViewController:vc];
-      [vc didMoveToParentViewController:self];
       
-      CGRect contentViewFrame = self.contentView.bounds;
-      contentViewFrame.origin.y += self.statusBarSize.height;
-      contentViewFrame.size.height -= self.statusBarSize.height;
-      vc.view.frame = contentViewFrame;
+      [vc willMoveToParentViewController:self];
 
       if ([vc isKindOfClass:[UINavigationController class]]) {
         UINavigationController *nvc = (UINavigationController *)vc;
         UINavigationBar *navigationBar = nvc.navigationBar;
 
-        UIImage *menuIconImage = [DCBundleHelper getImageNamed:@"menu_icon" fromBundleWithIdentifier:kDCImageBundleName];
+        UIImage *menuIconImage = [DCBundleHelper getImageNamed:@"menu_icon.png"];
         
         UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:menuIconImage style:UIBarButtonItemStylePlain target:self action:@selector(openMenuViewController:)];
         leftBarButtonItem.tintColor = navigationBar.tintColor;
@@ -179,11 +182,13 @@
       
       [self.contentView addSubview:vc.view];
       
+      [self addChildViewController:vc];
+      [vc didMoveToParentViewController:self];
+      
       _contentViewController = vc;
       [self _didSelectMenuItemAtIndexPath:indexPath];
     }
   }
-  [self closeMenu:0.25f];
 }
 
 #pragma mark - Private Methods
@@ -191,20 +196,10 @@
 - (void)openMenuViewController:(UIBarButtonItem *)barButtonItem {
   if (self.menuState == DCMenuStateClosed) {
     self.startPoint = self.contentView.center;
-    self.statusBarSize = CGSizeMake(CGRectGetWidth(self.rect), [self statusBarHeight]);
     
-    UIView *snapshotView = [self getSnapshotView];
-    self.snapshotView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.statusBarSize.width, self.statusBarSize.height)];
-    self.snapshotView.clipsToBounds = YES;
-    [self.snapshotView addSubview:snapshotView];
-    [self.contentView addSubview:self.snapshotView];
+    self.menuState = DCMenuStateUnknown;
     
-    CGRect contentViewControllerViewFrame = self.contentView.bounds;
-    contentViewControllerViewFrame.origin.y += self.statusBarSize.height;
-    contentViewControllerViewFrame.size.height -= self.statusBarSize.height;
-    self.contentViewController.view.frame = contentViewControllerViewFrame;
-    
-    self.statusBarHidden = YES;
+    // Code
     
     [self openMenu:0.5f];
   } else if (self.menuState == DCMenuStateOpened) {
@@ -222,24 +217,35 @@
   switch(recognizer.state) {
     case UIGestureRecognizerStateBegan: {
       self.startPoint = self.contentView.center;
-
+      
       if (self.menuState == DCMenuStateClosed) {
         self.menuState = DCMenuStateUnknown;
         
-        self.statusBarSize = CGSizeMake(CGRectGetWidth(self.rect), [self statusBarHeight]);
-        
-        UIView *snapshotView = [self getSnapshotView];
-        self.snapshotView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.statusBarSize.width, self.statusBarSize.height)];
-        self.snapshotView.clipsToBounds = YES;
-        [self.snapshotView addSubview:snapshotView];
-        [self.contentView addSubview:self.snapshotView];
-      
-        self.statusBarHidden = YES;
-        
-        CGRect contentViewControllerViewFrame = self.contentView.bounds;
-        contentViewControllerViewFrame.origin.y += self.statusBarSize.height;
-        contentViewControllerViewFrame.size.height -= self.statusBarSize.height;
-        self.contentViewController.view.frame = contentViewControllerViewFrame;
+        if ([UIApplication sharedApplication].statusBarHidden == NO) {
+//          self.statusBarSize = CGSizeMake(CGRectGetWidth(self.rect), [self statusBarHeight]);
+          
+//          UIView *snapshotView = [self getSnapshotView];
+//          self.snapshotView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.statusBarSize.width, self.statusBarSize.height)];
+//          self.snapshotView.clipsToBounds = YES;
+//          [self.snapshotView addSubview:snapshotView];
+//          [self.contentView addSubview:self.snapshotView];
+          
+//          self.customStatusBarState = YES;
+//          [self setNeedsStatusBarAppearanceUpdate];
+//
+//          self.statusBarHidden = YES;
+//          [self setNeedsStatusBarAppearanceUpdate];
+          
+//          CGRect contentViewControllerViewFrame = self.contentViewController.view.frame;
+//          contentViewControllerViewFrame.origin.y += self.statusBarSize.height;
+//          self.contentViewController.view.frame = contentViewControllerViewFrame;
+        } else {
+//          self.statusBarHidden = NO;
+//          [self setNeedsStatusBarAppearanceUpdate];
+//
+//          self.customStatusBarState = NO;
+//          [self setNeedsStatusBarAppearanceUpdate];
+        }
       }
       break;
     }
@@ -257,7 +263,7 @@
       
       
       CGFloat menuViewRatio = (endPoint.x - (CGRectGetWidth(self.rect) / 2.0f)) / (CGRectGetWidth(self.rect) * self.menuWidthInPercent);
-      self.contentView.center = CGPointMake(endPoint.x, CGRectGetHeight(self.rect) / 2.0f + CGRectGetHeight(self.rect) * self.menuTopOffsetInPercent * menuViewRatio);
+      self.contentView.center = CGPointMake(endPoint.x, CGRectGetHeight(self.rect) / 2.0f + self.statusBarHeight * menuViewRatio);
       
       menuViewRatio = (1.0f - menuViewRatio) / 2.0f;
       
@@ -270,21 +276,24 @@
       CGPoint translationPoint = [recognizer translationInView:self.view];
       CGPoint velocityPoint = [recognizer velocityInView:self.view];
       CGPoint endPoint = CGPointMake(self.startPoint.x + translationPoint.x + velocityPoint.x, self.startPoint.y);
+#warning endPoint! as acceleration
+      CGFloat center = CGRectGetWidth(self.rect) * self.menuWidthInPercent / 2.0f;
+      CGFloat menuWidth = CGRectGetWidth(self.rect) * self.menuWidthInPercent;
       
-      if (endPoint.x < CGRectGetWidth(self.rect) * self.menuWidthInPercent) {
-        CGFloat ratio = CGRectGetWidth(self.rect) * self.menuWidthInPercent / (self.contentView.frame.origin.x - velocityPoint.x);
-        if (ratio > 1.0) {
-          ratio = 1.0;
+      if (endPoint.x < center) {
+        CGFloat ratio = self.contentView.frame.origin.x / menuWidth;
+        if (ratio > 1.0f || ratio < 0.0f) {
+          NSLog(@"SSASDASDASDASD");
         }
-        CGFloat animationDuration = self.menuWidthInPercent * ratio;
+        CGFloat animationDuration = ratio;
         [self closeMenu:animationDuration];
-      }
-      if (endPoint.x >= CGRectGetWidth(self.rect) * self.menuWidthInPercent) {
-        CGFloat ratio = CGRectGetWidth(self.rect) * self.menuWidthInPercent / (self.contentView.frame.origin.x + velocityPoint.x);
-        if (ratio > 1.0) {
-          ratio = 1.0;
+      } else {
+        CGFloat ratio = self.contentView.frame.origin.x / menuWidth;
+        if (ratio > 1.0f || ratio < 0.0f) {
+          NSLog(@"SSASDASDASDASD");
         }
-        CGFloat animationDuration = self.menuWidthInPercent * ratio;
+        
+        CGFloat animationDuration = ratio;
         [self openMenu:animationDuration];
       }
       break;
@@ -295,56 +304,57 @@
 }
 
 - (void)openMenu:(NSTimeInterval)animationDuration {
-  if (self.menuState == DCMenuStateClosed || self.menuState == DCMenuStateUnknown) {
-    self.menuPanGestureRecognizer.enabled = NO;
-    self.menuState = DCMenuStateUnknown;
-    
+  self.menuPanGestureRecognizer.enabled = NO;
+  self.menuState = DCMenuStateUnknown;
+  
 //    CGFloat velocity = animationDuration * CGRectGetWidth(self.rect) * self.menuWidthInPercent;
-    
-    [UIView animateWithDuration:animationDuration delay:0.0f usingSpringWithDamping:0.3f initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-      self.contentView.center = CGPointMake((CGRectGetWidth(self.rect) /  2.0f) + (CGRectGetWidth(self.rect) * self.menuWidthInPercent), CGRectGetHeight(self.rect) / 2.0f + CGRectGetHeight(self.rect) * self.menuTopOffsetInPercent);
+  
+  [UIView animateWithDuration:animationDuration delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+    self.contentView.center = CGPointMake((CGRectGetWidth(self.rect) /  2.0f) + (CGRectGetWidth(self.rect) * self.menuWidthInPercent), CGRectGetHeight(self.rect) / 2.0f + self.statusBarHeight);
 
-      CGRect menuViewFrame = self.menuView.frame;
-      menuViewFrame.origin = CGPointMake(0.0f, 0.0f);
-      self.menuView.frame = menuViewFrame;
-      
-      [self.contentView addSubview:self.tapView];
-    } completion:^(BOOL finished) {
-      self.menuState = DCMenuStateOpened;
-      self.menuPanGestureRecognizer.enabled = YES;
-    }];
-  }
+    CGRect menuViewFrame = self.menuView.frame;
+    menuViewFrame.origin = CGPointMake(0.0f, 0.0f);
+    self.menuView.frame = menuViewFrame;
+  } completion:^(BOOL finished) {
+    self.menuState = DCMenuStateOpened;
+    [self.contentView addSubview:self.tapView];
+    self.menuPanGestureRecognizer.enabled = YES;
+  }];
 }
 
 - (void)closeMenu:(NSTimeInterval)animationDuration {
-  if (self.menuState == DCMenuStateOpened || self.menuState == DCMenuStateUnknown) {
-    self.menuPanGestureRecognizer.enabled = NO;
-    self.menuState = DCMenuStateUnknown;
+  self.menuPanGestureRecognizer.enabled = NO;
+  self.menuState = DCMenuStateUnknown;
+  
+  [UIView animateWithDuration:animationDuration delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+    self.contentView.center = CGPointMake(CGRectGetWidth(self.rect) /  2.0f, CGRectGetHeight(self.rect) / 2.0f);
     
-    [UIView animateWithDuration:animationDuration delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
-      self.contentView.center = CGPointMake(CGRectGetWidth(self.rect) /  2.0f, CGRectGetHeight(self.rect) / 2.0f);
-      
-      CGRect menuViewFrame = self.menuView.frame;
-      CGFloat menuWidth = CGRectGetWidth(self.rect) * self.menuWidthInPercent;
-      menuViewFrame.origin = CGPointMake(-menuWidth * 0.5f, 0.0f);
-      self.menuView.frame = menuViewFrame;
+    CGRect menuViewFrame = self.menuView.frame;
+    CGFloat menuWidth = CGRectGetWidth(self.rect) * self.menuWidthInPercent;
+    menuViewFrame.origin = CGPointMake(-menuWidth * 0.5f, 0.0f);
+    self.menuView.frame = menuViewFrame;
+    
+  } completion:^(BOOL finished) {
+    self.contentViewController.view.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.rect), CGRectGetHeight(self.rect));
+    
+//    self.statusBarHidden = NO;
+//    [self setNeedsStatusBarAppearanceUpdate];
+//    
+//    self.customStatusBarState = NO;
+//    [self setNeedsStatusBarAppearanceUpdate];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+//      self.snapshotView.alpha = 0.0;
     } completion:^(BOOL finished) {
-      self.contentViewController.view.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.rect), CGRectGetHeight(self.rect));
-      self.statusBarHidden = NO;
+//      [self.snapshotView removeFromSuperview];
+//      self.snapshotView = nil;
       
-      [UIView animateWithDuration:0.2 animations:^{
-        self.snapshotView.alpha = 0.0;
-      } completion:^(BOOL finished) {
-        [self.snapshotView removeFromSuperview];
-        self.snapshotView = nil;
-        
-        [self.tapView removeFromSuperview];
-        
-        self.menuState = DCMenuStateClosed;
-        self.menuPanGestureRecognizer.enabled = YES;
-      }];
+      [self.tapView removeFromSuperview];
+      
+      self.menuState = DCMenuStateClosed;
+      self.menuPanGestureRecognizer.enabled = YES;
     }];
-  }
+  }];
 }
 
 - (UIView *)getSnapshotView {
@@ -355,9 +365,9 @@
 #pragma mark - UIGestureRecognizerDelegate
 
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)panGestureRecognizer {
-  if ([[UIDevice currentDevice] orientation] != UIInterfaceOrientationPortrait) {
-    return NO;
-  }
+//  if ([[UIApplication sharedApplication] statusBarOrientation] != UIInterfaceOrientationPortrait) {
+//    return NO;
+//  }
   CGPoint velocityPoint = [panGestureRecognizer velocityInView:self.view];
   return abs(velocityPoint.y / 2.0f) < abs(velocityPoint.x );
 }

@@ -6,6 +6,24 @@ inhibit_all_warnings!
 
 platform :ios, '7.0'
 
+target 'iOS Tests' do
+
 pod 'OCMock', '~> 2.1.1'
 pod 'Expecta', '~> 0.2.1'
 pod 'DCClass', :path => '../'
+
+end
+
+target 'iOS UI Tests' do
+
+pod 'OCMock', '~> 2.1.1'
+pod 'Expecta', '~> 0.2.1'
+pod 'DCClass', :path => '../'
+
+end
+
+post_install do |installer|
+  installer.project.targets.each do |target|
+    puts "#{target.name}"
+  end
+end

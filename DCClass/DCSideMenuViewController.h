@@ -46,7 +46,6 @@ typedef NS_ENUM(NSUInteger, DCMenuState) {
 @property(nonatomic,readonly) DCMenuState menuState;
 
 @property(nonatomic) CGFloat menuWidthInPercent;
-@property(nonatomic) CGFloat menuTopOffsetInPercent;
 
 @property(nonatomic,weak) id <DCSideMenuViewControllerDataSource> dataSource;
 @property(nonatomic,weak) id <DCSideMenuViewControllerDelegate>   delegate;

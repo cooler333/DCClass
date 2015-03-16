@@ -10,12 +10,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-static NSString * const kDCImageBundleName = @"ImageBundle";
+#define kDCImageBundleKey @"ImageBundle.bundle"
 
 
 @interface DCBundleHelper : NSObject
 
 + (NSBundle *)bundleWithIdentifier:(NSString *)identifier;
-+ (UIImage *)getImageNamed:(NSString *)name fromBundleWithIdentifier:(NSString *)identifier;
++ (UIImage *)getImageNamed:(NSString *)imageName;
 
 @end

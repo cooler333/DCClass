@@ -33,12 +33,12 @@
 
 - (void)testBundle {
   // This is an example of a functional test case.
-  NSBundle *bundle = [DCBundleHelper bundleWithIdentifier:kDCImageBundleName];
+  NSBundle *bundle = [DCBundleHelper bundleWithIdentifier:kDCImageBundleKey];
   DCLog(@"bundle: %@", bundle);
   XCTAssert(bundle != nil, @"Pass");
   
-  NSString *imageName = @"menu_icon";
-  UIImage *image = [DCBundleHelper getImageNamed:imageName fromBundleWithIdentifier:kDCImageBundleName];
+  NSString *imageName = @"menu_icon.png";
+  UIImage *image = [DCBundleHelper getImageNamed:imageName];
   DCLog(@"image: %@", image);
   XCTAssertTrue(image != nil, @"Pass");
 }

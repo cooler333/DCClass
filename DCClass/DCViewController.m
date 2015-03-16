@@ -18,8 +18,10 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.automaticallyAdjustsScrollViewInsets = NO;
-  self.edgesForExtendedLayout = UIRectEdgeNone;
+//  self.automaticallyAdjustsScrollViewInsets = NO;
+//  self.edgesForExtendedLayout = UIRectEdgeNone;
+  
+  self.view.backgroundColor = [DCColor redColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -39,16 +41,6 @@
 
 - (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
-  [self _configureView];
-}
-
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-  [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-  [self _configureView];
-}
-
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-  [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
   [self _configureView];
 }
 

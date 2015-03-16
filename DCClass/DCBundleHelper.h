@@ -15,7 +15,7 @@
 
 @interface DCBundleHelper : NSObject
 
-+ (NSBundle *)bundleWithIdentifier:(NSString *)identifier;
++ (NSBundle *)mainBundle;
 + (UIImage *)getImageNamed:(NSString *)imageName;
 
 @end

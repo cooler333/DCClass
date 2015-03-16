@@ -33,7 +33,7 @@
 
 - (void)testBundle {
   // This is an example of a functional test case.
-  NSBundle *bundle = [DCBundleHelper bundleWithIdentifier:kDCImageBundleKey];
+  NSBundle *bundle = [DCBundleHelper mainBundle];
   DCLog(@"bundle: %@", bundle);
   XCTAssert(bundle != nil, @"Pass");
   

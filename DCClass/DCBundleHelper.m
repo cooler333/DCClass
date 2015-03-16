@@ -14,7 +14,7 @@
 
 @implementation DCBundleHelper
 
-+ (NSBundle *)bundleWithIdentifier:(NSString *)identifier {
++ (NSBundle *)mainBundle {
   static NSBundle *bundle = nil;
   static dispatch_once_t predicate;
   dispatch_once(&predicate, ^{
@@ -26,9 +26,7 @@
 }
 
 + (UIImage *)getImageNamed:(NSString *)imageName {
-  NSString *resourcePath = [[NSBundle bundleForClass:[DCBundleHelper class]] resourcePath];
-  NSString *bundlePath = [resourcePath stringByAppendingPathComponent:kDCImageBundleKey];
-  NSString *imagePath = [bundlePath stringByAppendingPathComponent:imageName];
+  NSString *imagePath = [[DCBundleHelper mainBundle].resourcePath stringByAppendingPathComponent:imageName];
   
   if ([UIScreen instancesRespondToSelector:@selector(scale)] && (int)[[UIScreen mainScreen] scale] == 2.0) {
     NSString *path2x = [[imagePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@@2x.%@", [[imagePath lastPathComponent] stringByDeletingPathExtension], [imagePath pathExtension]]];

@@ -9,8 +9,6 @@
 
 #import "DCViewController.h"
 
-#import "DCColor.h"
-
 
 @implementation DCViewController
 
@@ -20,8 +18,6 @@
   [super viewDidLoad];
 //  self.automaticallyAdjustsScrollViewInsets = NO;
 //  self.edgesForExtendedLayout = UIRectEdgeNone;
-  
-  self.view.backgroundColor = [DCColor redColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

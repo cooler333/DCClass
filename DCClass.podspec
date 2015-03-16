@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'DCClass'
-  s.version     = '0.0.21'
+  s.version     = '0.0.22'
   s.license     = 'MIT'
   s.summary     = 'iOS App Helper.'
   s.homepage    = 'https://github.com/cooler333/DCClass'
@@ -55,6 +55,8 @@ Pod::Spec.new do |s|
 
   s.subspec 'DCBundleHelper' do |ss|
     ss.ios.frameworks   = 'UIKit'
+    ss.dependency 'DCClass/Log'
+
     ss.resource_bundle = {
       'ImageBundle' => [
         'DCClass/Resources/DCImages.xcassets',

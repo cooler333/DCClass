@@ -37,10 +37,9 @@
   DCLog(@"bundle: %@", bundle);
   XCTAssert(bundle != nil, @"Pass");
   
-  NSString *imageName = @"menu_icon.png";
-  UIImage *image = [DCBundleHelper getImageNamed:imageName];
-  DCLog(@"image: %@", image);
-  XCTAssertTrue(image != nil, @"Pass");
+  UIImage *menuIconImage = [DCBundleHelper getImageNamed:@"menu_icon.png"];
+  DCLog(@"image: %@", menuIconImage);
+  XCTAssertTrue(menuIconImage != nil, @"Pass");
 }
 
 @end

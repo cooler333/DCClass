@@ -33,6 +33,11 @@
   return self;
 }
 
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  [self selectMenuItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+}
+
 #pragma mark - DCSideMenuViewControllerDataSource
 
 - (UIViewController *)viewControllerForMenuItemAtIndexPath:(NSIndexPath *)indexPath {

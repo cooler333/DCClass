@@ -55,6 +55,9 @@
     _tapView = [[UIView alloc] initWithFrame:CGRectZero];
     _menuWidthInPercent = 0.5f;
     _menuTopOffsetInPercent = 0.05f;
+    
+    _contentView.backgroundColor = [UIColor cyanColor];
+    _contentControllerView.backgroundColor = [UIColor redColor];
   }
   return self;
 }
@@ -64,13 +67,12 @@
   self.view.clipsToBounds = YES;
   
   [self.view addSubview:self.menuView];
-  [self.menuView addSubview:self.menuViewController.view];
-  self.menuView.clipsToBounds = YES;
+  //  self.menuView.clipsToBounds = YES;
   
   [self.view addSubview:self.contentView];
-  self.contentView.clipsToBounds = YES;
+  //  self.contentView.clipsToBounds = YES;
   [self.contentView addSubview:self.contentControllerView];
-  self.contentControllerView.clipsToBounds = YES;
+  //  self.contentControllerView.clipsToBounds = YES;
   
   self.menuPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
   self.menuPanGestureRecognizer.delegate = self;
@@ -78,6 +80,12 @@
   
   self.menuTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
   [self.tapView addGestureRecognizer:self.menuTapGestureRecognizer];
+  
+  [self configureView];
+
+  CGFloat menuWidth = CGRectGetWidth(self.rect) * self.menuWidthInPercent;
+  self.menuViewController.view.frame = CGRectMake(0.0f, 0.0f, menuWidth, CGRectGetHeight(self.rect));
+  [self.menuView addSubview:self.menuViewController.view];
 }
 
 - (void)configureView {
@@ -91,16 +99,16 @@
   self.contentControllerView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.rect), CGRectGetHeight(self.rect));
   self.tapView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.rect), CGRectGetHeight(self.rect));
   
-  self.customStatusBarState = NO;
-  self.statusBarHidden = NO;
-  [self setNeedsStatusBarAppearanceUpdate];
+//  self.customStatusBarState = NO;
+//  self.statusBarHidden = NO;
+//  [self setNeedsStatusBarAppearanceUpdate];
   
-  if (self.snapshotView != nil) {
-    [self.snapshotView removeFromSuperview];
-    self.snapshotView = nil;
-  }
+//  if (self.snapshotView != nil) {
+//    [self.snapshotView removeFromSuperview];
+//    self.snapshotView = nil;
+//  }
   
-  [self.tapView removeFromSuperview];
+//  [self.tapView removeFromSuperview];
   self.menuPanGestureRecognizer.enabled = YES;
 }
 
@@ -119,10 +127,7 @@
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
-//  if (self.menuState == DCMenuStateClosed) {
-    return UIInterfaceOrientationMaskAll;
-//  }
-//  return UIInterfaceOrientationMaskPortrait;
+  return UIInterfaceOrientationMaskPortrait;
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
@@ -166,12 +171,12 @@
     UIViewController *vc = [self.dataSource viewControllerForMenuItemAtIndexPath:self.selectedMenuItemIndexPath];
     if (vc != nil) {
       [_contentViewController willMoveToParentViewController:nil];
-      [_contentViewController removeFromParentViewController];
       [_contentViewController.view removeFromSuperview];
+      [_contentViewController removeFromParentViewController];
+      _contentViewController = nil;
       
       [self _didDeselectMenuItemAtIndexPath:oldSelectedMenuItemIndexPath];
       
-      [vc willMoveToParentViewController:self];
       if ([vc isKindOfClass:[UINavigationController class]]) {
         UINavigationController *nvc = (UINavigationController *)vc;
         UINavigationBar *navigationBar = nvc.navigationBar;
@@ -183,36 +188,52 @@
         firstVC.navigationItem.leftBarButtonItem = leftBarButtonItem;
       }
       
-      [self.contentControllerView addSubview:vc.view];
-      
+      _contentViewController = vc;
       [self addChildViewController:vc];
       [vc didMoveToParentViewController:self];
-      _contentViewController = vc;
+
+      vc.view.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.rect), CGRectGetHeight(self.rect));
+      [self.contentControllerView addSubview:vc.view];
       
       [self _didSelectMenuItemAtIndexPath:indexPath];
     }
   }
+  [self closeMenu:0.25f];
 }
 
 #pragma mark - Private Methods
 
 - (void)openMenuViewController:(UIBarButtonItem *)barButtonItem {
   if (self.menuState == DCMenuStateClosed) {
-    self.startPoint = self.contentView.center;
-    
     self.menuState = DCMenuStateUnknown;
-
-    UIView *snapshotView = [self getSnapshotView];
-    self.snapshotView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.statusBarSize.width, self.statusBarSize.height)];
-    self.snapshotView.clipsToBounds = YES;
-    [self.snapshotView addSubview:snapshotView];
-    [self.contentView addSubview:self.snapshotView];
+      
+    if ([UIApplication sharedApplication].statusBarHidden == NO) {
+      [UIView setAnimationsEnabled:NO];
+      
+      self.statusBarSize = CGSizeMake(CGRectGetWidth(self.rect), [self statusBarHeight]);
+      
+      UIView *snapshotView = [self getSnapshotView];
+      self.snapshotView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.statusBarSize.width, self.statusBarSize.height)];
+      self.snapshotView.clipsToBounds = YES;
+      [self.snapshotView addSubview:snapshotView];
+      [self.contentView addSubview:self.snapshotView];
+      
+      self.customStatusBarState = YES;
+      self.statusBarHidden = YES;
+      [self setNeedsStatusBarAppearanceUpdate];
+      
+      CGRect contentControllerViewFrame = self.contentControllerView.frame;
+      contentControllerViewFrame.origin.y += self.statusBarSize.height;
+      self.contentControllerView.frame = contentControllerViewFrame;
+      
+      CGRect contentViewControllerFrame = self.contentViewController.view.frame;
+      contentViewControllerFrame.size.height -= self.statusBarSize.height;
+      self.contentViewController.view.frame = contentViewControllerFrame;
+      
+      [UIView setAnimationsEnabled:YES];
+    }
     
-    CGRect contentControllerViewFrame = self.contentControllerView.frame;
-    contentControllerViewFrame.origin.y += self.statusBarSize.height;
-    self.contentControllerView.frame = contentControllerViewFrame;
-    
-    [self openMenu:0.5f];
+    [self openMenu:0.25f];
   } else if (self.menuState == DCMenuStateOpened) {
     [self closeMenu:0.25f];
   }
@@ -250,6 +271,10 @@
           CGRect contentControllerViewFrame = self.contentControllerView.frame;
           contentControllerViewFrame.origin.y += self.statusBarSize.height;
           self.contentControllerView.frame = contentControllerViewFrame;
+          
+          CGRect contentViewControllerFrame = self.contentViewController.view.frame;
+          contentViewControllerFrame.size.height -= self.statusBarSize.height;
+          self.contentViewController.view.frame = contentViewControllerFrame;
           
           [UIView setAnimationsEnabled:YES];
         }
@@ -318,6 +343,7 @@
   self.menuPanGestureRecognizer.enabled = NO;
   self.menuState = DCMenuStateUnknown;
   
+  [self.contentView addSubview:self.tapView];
 //    CGFloat velocity = animationDuration * CGRectGetWidth(self.rect) * self.menuWidthInPercent;
   [UIView animateWithDuration:animationDuration delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
 //  [UIView animateWithDuration:animationDuration delay:0.0f usingSpringWithDamping:0.4f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -328,7 +354,6 @@
     self.menuView.frame = menuViewFrame;
     
   } completion:^(BOOL finished) {
-    [self.contentView addSubview:self.tapView];
     self.menuState = DCMenuStateOpened;
     self.menuPanGestureRecognizer.enabled = YES;
   }];
@@ -349,7 +374,10 @@
     [UIView setAnimationsEnabled:NO];
 
     self.contentControllerView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.rect), CGRectGetHeight(self.rect));
-
+    CGRect contentViewControllerFrame = self.contentViewController.view.frame;
+    contentViewControllerFrame.size.height += self.statusBarSize.height;
+    self.contentViewController.view.frame = contentViewControllerFrame;
+    
     self.customStatusBarState = NO;
     self.statusBarHidden = NO;
     [self setNeedsStatusBarAppearanceUpdate];

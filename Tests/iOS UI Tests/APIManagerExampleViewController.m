@@ -33,6 +33,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  self.title = @"AAAAAAA";
+  
   // Do any additional setup after loading the view.
 
   self.getImageButton = [[UIButton alloc] initWithFrame:CGRectZero];

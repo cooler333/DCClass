@@ -21,9 +21,8 @@
   [super viewDidLoad];
   self.view.backgroundColor = [UIColor greenColor];
   
-//  self.automaticallyAdjustsScrollViewInsets = NO;
-//  self.edgesForExtendedLayout = UIRectEdgeNone;
-//  self.hidesBarsWhenVerticallyCompact = NO;
+  self.automaticallyAdjustsScrollViewInsets = NO;
+  self.edgesForExtendedLayout = UIRectEdgeNone;
   
   UINavigationBar *navBar = self.navigationBar;
   navBar.barStyle = UIBarStyleDefault;

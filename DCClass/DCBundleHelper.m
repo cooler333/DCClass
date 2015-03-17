@@ -26,7 +26,7 @@
 }
 
 + (UIImage *)getImageNamed:(NSString *)imageName {
-  NSString *imagePath = [[[[[DCBundleHelper mainBundle].resourcePath stringByDeletingLastPathComponent] stringByDeletingLastPathComponent] stringByAppendingPathComponent:kDCImageBundleKey] stringByAppendingPathComponent:imageName];
+  NSString *imagePath = [[DCBundleHelper mainBundle].resourcePath stringByAppendingPathComponent:imageName];
   
   UIImage *image = nil;
   

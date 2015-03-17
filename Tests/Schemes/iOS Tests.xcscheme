@@ -8,10 +8,10 @@
     <BuildActionEntries>
       <BuildActionEntry
         buildForTesting = "YES"
-        buildForRunning = "NO"
-        buildForProfiling = "NO"
-        buildForArchiving = "NO"
-        buildForAnalyzing = "NO">
+        buildForRunning = "YES"
+        buildForProfiling = "YES"
+        buildForArchiving = "YES"
+        buildForAnalyzing = "YES">
         <BuildableReference
           BuildableIdentifier = "primary"
           BlueprintIdentifier = "D9190843D74E8EFC8F34F70F"
@@ -22,7 +22,7 @@
       </BuildActionEntry>
       <BuildActionEntry
         buildForTesting = "YES"
-        buildForRunning = "NO"
+        buildForRunning = "YES"
         buildForProfiling = "NO"
         buildForArchiving = "NO"
         buildForAnalyzing = "NO">
@@ -53,15 +53,6 @@
         </BuildableReference>
       </TestableReference>
     </Testables>
-    <MacroExpansion>
-      <BuildableReference
-        BuildableIdentifier = "primary"
-        BlueprintIdentifier = "D9190843D74E8EFC8F34F70F"
-        BuildableName = "libPods-iOS Tests.a"
-        BlueprintName = "Pods-iOS Tests"
-        ReferencedContainer = "container:Pods/Pods.xcodeproj">
-      </BuildableReference>
-    </MacroExpansion>
   </TestAction>
   <LaunchAction
     selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"

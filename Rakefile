@@ -14,7 +14,7 @@ namespace :test do
   
   desc "Run the DCClass Tests for iOS"
   task :ios => 'prepare_ios' do
-    run_tests('iOS Tests', 'iphonesimulator')
+    run_tests('iOS Tests', 'iphoneos')
     tests_failed('iOS Tests') unless $?.success?
   end
 end

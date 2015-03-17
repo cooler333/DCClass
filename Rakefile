@@ -14,7 +14,7 @@ namespace :test do
   
   desc "Run the DCClass Tests for iOS"
   task :ios => 'prepare_ios' do
-    run_tests('iOS Tests', 'iphoneos')
+    run_tests('iOS Tests', 'iphonesimulator')
     tests_failed('iOS Tests') unless $?.success?
   end
 end
@@ -30,7 +30,7 @@ task :default => 'test'
 private
 
 def run_tests(scheme, sdk)
-  sh("xcodebuild -workspace DCClass.xcworkspace -scheme '#{scheme}' -configuration Release clean test | xcpretty -c ; exit ${PIPESTATUS[0]}") rescue nil
+  sh("xctool -workspace DCClass.xcworkspace -scheme '#{scheme}' -sdk '#{sdk}'' -configuration Release clean test") rescue nil
 end
 
 def tests_failed(platform)

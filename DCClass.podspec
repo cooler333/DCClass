@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'DCClass'
-  s.version     = '0.0.25'
+  s.version     = '0.0.26'
   s.license     = 'MIT'
   s.summary     = 'iOS App Helper.'
   s.homepage    = 'https://github.com/cooler333/DCClass'
@@ -59,8 +59,6 @@ Pod::Spec.new do |s|
 
     ss.resource_bundle = {
       'ImageBundle' => [
-        'DCClass/Resources/DCImages.xcassets',
-        'DCClass/Resources/**/*.png',
         'DCClass/Resources/*.png'
       ]
     }

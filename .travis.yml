@@ -1,7 +1,4 @@
 language: objective-c
-xcode_sdk: iphonesimulator7.0
-xcode_workspace: DCClass.xcworkspace
-xcode_scheme: iOS Tests
 before_install:
     - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
     - gem install xcpretty --no-rdoc --no-ri --no-document --quiet

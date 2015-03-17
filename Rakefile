@@ -46,7 +46,7 @@ task :default => 'ci'
 private
 
 def run_tests(scheme, sdk)
-  sh("xcodebuild -workspace DCClass.xcworkspace -scheme '#{scheme}' -sdk '#{sdk}' -configuration Release clean test | xcpretty -c ; exit ${PIPESTATUS[0]}") rescue nil
+  sh("set -o pipefail && xcodebuild -workspace DCClass.xcworkspace -scheme '#{scheme}' -sdk '#{sdk}' ONLY_ACTIVE_ARCH=NO -configuration Release clean test | xcpretty -c ; exit ${PIPESTATUS[0]}") rescue nil
 end
 
 def tests_failed(platform)

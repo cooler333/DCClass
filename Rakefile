@@ -30,7 +30,7 @@ task :default => 'test'
 private
 
 def run_tests(scheme, sdk)
-  sh("xctool -workspace DCClass.xcworkspace -scheme '#{scheme}' -sdk '#{sdk}'' -configuration Release clean test") rescue nil
+  sh("xctool -workspace DCClass.xcworkspace -scheme '#{scheme}' -sdk '#{sdk}' -configuration Release clean test") rescue nil
 end
 
 def tests_failed(platform)

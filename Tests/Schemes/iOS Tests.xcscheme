@@ -9,15 +9,15 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
             <BuildableReference
-              BuildableIdentifier = "primary"
-              BlueprintIdentifier = "EAA2E58DD598297B353F2288"
-              BuildableName = "libPods-iOS Tests.a"
-              BlueprintName = "Pods-iOS Tests"
-              ReferencedContainer = "container:Pods/Pods.xcodeproj">
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EAA2E58DD598297B353F2288"
+               BuildableName = "libPods-iOS Tests.a"
+               BlueprintName = "Pods-iOS Tests"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -27,11 +27,11 @@
             buildForArchiving = "NO"
             buildForAnalyzing = "NO">
             <BuildableReference
-              BuildableIdentifier = "primary"
-              BlueprintIdentifier = "1C24F5361AADE3E10087CE18"
-              BuildableName = "iOS Tests.xctest"
-              BlueprintName = "iOS Tests"
-              ReferencedContainer = "container:DCClass Tests.xcodeproj">
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1C24F5361AADE3E10087CE18"
+               BuildableName = "iOS Tests.xctest"
+               BlueprintName = "iOS Tests"
+               ReferencedContainer = "container:DCClass Tests.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -53,6 +53,15 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "EAA2E58DD598297B353F2288"
+            BuildableName = "libPods-iOS Tests.a"
+            BlueprintName = "Pods-iOS Tests"
+            ReferencedContainer = "container:Pods/Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -63,6 +72,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "EAA2E58DD598297B353F2288"
+            BuildableName = "libPods-iOS Tests.a"
+            BlueprintName = "Pods-iOS Tests"
+            ReferencedContainer = "container:Pods/Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -72,6 +90,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "EAA2E58DD598297B353F2288"
+            BuildableName = "libPods-iOS Tests.a"
+            BlueprintName = "Pods-iOS Tests"
+            ReferencedContainer = "container:Pods/Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -11,14 +11,9 @@ namespace :test do
     system(command)
     return $?.exitstatus
   end
-
-  desc "Cleaning environment"
-  task :clean do
-    run('rm -rf Build && rm -rf DerivedData && rm -rf Tests/Pods && rm -rf Tests/Podfile.lock')
-  end
   
   desc "Run the DCClass Tests for iOS"
-  task :ios => ['clean', 'prepare_ios'] do
+  task :ios => 'prepare_ios' do
     run_tests('iOS Tests', 'iphonesimulator')
     tests_failed('iOS Tests') unless $?.success?
   end

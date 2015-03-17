@@ -14,94 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1C61E9561AB2FEB300E35722"
-               BuildableName = "iOS UI Tests.app"
-               BlueprintName = "iOS UI Tests"
-               ReferencedContainer = "container:DCClass Tests.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "84DC39B48E08D956A5BC345B"
+               BlueprintIdentifier = "15DBFF29118831E46235506D"
                BuildableName = "libPods-iOS UI Tests.a"
                BlueprintName = "Pods-iOS UI Tests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
-            buildForTesting = "YES"
+            buildForTesting = "NO"
             buildForRunning = "YES"
             buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "326D5C0C9A3E3E3385DA8504"
-               BuildableName = "libPods-iOS UI Tests-AFNetworking.a"
-               BlueprintName = "Pods-iOS UI Tests-AFNetworking"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "73B06D4D601850FC2B790671"
-               BuildableName = "libPods-iOS UI Tests-DCClass.a"
-               BlueprintName = "Pods-iOS UI Tests-DCClass"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D03A81FE3BA96B4676F48A59"
-               BuildableName = "ImageBundle.bundle"
-               BlueprintName = "Pods-iOS UI Tests-DCClass-ImageBundle"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "575F2C3563B2F44F68D18E3A"
-               BuildableName = "libPods-iOS UI Tests-Expecta.a"
-               BlueprintName = "Pods-iOS UI Tests-Expecta"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5837B95594B72799176DBDAA"
-               BuildableName = "libPods-iOS UI Tests-OCMock.a"
-               BlueprintName = "Pods-iOS UI Tests-OCMock"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+               BlueprintIdentifier = "1C61E9561AB2FEB300E35722"
+               BuildableName = "iOS UI Tests.app"
+               BlueprintName = "iOS UI Tests"
+               ReferencedContainer = "container:DCClass Tests.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -165,8 +95,4 @@
    <AnalyzeAction
       buildConfiguration = "Debug">
    </AnalyzeAction>
-   <ArchiveAction
-      buildConfiguration = "Release"
-      revealArchiveInOrganizer = "YES">
-   </ArchiveAction>
 </Scheme>

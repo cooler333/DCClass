@@ -3,12 +3,7 @@ include FileUtils::Verbose
 namespace :test do
   task :prepare_ios do
     mkdir_p "Tests/DCClass Tests.xcodeproj/xcshareddata/xcschemes"
-    cp Dir.glob('Tests/Schemes/iOS Tests.xcscheme'), "Tests/DCClass Tests.xcodeproj/xcshareddata/xcschemes/"
-  end
-
-  task :prepare_iosui do
-    mkdir_p "Tests/DCClass Tests.xcodeproj/xcshareddata/xcschemes"
-    cp Dir.glob('Tests/Schemes/iOS UI Tests.xcscheme'), "Tests/DCClass Tests.xcodeproj/xcshareddata/xcschemes/"
+    cp Dir.glob('Tests/Schemes/iOS Tests for Rake.xcscheme'), "Tests/DCClass Tests.xcodeproj/xcshareddata/xcschemes/"
   end
   
   def run(command, min_exit_status = 0)
@@ -24,14 +19,8 @@ namespace :test do
   
   desc "Run the DCClass Tests for iOS"
   task :ios => ['clean', 'prepare_ios'] do
-    run_tests('iOS Tests', 'iphonesimulator')
+    run_tests('iOS Tests for Rake', 'iphonesimulator7.0')
     tests_failed('iOS Tests') unless $?.success?
-  end
-
-  desc "Run the DCClass UI Tests for iOS"
-  task :iosui => ['clean', 'prepare_iosui'] do
-    run_tests('iOS UI Tests', 'iphonesimulator')
-    tests_failed('iOS UI Tests') unless $?.success?
   end
 end
 
@@ -46,7 +35,7 @@ task :default => 'ci'
 private
 
 def run_tests(scheme, sdk)
-  sh("set -o pipefail && xcodebuild -workspace DCClass.xcworkspace -scheme '#{scheme}' -sdk '#{sdk}' ONLY_ACTIVE_ARCH=NO -configuration Release clean test | xcpretty -c ; exit ${PIPESTATUS[0]}") rescue nil
+  sh("set -o pipefail && xcodebuild -workspace DCClass.xcworkspace -scheme '#{scheme}' -sdk '#{sdk}' -destination platform='iOS Simulator',OS=7.0,name='iPhone Retina (4-inch)' -configuration Release clean test | xcpretty -c ; exit ${PIPESTATUS[0]}") rescue nil
 end
 
 def tests_failed(platform)

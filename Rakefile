@@ -30,7 +30,7 @@ task :default => 'test'
 private
 
 def run_tests(scheme, sdk)
-  sh("xcodebuild -workspace DCClass.xcworkspace -scheme '#{scheme}' -sdk '#{sdk}' -configuration Release clean test | xcpretty -c ; exit ${PIPESTATUS[0]}") rescue nil
+  sh("xcodebuild -workspace DCClass.xcworkspace -scheme '#{scheme}' -configuration Release clean test | xcpretty -c ; exit ${PIPESTATUS[0]}") rescue nil
 end
 
 def tests_failed(platform)

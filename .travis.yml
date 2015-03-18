@@ -6,10 +6,9 @@ before_install:
   - gem install cocoapods --pre --quiet
   - pod setup --silent
   - pod repo update --silent
-script:
   - pod lib lint DCClass.podspec
   - pod lib lint --use-libraries DCClass.podspec
-  - xctool test -workspace DCClass.xcworkspace -scheme iOS Tests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+script: xcodebuild -showsdks; xctool test -workspace DCClass.xcworkspace -scheme iOS Tests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 
 #before_install:
 #  - brew update

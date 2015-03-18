@@ -1,15 +1,21 @@
 language: objective-c
 
-xcode_workspace: DCClass.xcworkspace
-xcode_scheme: iOS Tests
-
-xcode_sdk: iphonesimulator7.0
-podfile: Tests/Podfile
-
 before_install:
-- brew update
-- brew upgrade xctool
-- gem install cocoapods --no-rdoc --no-ri --no-document --quiet
-- pod install
-- gem install xcpretty --no-rdoc --no-ri --no-document --quiet
-script: xcodebuild -showsdks; xctool test -workspace DCClass.xcworkspace -scheme iOS Tests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO") rescue nil
+  - brew update
+  - brew reinstall xctool
+  - gem install cocoapods --pre --quiet
+  - pod setup --silent
+  - pod repo update --silent
+script:
+  - pod lib lint Bolts.podspec
+  - pod lib lint --use-libraries Bolts.podspec
+  - xcodebuild -showsdks; xctool test -workspace DCClass.xcworkspace -scheme iOS Tests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+
+#before_install:
+#  - brew update
+#  - brew upgrade xctool
+#  - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
+#  - pod install
+#  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+#
+#script: xcodebuild -showsdks; xctool test -workspace DCClass.xcworkspace -scheme iOS Tests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO

@@ -52,7 +52,7 @@ task :default => 'test'
 private
 
 def run(scheme, sdk, args)
-  sh("xcodebuild -showsdks; xctool -workspace DCClass.xcworkspace -scheme '#{scheme}' -sdk '#{sdk}' #{args}") rescue nil
+  sh("xcodebuild -showsdks; xctool -workspace DCClass.xcworkspace -scheme '#{scheme}' -sdk '#{sdk}' #{args} ONLY_ACTIVE_ARCH=NO") rescue nil
 end
 
 def tests_failed(platform)

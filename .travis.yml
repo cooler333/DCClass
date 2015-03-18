@@ -1,11 +1,17 @@
 language: objective-c
-xcode_sdk: iphonesimulator7.0
-os: osx
+
+xcode_workspace: DCClass.xcworkspace
+xcode_scheme: iOS Tests
+
+xcode_sdk:
+	- iphonesimulator7.0
+podfile: Tests/Podfile
 
 before_install:
+	- brew update
     - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
-    - cd Tests 
+    #- cd Tests 
     - pod install
     - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
-    - cd $TRAVIS_BUILD_DIR
-script: rake test
+    #- cd $TRAVIS_BUILD_DIR
+script: xcodebuild -showsdks; xctool test -workspace DCClass.xcworkspace -scheme iOS Tests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO") rescue nil

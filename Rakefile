@@ -11,15 +11,9 @@ namespace :test do
     system(command)
     return $?.exitstatus
   end
-
-  desc "Run the DCClass UI Tests for iOS last"
-  task :ios_ui_test_simulator_last => 'prepare_ios' do
-    run('iOS UI Tests', 'iphoneos', '')
-    tests_failed('iOS UI Tests') unless $?.success?
-  end
-
+  
   desc "Run the DCClass Tests for iOS last"
-  task :ios_test_simulator_last => 'prepare_ios' do
+  task :ios => 'prepare_ios' do
     run('iOS Tests', 'iphonesimulator', 'test')
     tests_failed('iOS Tests') unless $?.success?
   end
@@ -27,8 +21,7 @@ end
 
 desc "Run the DCClass Tests for iOS"
 task :test do
-  Rake::Task['test:ios_ui_test_simulator_last'].invoke
-  Rake::Task['test:ios_test_simulator_last'].invoke
+  Rake::Task['test:ios'].invoke
 end
 
 task :default => 'test'

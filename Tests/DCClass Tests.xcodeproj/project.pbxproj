@@ -49,7 +49,6 @@
 		1C61E9911AB301CD00E35722 /* APIManagerExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManagerExampleViewController.m; sourceTree = "<group>"; };
 		1C66FB6C1AADFEDF00FA328E /* DCColorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCColorTests.m; sourceTree = "<group>"; };
 		1C66FB6E1AAE034D00FA328E /* DCKeychainWrapperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCKeychainWrapperTests.m; sourceTree = "<group>"; };
-		1C8FBFAB1AB8823A00DD2C24 /* libPods-iOS Tests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-iOS Tests.a"; path = "Pods/../build/Debug-iphoneos/libPods-iOS Tests.a"; sourceTree = "<group>"; };
 		1E8D5CA953ADFF4E64B698CE /* Pods-iOS Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Tests/Pods-iOS Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		31A31B31157366A63E7B35C3 /* Pods-iOS UI Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS UI Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS UI Tests/Pods-iOS UI Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C565FDD9D962C357FCC9149 /* libPods-iOS Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOS Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,7 +176,6 @@
 		C9D6DAAA20A6BDA0100472D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1C8FBFAB1AB8823A00DD2C24 /* libPods-iOS Tests.a */,
 				4C565FDD9D962C357FCC9149 /* libPods-iOS Tests.a */,
 				C1EB62C1AEA58390881685F2 /* libPods-iOS UI Tests.a */,
 			);

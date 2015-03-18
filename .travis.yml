@@ -3,12 +3,12 @@ language: objective-c
 xcode_workspace: DCClass.xcworkspace
 xcode_scheme: iOS Tests
 
-xcode_sdk:
-	- iphonesimulator7.0
+xcode_sdk: iphonesimulator7.0
 podfile: Tests/Podfile
 
 before_install:
 	- brew update
+	- brew upgrade xctool
     - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
     - pod install
     - gem install xcpretty --no-rdoc --no-ri --no-document --quiet

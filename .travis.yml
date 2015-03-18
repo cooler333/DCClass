@@ -4,8 +4,10 @@ before_install:
  - brew update
  - brew reinstall xctool
  - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
+ - cd Tests
  - pod install
  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+ - cd $TRAVIS_BUILD_DIR
 
 script: 
   - xcodebuild -showsdks; xctool test -workspace DCClass.xcworkspace -scheme iOS Tests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO

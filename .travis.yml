@@ -12,5 +12,5 @@ before_install:
 script: 
   - xcodebuild -showsdks; xctool test -workspace 'DCClass.xcworkspace' -scheme 'iOS Tests' -sdk 'iphonesimulator' ONLY_ACTIVE_ARCH=NO
   - xcodebuild -showsdks; xctool -workspace 'DCClass.xcworkspace' -scheme 'iOS UI Tests' -sdk 'iphonesimulator' ONLY_ACTIVE_ARCH=NO
-  - xcodebuild -showsdks; xctool test -workspace 'DCClass.xcworkspace' -scheme 'iOS Tests'    -sdk 'iphonesimulator' -destination 'platform=iOS Simulator,OS=7.0,name=iPhone 5' ONLY_ACTIVE_ARCH=NO
-  - xcodebuild -showsdks; xctool -workspace      'DCClass.xcworkspace' -scheme 'iOS UI Tests' -sdk 'iphonesimulator' -destination 'platform=iOS Simulator,OS=7.0,name=iPhone 5' ONLY_ACTIVE_ARCH=NO
+  - xcodebuild -showsdks; xctool test -workspace 'DCClass.xcworkspace' -scheme 'iOS Tests' -sdk 'iphonesimulator' -destination "platform=iOS Simulator,OS=7.1,name=iPhone 4s" ONLY_ACTIVE_ARCH=NO
+  - xcodebuild -showsdks; xctool -workspace      'DCClass.xcworkspace' -scheme 'iOS UI Tests' -sdk 'iphonesimulator' -destination "platform=iOS Simulator,OS=7.1,name=iPhone 4s" ONLY_ACTIVE_ARCH=NO

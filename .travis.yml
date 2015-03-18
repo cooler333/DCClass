@@ -1,7 +1,7 @@
 language: objective-c
 xcode_sdk: iphonesimulator7.0
 os: osx
-podfile: /Tests/Podfile
+podfile: /Tests
 
 before_install:
     - gem install cocoapods --no-rdoc --no-ri --no-document --quiet

@@ -43,10 +43,15 @@ typedef enum {
     // Specify we are using a Password (vs Certificate, Internet Password, etc)
     [searchDictionary setObject:(__bridge id)kSecClassGenericPassword forKey:(__bridge id)kSecClass];
     // Uniquely identify this keychain accesser
-    id bundleIdentifier = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+  
+    id bundleIdentifier;
+    if ([[NSBundle mainBundle] infoDictionary]) {
+        bundleIdentifier = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+    }
     if (bundleIdentifier == nil) {
         bundleIdentifier = @"Test";
     }
+  
     [searchDictionary setObject:bundleIdentifier forKey:(__bridge id)(kSecAttrService)];
 	
     // Uniquely identify the account who will be accessing the keychain
@@ -91,7 +96,7 @@ typedef enum {
     }
 }
 
-+ (BOOL)createKeychainValue:(NSString *)value forIdentifier:(NSString *)identifier {
++ (OSStatus)createKeychainValue:(NSString *)value forIdentifier:(NSString *)identifier {
    
     NSMutableDictionary *dictionary = [self setupSearchDirectoryForIdentifier:identifier];
     NSData *valueData = [value dataUsingEncoding:NSUTF8StringEncoding];
@@ -105,15 +110,15 @@ typedef enum {
 	
     // If the Addition was successful, return.  Otherwise, attempt to update existing key or quit (return NO)
     if (status == errSecSuccess) {
-        return YES;
+        return status;
     } else if (status == errSecDuplicateItem){
         return [self updateKeychainValue:value forIdentifier:identifier];
     } else {
-        return NO;
+        return status;
     }
 }
 
-+ (BOOL)updateKeychainValue:(NSString *)value forIdentifier:(NSString *)identifier {
++ (OSStatus)updateKeychainValue:(NSString *)value forIdentifier:(NSString *)identifier {
     
     NSMutableDictionary *searchDictionary = [self setupSearchDirectoryForIdentifier:identifier];
     NSMutableDictionary *updateDictionary = [[NSMutableDictionary alloc] init];
@@ -125,9 +130,9 @@ typedef enum {
                                     (__bridge CFDictionaryRef)updateDictionary);
 	
     if (status == errSecSuccess) {
-        return YES;
+        return status;
     } else {
-        return NO;
+        return status;
     }
 }
 

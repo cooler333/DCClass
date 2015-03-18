@@ -17,11 +17,11 @@
 @interface DCKeychainWrapper : KeychainWrapper
 
 + (NSString *)keychainTokenString;
-+ (BOOL)setKeychainTokenString:(NSString *)tokenString;
++ (OSStatus)setKeychainTokenString:(NSString *)tokenString;
 + (void)deleteKeychainTokenString;
 
 + (NSString *)keychainIDString;
-+ (BOOL)setKeychainIDString:(NSString *)IDString;
++ (OSStatus)setKeychainIDString:(NSString *)IDString;
 + (void)deleteKeychainIDString;
 
 @end

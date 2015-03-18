@@ -13,6 +13,15 @@
 #import "DCKeychainWrapper.h"
 
 
+@interface DCKeychainWrapper (DCKeychainWrapperCategory)
+
++ (NSMutableDictionary *)setupSearchDirectoryForIdentifier:(NSString *)identifier;
++ (OSStatus)createKeychainValue:(NSString *)value forIdentifier:(NSString *)identifier;
++ (OSStatus)updateKeychainValue:(NSString *)value forIdentifier:(NSString *)identifier;
+
+@end
+
+
 @interface DCKeychainWrapperTests : XCTestCase
 
 @end
@@ -30,24 +39,47 @@
   [super tearDown];
 }
 
-- (void)testIDString {
-  [DCKeychainWrapper setKeychainIDString:@"111"];
-  BOOL isSetting = [[DCKeychainWrapper keychainIDString] isEqualToString:@"111"];
-  XCTAssertTrue(isSetting, @"Pass");
+- (void)testKeychain {
+  OSStatus create = [DCKeychainWrapper createKeychainValue:@"AAA" forIdentifier:kTokenStringKeychainKey];
+  if (create != errSecNotAvailable) {
+    XCTAssert(create == 0, @"status != 0: %@", @(create));
+    XCTAssert([DCKeychainWrapper keychainTokenString] != nil, @"keychainTokenString");
+  }
   
-  [DCKeychainWrapper deleteKeychainIDString];
-  BOOL isRemoved = [DCKeychainWrapper keychainIDString] == nil;
-  XCTAssertTrue(isRemoved, @"Pass");
+
+  OSStatus update = [DCKeychainWrapper updateKeychainValue:@"BBB" forIdentifier:kTokenStringKeychainKey];
+  if (update != errSecNotAvailable) {
+    XCTAssert(update == 0, @"status != 0: %@", @(update));
+    XCTAssert([DCKeychainWrapper keychainTokenString] != nil, @"keychainTokenString");
+  }
+}
+
+- (void)testIDString {
+  OSStatus set = [DCKeychainWrapper setKeychainIDString:@"111"];
+  if (set != errSecNotAvailable) {
+    XCTAssertTrue([DCKeychainWrapper keychainIDString] != nil, @"keychainIDString");
+    
+    BOOL isSetting = [[DCKeychainWrapper keychainIDString] isEqualToString:@"111"];
+    XCTAssertTrue(isSetting, @"Pass");
+    
+    [DCKeychainWrapper deleteKeychainIDString];
+    BOOL isRemoved = [DCKeychainWrapper keychainIDString] == nil;
+    XCTAssert(isRemoved, @"Pass");
+  }
 }
 
 - (void)testTokenString {
-  [DCKeychainWrapper setKeychainTokenString:@"AFADfdfsdLHJDFHjsdjfsdfs"];
-  BOOL isSetting = [[DCKeychainWrapper keychainTokenString] isEqualToString:@"AFADfdfsdLHJDFHjsdjfsdfs"];
-  XCTAssertTrue(isSetting, @"Pass");
-  
-  [DCKeychainWrapper deleteKeychainTokenString];
-  BOOL isRemoved = [DCKeychainWrapper keychainTokenString] == nil;
-  XCTAssertTrue(isRemoved, @"Pass");
+  OSStatus set = [DCKeychainWrapper setKeychainTokenString:@"AFADfdfsdLHJDFHjsdjfsdfs"];
+  if (set != errSecNotAvailable) {
+    XCTAssert([DCKeychainWrapper keychainTokenString] != nil, @"keychainTokenString");
+
+    BOOL isSetting = [[DCKeychainWrapper keychainTokenString] isEqualToString:@"AFADfdfsdLHJDFHjsdjfsdfs"];
+    XCTAssert(isSetting, @"Pass");
+    
+    [DCKeychainWrapper deleteKeychainTokenString];
+    BOOL isRemoved = [DCKeychainWrapper keychainTokenString] == nil;
+    XCTAssert(isRemoved, @"Pass");
+  }
 }
 
 @end

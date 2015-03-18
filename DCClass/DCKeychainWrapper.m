@@ -16,7 +16,7 @@
   return [super keychainStringFromMatchingIdentifier:kTokenStringKeychainKey];
 }
 
-+ (BOOL)setKeychainTokenString:(NSString *)tokenString {
++ (OSStatus)setKeychainTokenString:(NSString *)tokenString {
   return [super createKeychainValue:tokenString forIdentifier:kTokenStringKeychainKey];
 }
 
@@ -24,11 +24,12 @@
   [self deleteItemFromKeychainWithIdentifier:kTokenStringKeychainKey];
 }
 
+
 + (NSString *)keychainIDString {
   return [super keychainStringFromMatchingIdentifier:kIDStringKeychainKey];
 }
 
-+ (BOOL)setKeychainIDString:(NSString *)IDString {
++ (OSStatus)setKeychainIDString:(NSString *)IDString {
   return [super createKeychainValue:IDString forIdentifier:kIDStringKeychainKey];
 }
 

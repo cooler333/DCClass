@@ -1,20 +1,11 @@
 language: objective-c
 
 before_install:
-  - brew update
-  - brew reinstall xctool
-  - gem install cocoapods --pre --quiet
-  - pod setup --silent
-  - pod repo update --silent
-  - pod lib lint DCClass.podspec
-  - pod lib lint --use-libraries DCClass.podspec
-script: xcodebuild -showsdks; xctool test -workspace DCClass.xcworkspace -scheme iOS Tests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+ - brew update
+ - brew reinstall xctool
+ - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
+ - pod install
+ - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 
-#before_install:
-#  - brew update
-#  - brew upgrade xctool
-#  - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
-#  - pod install
-#  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
-#
-#script: xcodebuild -showsdks; xctool test -workspace DCClass.xcworkspace -scheme iOS Tests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+script: 
+  - xcodebuild -showsdks; xctool test -workspace DCClass.xcworkspace -scheme iOS Tests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO

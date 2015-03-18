@@ -7,8 +7,8 @@ before_install:
   - pod setup --silent
   - pod repo update --silent
 script:
-  - pod lib lint Bolts.podspec
-  - pod lib lint --use-libraries Bolts.podspec
+  - pod lib lint DCClass.podspec
+  - pod lib lint --use-libraries DCClass.podspec
   - xcodebuild -showsdks; xctool test -workspace DCClass.xcworkspace -scheme iOS Tests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 
 #before_install:

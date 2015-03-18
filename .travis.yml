@@ -1,12 +1,11 @@
 language: objective-c
 xcode_sdk: iphonesimulator7.0
 os: osx
-podfile: Tests/Podfile
 
 before_install:
     - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
-    # - cd Tests 
+    - cd Tests 
     - pod install
     - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
-    # - cd $TRAVIS_BUILD_DIR
+    - cd $TRAVIS_BUILD_DIR
 script: rake test

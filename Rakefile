@@ -11,23 +11,39 @@ namespace :test do
     system(command)
     return $?.exitstatus
   end
-  
-  task :ios => 'prepare_ios' do
-    run_build('iOS UI Tests', 'iphonesimulator')
+
+  desc "Run the DCClass UI Tests for iOS last"
+  task :ios_ui_test_simulator => 'prepare_ios' do
+    run('iOS UI Tests', 'iphonesimulator', '-configuration Debug clean build')
     tests_failed('iOS UI Tests') unless $?.success?
   end
 
-  desc "Run the DCClass Tests for iOS"
-  task :ios_sim => 'prepare_ios' do
-    run_tests('iOS Tests', 'iphonesimulator')
+  desc "Run the DCClass Tests for iOS last"
+  task :ios_test_simulator => 'prepare_ios' do
+    run('iOS Tests', 'iphonesimulator', '- -configuration Release clean test')
+    tests_failed('iOS Tests') unless $?.success?
+  end
+
+  desc "Run the DCClass UI Tests for iOS last"
+  task :ios_ui_test_simulator_last => 'prepare_ios' do
+    run('iOS UI Tests', 'iphoneos', '-configuration Debug clean build')
+    tests_failed('iOS UI Tests') unless $?.success?
+  end
+
+  desc "Run the DCClass Tests for iOS last"
+  task :ios_test_simulator_last => 'prepare_ios' do
+    run('iOS Tests', 'iphonesimulator', '-configuration Release clean test')
     tests_failed('iOS Tests') unless $?.success?
   end
 end
 
 desc "Run the DCClass Tests for iOS"
 task :test do
-  Rake::Task['test:ios'].invoke
-  Rake::Task['test:ios_sim'].invoke
+  #Rake::Task['test:ios_ui_test_simulator'].invoke
+  #Rake::Task['test:ios_test_simulator'].invoke
+
+  Rake::Task['test:ios_ui_test_simulator_last'].invoke
+  Rake::Task['test:ios_test_simulator_last'].invoke
 end
 
 task :default => 'test'
@@ -35,12 +51,8 @@ task :default => 'test'
 
 private
 
-def run_build(scheme, sdk)
-  sh("xctool -workspace DCClass.xcworkspace -scheme '#{scheme}' -sdk '#{sdk}' -configuration Debug clean build") rescue nil
-end
-
-def run_tests(scheme, sdk)
-  sh("xctool -workspace DCClass.xcworkspace -scheme '#{scheme}' -sdk '#{sdk}' -configuration Release clean test") rescue nil
+def run(scheme, sdk, args)
+  sh("xcodebuild -showsdks; xctool -workspace DCClass.xcworkspace -scheme '#{scheme}' -sdk '#{sdk}' #{args}") rescue nil
 end
 
 def tests_failed(platform)

@@ -10,7 +10,9 @@ before_install:
  - cd $TRAVIS_BUILD_DIR
 
 script: 
-  -workspace 'DCClass.xcworkspace' -scheme 'iOS Tests' -sdk 'iphonesimulator' -configuration Release clean test ONLY_ACTIVE_ARCH=NO
+  - xctool -workspace 'DCClass.xcworkspace' -scheme 'iOS Tests' -sdk 'iphonesimulator' -configuration Release clean test ONLY_ACTIVE_ARCH=NO
 
-  -workspace 'DCClass.xcworkspace' -scheme 'iOS UI Tests' -sdk 'iphonesimulator' -destination "platform=iOS Simulator,OS=7.0,name=iPhone 5" -configuration Debug clean build ONLY_ACTIVE_ARCH=NO
-  -workspace 'DCClass.xcworkspace' -scheme 'iOS UI Tests' -sdk 'iphonesimulator' -destination "platform=iOS Simulator,OS=latest,name=iPhone 5" -configuration Debug clean build ONLY_ACTIVE_ARCH=NO
+  - xctool -workspace 'DCClass.xcworkspace' -scheme 'iOS UI Tests' -sdk 'iphonesimulator' -destination "platform=iOS Simulator,OS=7.1,name=iPhone 5" -configuration Debug clean build ONLY_ACTIVE_ARCH=NO
+  - xctool -workspace 'DCClass.xcworkspace' -scheme 'iOS UI Tests' -sdk 'iphonesimulator' -destination "platform=iOS Simulator,OS=latest,name=iPhone 5" -configuration Debug clean build ONLY_ACTIVE_ARCH=NO
+  - xctool -workspace 'DCClass.xcworkspace' -scheme 'iOS UI Tests' -sdk 'iphonesimulator' -destination "platform=iOS Simulator,OS=7.1,name=iPhone 5" -configuration Debug clean archive ONLY_ACTIVE_ARCH=NO
+  - xctool -workspace 'DCClass.xcworkspace' -scheme 'iOS UI Tests' -sdk 'iphonesimulator' -destination "platform=iOS Simulator,OS=latest,name=iPhone 5" -configuration Debug clean archive ONLY_ACTIVE_ARCH=NO

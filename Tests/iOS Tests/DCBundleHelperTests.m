@@ -34,13 +34,11 @@
 - (void)testBundle {
   // This is an example of a functional test case.
   NSBundle *bundle = [DCBundleHelper mainBundle];
-  DCLog(@"bundle: %@", bundle);
   XCTAssert(bundle != nil, @"Pass");
 }
 
 - (void)testImageFromBundle {
   UIImage *menuIconImage = [DCBundleHelper getImageNamed:@"menu_icon.png"];
-  DCLog(@"image: %@", menuIconImage);
   XCTAssertTrue(menuIconImage != nil, @"Pass");
 }
 

@@ -56,8 +56,6 @@
   [super viewDidLoad];
   self.view.clipsToBounds = YES;
   
-  CGFloat menuWidth = CGRectGetWidth(self.view.frame) * self.menuWidthInPercent;
-  
   self.menuView = [[UIView alloc] initWithFrame:CGRectMake(-CGRectGetWidth(self.view.frame) * self.menuWidthInPercent / 2.0f, 0.0f, CGRectGetWidth(self.view.frame) * self.menuWidthInPercent, CGRectGetHeight(self.view.frame))];
   self.menuView.backgroundColor = [UIColor redColor];
   [self.view addSubview:self.menuView];
@@ -280,14 +278,10 @@
           [self.snapshotView addSubview:snapshotView];
           [self.contentView addSubview:self.snapshotView];
           
-          UIRectEdge contentViewControllerRectEdge0 = self.contentViewController;
-          
           self.customStatusBarState = YES;
           self.statusBarHidden = YES;
           [self setNeedsStatusBarAppearanceUpdate];
           
-          UIRectEdge contentViewControllerRectEdge = self.contentViewController.edgesForExtendedLayout;
-
           CGPoint contentControllerViewCenter = self.contentControllerView.center;
           contentControllerViewCenter.y += self.statusBarSize.height;
           self.contentControllerView.center = contentControllerViewCenter;

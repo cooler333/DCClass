@@ -18,6 +18,20 @@
   return (DCColor *)[super colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:alpha];
 }
 
++ (BOOL)color:(DCColor *)color1 isEqualToColor:(DCColor *)color2 withTolerance:(CGFloat)tolerance {
+  CGFloat r1, g1, b1, a1;
+  CGFloat r2, g2, b2, a2;
+  
+  [color1 getRed:&r1 green:&g1 blue:&b1 alpha:&a1];
+  [color2 getRed:&r2 green:&g2 blue:&b2 alpha:&a2];
+  
+  return
+  fabs(r1 - r2) <= tolerance &&
+  fabs(g1 - g2) <= tolerance &&
+  fabs(b1 - b2) <= tolerance &&
+  fabs(a1 - a2) <= tolerance;
+}
+
 + (instancetype)testColor {
   return [self colorWithR:255.0f G:0.0f B:0.0f alpha:0.5f];
 }

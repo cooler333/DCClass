@@ -17,6 +17,10 @@
 
 @implementation DCNavigationController
 
+@synthesize customTintColor = _customTintColor;
+@synthesize customBarTintColor = _customBarTintColor;
+
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.view.backgroundColor = [UIColor greenColor];
@@ -41,12 +45,27 @@
   }
 }
 
+- (UIColor *)customTintColor {
+  if (_customTintColor) {
+    return _customTintColor;
+  }
+  return self.navigationBar.tintColor;
+}
+
+
 - (void)setCustomBarTintColor:(UIColor *)customBarTintColor {
   if (_customBarTintColor != customBarTintColor) {
     _customBarTintColor = customBarTintColor;
     UINavigationBar *navBar = self.navigationBar;
     navBar.barTintColor = customBarTintColor;
   }
+}
+
+- (UIColor *)customBarTintColor {
+  if (_customBarTintColor) {
+    return _customBarTintColor;
+  }
+  return self.navigationBar.barTintColor;
 }
 
 @end

@@ -384,7 +384,7 @@
     
     [UIView setAnimationsEnabled:YES];
 
-    [UIView animateWithDuration:0.2 animations:^{
+    [UIView animateWithDuration:0.05f animations:^{
       self.snapshotView.alpha = 0.0;
     } completion:^(BOOL finished) {
       [self.snapshotView removeFromSuperview];

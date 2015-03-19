@@ -18,6 +18,7 @@
   [super viewDidLoad];
   self.automaticallyAdjustsScrollViewInsets = NO;
   self.edgesForExtendedLayout = UIRectEdgeNone;
+  [self _configureView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

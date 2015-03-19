@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'DCClass'
-  s.version     = '0.0.33'
+  s.version     = '0.0.35'
   s.license     = 'MIT'
   s.summary     = 'iOS App Helper.'
   s.homepage    = 'https://github.com/cooler333/DCClass'

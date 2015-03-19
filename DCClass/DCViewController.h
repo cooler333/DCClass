@@ -12,21 +12,12 @@
 #import "DCCheckDevice.h"
 
 
-@protocol DCViewControllerProtocol <NSObject>
-
-@required
-- (void)configureView;
-
-@end
+@interface DCViewController : UIViewController
 
 
-@interface DCViewController : UIViewController <DCViewControllerProtocol>
-
-
-@property(nonatomic,readonly) CGRect rect;
+//@property(nonatomic,readonly) CGRect rect;
 @property(nonatomic,strong,readonly) NSDictionary *dataDictionary;
 
-- (void)configureView;
 - (void)configureViewForDataDictionary:(NSDictionary *)dataDictionary;
 - (void)cleanView;
 

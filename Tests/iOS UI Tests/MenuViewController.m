@@ -32,25 +32,25 @@ static NSString * const kPrototypeMenuTableViewCellReuseIdentifier = @"kPrototyp
   [super viewDidLoad];
   self.view.backgroundColor = [DCColor blueColor];
   
-  self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+  self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) style:UITableViewStylePlain];
   self.tableView.backgroundColor = [DCColor blueColor];
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
   
   [self.tableView registerClass:[MenuTableViewCell class] forCellReuseIdentifier:kPrototypeMenuTableViewCellReuseIdentifier];
   [self.tableView registerClass:[MenuTableViewCell class] forCellReuseIdentifier:kMenuTableViewCellReuseIdentifier];
-
+  
   self.tableView.dataSource = self;
   self.tableView.delegate = self;
   
-  self.tableView.tableHeaderView = [[MenuTableHeaderView alloc] initWithFrame:CGRectZero];
-  
+  self.tableView.tableHeaderView = [[MenuTableHeaderView alloc] initWithFrame:CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), 92.0f)];
   [self.view addSubview:self.tableView];
 }
 
-- (void)configureView {
-  self.tableView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.rect), CGRectGetHeight(self.rect));
+- (void)viewDidLayoutSubviews {
+  [super viewDidLayoutSubviews];
+  self.tableView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
   UIView *view = self.tableView.tableHeaderView;
-  view.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.rect), 92.0f);
+  view.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), 92.0f);
   self.tableView.tableHeaderView = view;
 }
 
@@ -86,7 +86,7 @@ static NSString * const kPrototypeMenuTableViewCellReuseIdentifier = @"kPrototyp
     [str appendString:@" New String."];
   }
   MenuTableViewCell *c = (MenuTableViewCell *)cell;
-  c.textLabel.text = str;
+  c.titleLabel.text = str;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

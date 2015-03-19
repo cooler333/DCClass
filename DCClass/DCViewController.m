@@ -17,28 +17,13 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.automaticallyAdjustsScrollViewInsets = NO;
-  self.edgesForExtendedLayout = UIRectEdgeNone;
-  [self _configureView];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-  [self _configureView];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  [self _configureView];
-}
-
-- (void)viewWillLayoutSubviews {
-  [super viewWillLayoutSubviews];
-  [self _configureView];
+//  self.edgesForExtendedLayout = UIRectEdgeNone;
+//  [self _configureView];
 }
 
 - (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
-  [self _configureView];
+//  [self _configureView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,17 +37,9 @@
 
 #pragma mark - Layout MGMT
 
-- (void)_configureView {
-  CGRect rect = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
-  if (!CGRectEqualToRect(rect, self.rect)) {
-    _rect = rect;
-    [self configureView];
-  }
-}
-
-- (void)configureView {
-  [NSException raise:NSInternalInconsistencyException format:@"You must override \"%@\" method in a \"%@\" ", NSStringFromSelector(_cmd), NSStringFromClass([self class])];
-}
+//- (void)_configureView {
+//  _rect = self.view.frame;
+//}
 
 - (CGFloat)statusBarHeight {
   CGSize statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;

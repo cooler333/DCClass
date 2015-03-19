@@ -14,12 +14,21 @@
 static CGFloat const kMenuTableViewCellMinHeight = 44.0f;
 
 
+@interface MenuTableViewCell ()
+
+@property(nonatomic) UILabel *titleLabel;
+
+@end
+
+
 @implementation MenuTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
-    self.textLabel.numberOfLines = 0;
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    self.titleLabel.numberOfLines = 0;
+    [self.contentView addSubview:self.titleLabel];
     
     [self updateView];
     [self configureCellForHighlighedState:NO];
@@ -32,21 +41,21 @@ static CGFloat const kMenuTableViewCellMinHeight = 44.0f;
   CGFloat width = CGRectGetWidth(rect);
   
   CGFloat textLabelWidth = width - 30.0f * 2.0f;
-  CGFloat textLabelHeght = [self heightForLabel:self.textLabel andWidth:textLabelWidth];
+  CGFloat textLabelHeght = [self heightForLabel:self.titleLabel andWidth:textLabelWidth];
   
   CGFloat contentHeight = (kMenuTableViewCellMinHeight - 23.0f * 2.0f);
   CGFloat textLabelTop = 0.0f;
   if (textLabelHeght < contentHeight) {
     textLabelTop = (contentHeight - textLabelHeght) / 2.0f;
   }
-  self.textLabel.frame = CGRectMake(30.0f, 23.0f + textLabelTop, textLabelWidth, textLabelHeght);
+  self.titleLabel.frame = CGRectMake(30.0f, 23.0f + textLabelTop, textLabelWidth, textLabelHeght);
 
 }
 
 - (CGFloat)heightForCell {
   [super heightForCell];
   
-  CGFloat height = CGRectGetMaxY(self.textLabel.frame);
+  CGFloat height = CGRectGetMaxY(self.titleLabel.frame);
   height += 23.0f;
   
   if (height < kMenuTableViewCellMinHeight) {
@@ -58,7 +67,7 @@ static CGFloat const kMenuTableViewCellMinHeight = 44.0f;
 - (void)prepareForReuse {
   [super prepareForReuse];
   
-  self.textLabel.text = nil;
+  self.titleLabel.text = nil;
   
   [self updateView];
 }
@@ -69,14 +78,14 @@ static CGFloat const kMenuTableViewCellMinHeight = 44.0f;
 
 - (void)configureCellForHighlighedState:(BOOL)isHighlighed {
   // Change color for highlighed state
-  self.textLabel.backgroundColor = [DCColor clearColor];
+  self.titleLabel.backgroundColor = [DCColor clearColor];
   
   if (isHighlighed) {
     self.contentView.backgroundColor = [DCColor cyanColor];
-    self.textLabel.textColor = [DCColor grayColor];
+    self.titleLabel.textColor = [DCColor grayColor];
   } else {
     self.contentView.backgroundColor = [DCColor blueColor];
-    self.textLabel.textColor = [DCColor cyanColor];
+    self.titleLabel.textColor = [DCColor cyanColor];
   }
 }
 

@@ -37,29 +37,29 @@
   
   // Do any additional setup after loading the view.
 
-  self.getImageButton = [[UIButton alloc] initWithFrame:CGRectZero];
+  self.getImageButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(self.view.frame) / 2.0f, CGRectGetWidth(self.view.frame), 44.0f)];
   [self.getImageButton setTitle:@"GET IMAGE" forState:UIControlStateNormal];
   [self.getImageButton addTarget:self action:@selector(getImageRequest:) forControlEvents:UIControlEventTouchUpInside];
   self.getImageButton.backgroundColor = [DCColor grayColor];
   [self.view addSubview:self.getImageButton];
   
-  self.getJSONButton = [[UIButton alloc] initWithFrame:CGRectZero];
+  self.getJSONButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(self.getImageButton.frame) + 5.0f, CGRectGetWidth(self.view.frame), 44.0f)];
   [self.getJSONButton setTitle:@"GET JSON" forState:UIControlStateNormal];
   [self.getJSONButton addTarget:self action:@selector(getRequest:) forControlEvents:UIControlEventTouchUpInside];
   self.getJSONButton.backgroundColor = [DCColor grayColor];
   [self.view addSubview:self.getJSONButton];
   
-  self.postJSONButton = [[UIButton alloc] initWithFrame:CGRectZero];
+  self.postJSONButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(self.getJSONButton.frame) + 5.0f, CGRectGetWidth(self.view.frame), 44.0f)];
   [self.postJSONButton setTitle:@"POST JSON" forState:UIControlStateNormal];
   [self.postJSONButton addTarget:self action:@selector(postRequest:) forControlEvents:UIControlEventTouchUpInside];
   self.postJSONButton.backgroundColor = [DCColor grayColor];
   [self.view addSubview:self.postJSONButton];
   
-  self.imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+  self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) / 2.0f)];
   self.imageView.backgroundColor = [DCColor testColor];
   [self.view addSubview:self.imageView];
   
-  self.textView = [[UITextView alloc] initWithFrame:CGRectZero];
+  self.textView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) / 2.0f)];
   self.textView.editable = NO;
   [self.view addSubview:self.textView];
   
@@ -151,13 +151,15 @@
 
 #pragma mark - DCViewControllerProtocol
 
-- (void)configureView {
-  self.imageView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.rect), CGRectGetHeight(self.rect) / 2.0f);
-  self.textView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.rect), CGRectGetHeight(self.rect) / 2.0f);
+- (void)viewDidLayoutSubviews {
+  [super viewDidLayoutSubviews];
 
-  self.getImageButton.frame = CGRectMake(0.0f, CGRectGetHeight(self.rect) / 2.0f, CGRectGetWidth(self.rect), 44.0f);
-  self.getJSONButton.frame = CGRectMake(0.0f, CGRectGetMaxY(self.getImageButton.frame) + 5.0f, CGRectGetWidth(self.rect), 44.0f);
-  self.postJSONButton.frame = CGRectMake(0.0f, CGRectGetMaxY(self.getJSONButton.frame) + 5.0f, CGRectGetWidth(self.rect), 44.0f);
+  self.imageView.frame = CGRectMake(0.0f, self.topLayoutGuide.length, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) / 2.0f);
+  self.textView.frame = CGRectMake(0.0f, self.topLayoutGuide.length, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) / 2.0f);
+  
+  self.getImageButton.frame = CGRectMake(0.0f, CGRectGetHeight(self.view.frame) / 2.0f + self.topLayoutGuide.length, CGRectGetWidth(self.view.frame), 44.0f);
+  self.getJSONButton.frame = CGRectMake(0.0f, CGRectGetMaxY(self.getImageButton.frame) + 5.0f, CGRectGetWidth(self.view.frame), 44.0f);
+  self.postJSONButton.frame = CGRectMake(0.0f, CGRectGetMaxY(self.getJSONButton.frame) + 5.0f, CGRectGetWidth(self.view.frame), 44.0f);
 }
 
 - (void)cleanView {

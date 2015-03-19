@@ -26,15 +26,23 @@
   self.view.backgroundColor = [UIColor greenColor];
   
   self.automaticallyAdjustsScrollViewInsets = NO;
-  self.edgesForExtendedLayout = UIRectEdgeNone;
+//  self.edgesForExtendedLayout = UIRectEdgeNone;
   
   UINavigationBar *navBar = self.navigationBar;
-  navBar.barStyle = UIBarStyleDefault;
+//  navBar.barStyle = UIBarStyleDefault;
 //  navBar.translucent = NO;
   navBar.shadowImage = [[UIImage alloc] init];
   
   navBar.tintColor = self.customTintColor;
   navBar.barTintColor = self.customBarTintColor;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+  return self.topViewController.preferredStatusBarStyle;
+}
+
+- (BOOL)prefersStatusBarHidden {
+  return self.topViewController.prefersStatusBarHidden;
 }
 
 - (void)setCustomTintColor:(UIColor *)customTintColor {

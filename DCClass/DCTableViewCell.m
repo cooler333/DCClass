@@ -15,7 +15,6 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
-    self.backgroundColor = [UIColor whiteColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
   }
   return self;
@@ -28,7 +27,7 @@
 
 - (void)layoutSubviews {
   [super layoutSubviews];
-  [self _configureCell];
+  [self configureCell];
 }
 
 - (void)prepareForReuse {
@@ -41,13 +40,13 @@
 }
 
 
-- (void)_configureCell {
-  CGRect rect = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.contentView.bounds), CGRectGetHeight(self.contentView.bounds));
-  if (!CGRectEqualToRect(rect, self.rect)) {
-    _rect = rect;
-    [self configureCell];
-  }
-}
+//- (void)_configureCell {
+//  CGRect rect = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.contentView.bounds), CGRectGetHeight(self.contentView.bounds));
+//  if (!CGRectEqualToRect(rect, self.rect)) {
+//    _rect = rect;
+//    [self configureCell];
+//  }
+//}
 
 - (void)configureCell {
   [NSException raise:NSInternalInconsistencyException format:@"You must override \"%@\" method in a \"%@\" ", NSStringFromSelector(_cmd), NSStringFromClass([self class])];

@@ -25,12 +25,11 @@
   self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
   
   MenuViewController *menuVC = [[MenuViewController alloc] init];
-  menuVC.view.backgroundColor = [UIColor whiteColor];
   
   SideMenuViewController *sideMenuVC = [[SideMenuViewController alloc] initWithMenuVC:menuVC];
   sideMenuVC.menuWidthInPercent = 0.7f;
-  [sideMenuVC selectMenuItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
   sideMenuVC.view.backgroundColor = [DCColor cyanColor];
+  [sideMenuVC selectMenuItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
   
   self.window.rootViewController = sideMenuVC;
   [self.window makeKeyAndVisible];

@@ -12,4 +12,6 @@
 
 @interface MenuTableViewCell : DCTableViewCell
 
+@property(nonatomic,readonly) UILabel *titleLabel;
+
 @end

@@ -75,10 +75,6 @@ typedef NS_ENUM(NSUInteger, DCClassList) {
 
 #pragma mark - DCViewControllerProtocol
 
-- (void)configureView {
-  
-}
-
 - (void)cleanView {
   
 }

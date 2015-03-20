@@ -39,6 +39,24 @@ typedef NS_ENUM(NSUInteger, DCClassList) {
   [self.view addSubview:self.tableView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  
+  self.tableView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
+  UIEdgeInsets tableViewContentInset = self.tableView.contentInset;
+  tableViewContentInset.top = self.topLayoutGuide.length;
+  self.tableView.contentInset = tableViewContentInset;
+}
+
+- (void)viewDidLayoutSubviews {
+  [super viewDidLayoutSubviews];
+  
+  self.tableView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
+  UIEdgeInsets tableViewContentInset = self.tableView.contentInset;
+  tableViewContentInset.top = self.topLayoutGuide.length;
+  self.tableView.contentInset = tableViewContentInset;
+}
+
 #pragma mark - Private Methods
 
 - (NSString *)getTitleForRowAtIndexPath:(NSIndexPath *)indexPath {

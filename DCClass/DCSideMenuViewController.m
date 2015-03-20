@@ -74,6 +74,8 @@
   self.contentControllerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   [self.contentView addSubview:self.contentControllerView];
   
+  self.tapView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.contentView.frame), CGRectGetHeight(self.contentView.frame))];
+  
   [self addChildViewController:_menuViewController];
   _menuViewController.view.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.menuView.frame), CGRectGetHeight(self.menuView.frame));
   [self.menuView addSubview:self.menuViewController.view];
@@ -108,7 +110,7 @@
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
-  return UIInterfaceOrientationMaskAll;
+  return UIInterfaceOrientationMaskPortrait;
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {

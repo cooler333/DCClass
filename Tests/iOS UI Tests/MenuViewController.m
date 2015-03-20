@@ -48,6 +48,7 @@ static NSString * const kPrototypeMenuTableViewCellReuseIdentifier = @"kPrototyp
 
 - (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
+  
   self.tableView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
   UIView *view = self.tableView.tableHeaderView;
   view.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.frame), 92.0f);
@@ -57,6 +58,8 @@ static NSString * const kPrototypeMenuTableViewCellReuseIdentifier = @"kPrototyp
 - (void)cleanView {
   // ...
 }
+
+#pragma mark - UITableViewDataSource & UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return 6;

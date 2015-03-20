@@ -28,8 +28,7 @@
   
   SideMenuViewController *sideMenuVC = [[SideMenuViewController alloc] initWithMenuVC:menuVC];
   sideMenuVC.menuWidthInPercent = 0.7f;
-  sideMenuVC.view.backgroundColor = [DCColor cyanColor];
-  [sideMenuVC selectMenuItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+  sideMenuVC.view.backgroundColor = [DCColor blackColor];
   
   self.window.rootViewController = sideMenuVC;
   [self.window makeKeyAndVisible];

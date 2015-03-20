@@ -31,8 +31,12 @@ typedef NS_ENUM(NSUInteger, DCClassList) {
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
   
-  self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+  self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)) style:UITableViewStylePlain];
   [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellReuseIdentifier];
+  
+  self.tableView.delegate = self;
+  self.tableView.dataSource = self;
+  [self.view addSubview:self.tableView];
 }
 
 #pragma mark - Private Methods
@@ -87,6 +91,7 @@ typedef NS_ENUM(NSUInteger, DCClassList) {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellReuseIdentifier];
+  cell.textLabel.text = [self getTitleForRowAtIndexPath:indexPath];
   return cell;
 }
 

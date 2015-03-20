@@ -12,8 +12,8 @@
 #import "DCCheckDevice.h"
 
 
-@interface DCViewController : UIViewController
 
+@interface DCViewController : UIViewController
 
 //@property(nonatomic,readonly) CGRect rect;
 @property(nonatomic,strong,readonly) NSDictionary *dataDictionary;

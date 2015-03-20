@@ -24,17 +24,10 @@
 
 @implementation SideMenuViewController
 
-- (instancetype)initWithMenuVC:(UIViewController *)menuVC {
-  self = [super initWithMenuVC:menuVC];
-  if (self) {
-    self.delegate = self;
-    self.dataSource = self;
-  }
-  return self;
-}
-
 - (void)viewDidLoad {
   [super viewDidLoad];
+  self.delegate = self;
+  self.dataSource = self;
   [self selectMenuItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
 }
 

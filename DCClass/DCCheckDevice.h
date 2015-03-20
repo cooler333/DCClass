@@ -19,3 +19,6 @@
 #define IS_IPHONE_5           (IS_IPHONE && (SCREEN_MAX_LENGTH == 568.0f))
 #define IS_IPHONE_6           (IS_IPHONE && (SCREEN_MAX_LENGTH == 667.0f))
 #define IS_IPHONE_6P          (IS_IPHONE && (SCREEN_MAX_LENGTH == 736.0f))
+
+#define IS_OS_7               ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)
+#define IS_OS_8_OR_LATER      ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)

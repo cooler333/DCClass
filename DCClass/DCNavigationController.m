@@ -29,8 +29,8 @@
 //  self.edgesForExtendedLayout = UIRectEdgeNone;
   
   UINavigationBar *navBar = self.navigationBar;
-//  navBar.barStyle = UIBarStyleDefault;
-//  navBar.translucent = NO;
+  navBar.barStyle = UIBarStyleDefault;
+  navBar.translucent = NO;
   navBar.shadowImage = [[UIImage alloc] init];
   
   navBar.tintColor = self.customTintColor;

@@ -37,24 +37,31 @@ typedef NS_ENUM(NSUInteger, DCClassList) {
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   [self.view addSubview:self.tableView];
+
+//  UIEdgeInsets tableViewContentInset = self.tableView.contentInset;
+//  tableViewContentInset.top = self.topLayoutGuide.length;
+//  self.tableView.contentInset = tableViewContentInset;
+//  self.tableView.scrollIndicatorInsets = tableViewContentInset;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   
   self.tableView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
-  UIEdgeInsets tableViewContentInset = self.tableView.contentInset;
-  tableViewContentInset.top = self.topLayoutGuide.length;
-  self.tableView.contentInset = tableViewContentInset;
+//  UIEdgeInsets tableViewContentInset = self.tableView.contentInset;
+//  tableViewContentInset.top = self.topLayoutGuide.length;
+//  self.tableView.contentInset = tableViewContentInset;
+//  self.tableView.scrollIndicatorInsets = tableViewContentInset;
 }
 
 - (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
   
   self.tableView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
-  UIEdgeInsets tableViewContentInset = self.tableView.contentInset;
-  tableViewContentInset.top = self.topLayoutGuide.length;
-  self.tableView.contentInset = tableViewContentInset;
+//  UIEdgeInsets tableViewContentInset = self.tableView.contentInset;
+//  tableViewContentInset.top = self.topLayoutGuide.length;
+//  self.tableView.contentInset = tableViewContentInset;
+//  self.tableView.scrollIndicatorInsets = tableViewContentInset;
 }
 
 #pragma mark - Private Methods
@@ -90,7 +97,7 @@ typedef NS_ENUM(NSUInteger, DCClassList) {
 //      break;
       
     default:
-      return nil;
+      return @"Aaaaa";
       break;
   }
 }
@@ -102,6 +109,10 @@ typedef NS_ENUM(NSUInteger, DCClassList) {
 }
 
 #pragma mark - UITableViewDataSource, UITableViewDelegate
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  return 4;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return 7;

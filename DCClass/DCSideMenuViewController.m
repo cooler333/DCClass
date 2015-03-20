@@ -276,10 +276,10 @@
     if ([UIApplication sharedApplication].statusBarHidden == NO) {
       [UIView setAnimationsEnabled:NO];
       
-      self.statusBarSize = CGSizeMake(CGRectGetWidth(fixedFrame), [self statusBarHeight]);
+//      self.statusBarSize = CGSizeMake(CGRectGetWidth(fixedFrame), [self statusBarHeight]);
       
       UIView *snapshotView = [self getSnapshotView];
-      self.snapshotView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.statusBarSize.width, self.statusBarSize.height)];
+      self.snapshotView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.contentView.frame), CGRectGetHeight(self.contentView.frame))];
       self.snapshotView.clipsToBounds = YES;
       [self.snapshotView addSubview:snapshotView];
       [self.contentView addSubview:self.snapshotView];
@@ -339,10 +339,10 @@
         if ([UIApplication sharedApplication].statusBarHidden == NO) {
           [UIView setAnimationsEnabled:NO];
 
-          self.statusBarSize = CGSizeMake(CGRectGetWidth(fixedFrame), [self statusBarHeight]);
+//          self.statusBarSize = CGSizeMake(CGRectGetWidth(fixedFrame), [self statusBarHeight]);
           
           UIView *snapshotView = [self getSnapshotView];
-          self.snapshotView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.statusBarSize.width, self.statusBarSize.height)];
+          self.snapshotView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.contentView.frame), CGRectGetHeight(self.contentView.frame))];
           self.snapshotView.clipsToBounds = YES;
           [self.snapshotView addSubview:snapshotView];
           [self.contentView addSubview:self.snapshotView];

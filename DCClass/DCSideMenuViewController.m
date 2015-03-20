@@ -115,8 +115,26 @@
   return UIInterfaceOrientationPortrait;
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
   
+  CGRect fixedFrame;
+  if (IS_OS_7) {
+    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+      fixedFrame = CGRectMake(self.view.frame.origin.y, self.view.frame.origin.x, self.view.frame.size.height, self.view.frame.size.width);
+    } else {
+      fixedFrame = self.view.frame;
+    }
+  } else if (IS_OS_8_OR_LATER) {
+    fixedFrame = self.view.frame;
+  }
+  
+  self.contentView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(fixedFrame), CGRectGetHeight(fixedFrame));
+  self.menuView.frame = CGRectMake(-CGRectGetWidth(fixedFrame) * self.menuWidthInPercent / 2.0f, 0.0f, CGRectGetWidth(fixedFrame) * self.menuWidthInPercent, CGRectGetHeight(fixedFrame));
+  
+  CGPoint contentControllerViewCenter = self.contentControllerView.center;
+  contentControllerViewCenter.y = self.contentControllerView.frame.size.height / 2.0f;
+  self.contentControllerView.center = contentControllerViewCenter;
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {

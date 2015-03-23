@@ -111,8 +111,6 @@
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   
-  self.view.frame = CGRectMake(10.0f, 10.0f, 300, 450.0f);
-  
   CGRect fixedFrame;
   if (IS_OS_7) {
     if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {

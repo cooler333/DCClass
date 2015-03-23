@@ -18,12 +18,10 @@
   [super viewDidLoad];
   self.automaticallyAdjustsScrollViewInsets = NO;
   self.edgesForExtendedLayout = UIRectEdgeNone;
-//  [self _configureView];
 }
 
 - (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
-//  [self _configureView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,13 +35,21 @@
 
 #pragma mark - Layout MGMT
 
-//- (void)_configureView {
-//  _rect = self.view.frame;
-//}
+#define SYSTEM_VERSION_LESS_THAN(X) ([[[UIDevice currentDevice] systemVersion] compare:X options:NSNumericSearch] == NSOrderedAscending)
 
-- (CGFloat)statusBarHeight {
-  CGSize statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;
-  return MIN(statusBarSize.width, statusBarSize.height);
+- (CGFloat)getStatusBarHeight {
+  CGFloat statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
+  if (SYSTEM_VERSION_LESS_THAN(@"8.0") && UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+    statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.width;
+  }
+  return statusBarHeight > 0.0f ? statusBarHeight : 20.0f;
+}
+
+- (CGFloat)getStatusBarWidth {
+  if (SYSTEM_VERSION_LESS_THAN(@"8.0") && UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+    return [UIScreen mainScreen].bounds.size.height;
+  }
+  return [UIScreen mainScreen].bounds.size.width;
 }
 
 - (CGFloat)heightForLabel:(UILabel *)label withMaxWidth:(CGFloat)width {

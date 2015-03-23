@@ -59,19 +59,16 @@
   self.menuView = [[UIView alloc] initWithFrame:CGRectMake(-CGRectGetWidth(self.view.frame) * self.menuWidthInPercent / 2.0f, 0.0f, CGRectGetWidth(self.view.frame) * self.menuWidthInPercent, CGRectGetHeight(self.view.frame))];
   self.menuView.backgroundColor = [UIColor redColor];
   self.menuView.clipsToBounds = YES;
-  self.menuView.autoresizesSubviews = YES;
   [self.view addSubview:self.menuView];
 
   self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
   self.contentView.backgroundColor = [UIColor greenColor];
   self.contentView.clipsToBounds = YES;
-  self.contentView.autoresizesSubviews = YES;
   [self.view addSubview:self.contentView];
 
   self.contentControllerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.contentView.frame), CGRectGetHeight(self.contentView.frame))];
   self.contentControllerView.backgroundColor = [UIColor yellowColor];
   self.contentControllerView.clipsToBounds = YES;
-  self.contentControllerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   [self.contentView addSubview:self.contentControllerView];
   
   self.tapView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.contentView.frame), CGRectGetHeight(self.contentView.frame))];
@@ -87,12 +84,6 @@
   
   self.menuTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
   [self.tapView addGestureRecognizer:self.menuTapGestureRecognizer];
-}
-
-- (void)viewDidLayoutSubviews {
-  [super viewDidLayoutSubviews];
- 
-  
 }
 
 - (void)cleanView {
@@ -119,6 +110,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+  
+  self.view.frame = CGRectMake(10.0f, 10.0f, 300, 450.0f);
   
   CGRect fixedFrame;
   if (IS_OS_7) {
@@ -276,10 +269,10 @@
     if ([UIApplication sharedApplication].statusBarHidden == NO) {
       [UIView setAnimationsEnabled:NO];
       
-//      self.statusBarSize = CGSizeMake(CGRectGetWidth(fixedFrame), [self statusBarHeight]);
+      self.statusBarSize = CGSizeMake([self getStatusBarWidth], [self getStatusBarHeight]);
       
       UIView *snapshotView = [self getSnapshotView];
-      self.snapshotView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.contentView.frame), CGRectGetHeight(self.contentView.frame))];
+      self.snapshotView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.statusBarSize.width, self.statusBarSize.height)];
       self.snapshotView.clipsToBounds = YES;
       [self.snapshotView addSubview:snapshotView];
       [self.contentView addSubview:self.snapshotView];
@@ -339,10 +332,10 @@
         if ([UIApplication sharedApplication].statusBarHidden == NO) {
           [UIView setAnimationsEnabled:NO];
 
-//          self.statusBarSize = CGSizeMake(CGRectGetWidth(fixedFrame), [self statusBarHeight]);
+          self.statusBarSize = CGSizeMake([self getStatusBarWidth], [self getStatusBarHeight]);
           
           UIView *snapshotView = [self getSnapshotView];
-          self.snapshotView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.contentView.frame), CGRectGetHeight(self.contentView.frame))];
+          self.snapshotView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.statusBarSize.width, self.statusBarSize.height)];
           self.snapshotView.clipsToBounds = YES;
           [self.snapshotView addSubview:snapshotView];
           [self.contentView addSubview:self.snapshotView];

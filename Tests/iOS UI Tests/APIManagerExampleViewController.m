@@ -71,10 +71,10 @@
 - (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
   
-  self.imageView.frame = CGRectMake(0.0f, self.topLayoutGuide.length, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) / 2.0f);
-  self.textView.frame = CGRectMake(0.0f, self.topLayoutGuide.length, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) / 2.0f);
+  self.imageView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) / 2.0f);
+  self.textView.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) / 2.0f);
   
-  self.getImageButton.frame = CGRectMake(0.0f, CGRectGetHeight(self.view.frame) / 2.0f + self.topLayoutGuide.length, CGRectGetWidth(self.view.frame), 44.0f);
+  self.getImageButton.frame = CGRectMake(0.0f, CGRectGetHeight(self.view.frame) / 2.0f, CGRectGetWidth(self.view.frame), 44.0f);
   self.getJSONButton.frame = CGRectMake(0.0f, CGRectGetMaxY(self.getImageButton.frame) + 5.0f, CGRectGetWidth(self.view.frame), 44.0f);
   self.postJSONButton.frame = CGRectMake(0.0f, CGRectGetMaxY(self.getJSONButton.frame) + 5.0f, CGRectGetWidth(self.view.frame), 44.0f);
 }

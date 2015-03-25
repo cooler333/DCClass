@@ -9,7 +9,19 @@
 platform :ios, '7.0'
 pod 'DCClass'
 ```
-
+OR
+```ruby
+pod 'DCClass/Log'
+pod 'DCClass/CheckDevice'
+pod 'DCClass/APIManager'
+pod 'DCClass/Color'
+pod 'DCClass/NavigationController'
+pod 'DCClass/SideMenuViewController'
+pod 'DCClass/DCBundleHelper'
+pod 'DCClass/TableViewCell'
+pod 'DCClass/ViewController'
+pod 'DCClass/KeychainWrapper'
+```
 ## Credits
 
 DCClass was originally created by [Dmitry Coolerov](https://github.com/cooler333).

@@ -55,4 +55,6 @@ typedef NS_ENUM(NSUInteger, DCMenuState) {
 
 - (void)selectMenuItemAtIndexPath:(NSIndexPath *)indexPath;
 
+- (void)setStatusBarBackgroundColor:(UIColor *)color;
+
 @end

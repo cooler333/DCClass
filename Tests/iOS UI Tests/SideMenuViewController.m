@@ -29,6 +29,7 @@
   self.delegate = self;
   self.dataSource = self;
   [self selectMenuItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+  [self setStatusBarBackgroundColor:[DCColor orangeColor]];
 }
 
 #pragma mark - DCSideMenuViewControllerDataSource

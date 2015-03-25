@@ -62,7 +62,6 @@
   [self.view addSubview:self.menuView];
   
   self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
-  self.contentView.backgroundColor = [UIColor orangeColor];
   [self.view addSubview:self.contentView];
   
   CALayer *frontViewLayer = self.contentView.layer;
@@ -90,6 +89,8 @@
   
   self.menuTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
   [self.tapView addGestureRecognizer:self.menuTapGestureRecognizer];
+  
+  [self setStatusBarBackgroundColor:[UIColor grayColor]];
 }
 
 - (void)cleanView {
@@ -251,6 +252,12 @@
     }
   }
   [self closeMenu:0.25f];
+}
+
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+  if (color != nil) {
+    self.contentView.backgroundColor = color;
+  }
 }
 
 #pragma mark - Private Methods

@@ -61,6 +61,18 @@
       <FileRef
          location = "group:DCViewController.m">
       </FileRef>
+      <FileRef
+         location = "group:DCStatusBarSize.h">
+      </FileRef>
+      <FileRef
+         location = "group:DCStatusBarSize.m">
+      </FileRef>
+      <FileRef
+         location = "group:UILabel+Size.h">
+      </FileRef>
+      <FileRef
+         location = "group:UILabel+Size.m">
+      </FileRef>
       <Group
          location = "group:KeychainWrapper"
          name = "KeychainWrapper">

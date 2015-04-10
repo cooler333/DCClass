@@ -33,33 +33,6 @@
   [self _cleanView];
 }
 
-#pragma mark - Layout MGMT
-
-#define SYSTEM_VERSION_LESS_THAN(X) ([[[UIDevice currentDevice] systemVersion] compare:X options:NSNumericSearch] == NSOrderedAscending)
-
-- (CGFloat)getStatusBarHeight {
-  CGFloat statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
-  if (SYSTEM_VERSION_LESS_THAN(@"8.0") && UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-    statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.width;
-  }
-  return statusBarHeight > 0.0f ? statusBarHeight : 20.0f;
-}
-
-- (CGFloat)getStatusBarWidth {
-  if (SYSTEM_VERSION_LESS_THAN(@"8.0") && UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-    return [UIScreen mainScreen].bounds.size.height;
-  }
-  return [UIScreen mainScreen].bounds.size.width;
-}
-
-- (CGFloat)heightForLabel:(UILabel *)label withMaxWidth:(CGFloat)width {
-  return [self sizeForLabel:label withMaxWidth:width].height;
-}
-
-- (CGSize)sizeForLabel:(UILabel *)label withMaxWidth:(CGFloat)width {
-  return [label sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)];
-}
-
 #pragma mark - Memory MGMT
 
 - (void)_cleanView {

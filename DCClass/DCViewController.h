@@ -21,11 +21,4 @@
 - (void)configureViewForDataDictionary:(NSDictionary *)dataDictionary;
 - (void)cleanView;
 
-- (CGFloat)getStatusBarHeight;
-- (CGFloat)getStatusBarWidth;
-
-- (CGFloat)heightForLabel:(UILabel *)label withMaxWidth:(CGFloat)width;
-- (CGSize)sizeForLabel:(UILabel *)label withMaxWidth:(CGFloat)width;
-
-
 @end

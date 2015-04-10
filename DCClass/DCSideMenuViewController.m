@@ -10,6 +10,7 @@
 #import "DCSideMenuViewController.h"
 
 #import "DCBundleHelper.h"
+#import "DCStatusBarSize.h"
 
 
 @interface DCSideMenuViewController () <UIGestureRecognizerDelegate>
@@ -70,7 +71,7 @@
   frontViewLayer.shadowOffset = CGSizeMake(0.0f, 2.5f);
   frontViewLayer.shadowRadius = 2.5f;
   
-  self.statusBarSize = CGSizeMake([self getStatusBarWidth], [self getStatusBarHeight]);
+  self.statusBarSize = [DCStatusBarSize getSize];
   self.contentControllerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, self.statusBarSize.height, CGRectGetWidth(self.contentView.frame), CGRectGetHeight(self.contentView.frame) - self.statusBarSize.height)];
   self.contentControllerView.backgroundColor = [UIColor yellowColor];
   self.contentControllerView.clipsToBounds = YES;
@@ -280,7 +281,7 @@
     if ([UIApplication sharedApplication].statusBarHidden == NO) {
       [UIView setAnimationsEnabled:NO];
       
-      self.statusBarSize = CGSizeMake([self getStatusBarWidth], [self getStatusBarHeight]);
+      self.statusBarSize = [DCStatusBarSize getSize];
       
       UIView *snapshotView = [self getSnapshotView];
       self.snapshotView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.statusBarSize.width, self.statusBarSize.height)];
@@ -343,7 +344,7 @@
         if ([UIApplication sharedApplication].statusBarHidden == NO) {
           [UIView setAnimationsEnabled:NO];
           
-          self.statusBarSize = CGSizeMake([self getStatusBarWidth], [self getStatusBarHeight]);
+          self.statusBarSize = [DCStatusBarSize getSize];
           
           UIView *snapshotView = [self getSnapshotView];
           self.snapshotView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.statusBarSize.width, self.statusBarSize.height)];

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'DCClass'
-  s.version     = '0.0.51'
+  s.version     = '0.0.55'
   s.license     = 'MIT'
   s.summary     = 'iOS App Helper.'
   s.homepage    = 'https://github.com/cooler333/DCClass'
@@ -48,12 +48,13 @@ Pod::Spec.new do |s|
   s.subspec 'SideMenuViewController' do |ss|
     ss.ios.frameworks   = 'UIKit'
     ss.dependency 'DCClass/ViewController'
-    ss.dependency 'DCClass/DCBundleHelper'
+    ss.dependency 'DCClass/BundleHelper'
+    ss.dependency 'DCClass/StatusBarSize'
    
     ss.source_files     = 'DCClass/DCSideMenuViewController.{h,m}'
   end
 
-  s.subspec 'DCBundleHelper' do |ss|
+  s.subspec 'BundleHelper' do |ss|
     ss.ios.frameworks   = 'UIKit'
     ss.dependency 'DCClass/Log'
 
@@ -76,6 +77,18 @@ Pod::Spec.new do |s|
     ss.dependency 'DCClass/CheckDevice'
     
     ss.source_files     = 'DCClass/DCViewController.{h,m}'
+  end
+
+  s.subspec 'StatusBarSize' do |ss|
+    ss.ios.frameworks   = 'Foundation'
+    
+    ss.source_files     = 'DCClass/DCStatusBarSize.{h,m}'
+  end
+
+  s.subspec 'UILabel+Size' do |ss|
+    ss.ios.frameworks   = 'UIKit'
+    
+    ss.source_files     = 'DCClass/UILabel+Size.{h,m}'
   end
 
   s.subspec 'KeychainWrapper' do |ss|

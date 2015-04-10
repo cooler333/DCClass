@@ -10,6 +10,8 @@
 #import "MenuTableViewCell.h"
 
 #import "DCColor.h"
+#import "UILabel+Size.h"
+
 
 static CGFloat const kMenuTableViewCellMinHeight = 44.0f;
 
@@ -41,7 +43,7 @@ static CGFloat const kMenuTableViewCellMinHeight = 44.0f;
   CGFloat width = CGRectGetWidth(rect);
   
   CGFloat textLabelWidth = width - 30.0f * 2.0f;
-  CGFloat textLabelHeght = [self heightForLabel:self.titleLabel andWidth:textLabelWidth];
+  CGFloat textLabelHeght = [self.titleLabel heightWithMaxWidth:textLabelWidth];
   
   CGFloat contentHeight = (kMenuTableViewCellMinHeight - 23.0f * 2.0f);
   CGFloat textLabelTop = 0.0f;

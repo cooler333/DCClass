@@ -13,9 +13,8 @@
 @implementation UILabel (Size)
 
 - (CGFloat)heightWithMaxWidth:(CGFloat)width {
-  return [self sizeWithMaxWidthwidth].height;
+  return [self sizeWithMaxWidth:width].height;
 }
-
 - (CGSize)sizeWithMaxWidth:(CGFloat)width {
   return [self sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)];
 }

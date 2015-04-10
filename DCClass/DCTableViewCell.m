@@ -74,11 +74,6 @@
   // ...
 }
 
-- (CGFloat)heightForLabel:(UILabel *)label andWidth:(CGFloat)width {
-  CGSize size = [label sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)];
-  return size.height;
-}
-
 - (void)configureCellForDataDictionary:(NSDictionary *)dataDictionary {
   // ...
 }

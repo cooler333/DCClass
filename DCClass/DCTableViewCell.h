@@ -28,7 +28,6 @@
 - (void)updateView;
 
 
-- (CGFloat)heightForLabel:(UILabel *)label andWidth:(CGFloat)width;
 - (void)configureCellForDataDictionary:(NSDictionary *)dataDictionary;
 
 

@@ -16,14 +16,14 @@
 
 + (CGFloat)getHeight {
   CGFloat statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
-  if (SYSTEM_VERSION_LESS_THAN(@"8.0") && UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+  if (SYSTEM_VERSION_LESS_THAN(@"8.0") && UIDeviceOrientationIsLandscape((UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation)) {
     statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.width;
   }
   return statusBarHeight > 0.0f ? statusBarHeight : 20.0f;
 }
 
 + (CGFloat)getWidth {
-  if (SYSTEM_VERSION_LESS_THAN(@"8.0") && UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+  if (SYSTEM_VERSION_LESS_THAN(@"8.0") && UIDeviceOrientationIsLandscape((UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation)) {
     return [UIScreen mainScreen].bounds.size.height;
   }
   return [UIScreen mainScreen].bounds.size.width;

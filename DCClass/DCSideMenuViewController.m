@@ -524,7 +524,7 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)panGestureRecognizer {
   CGPoint velocityPoint = [panGestureRecognizer velocityInView:self.view];
-  return abs(velocityPoint.y / 2.0f) < abs(velocityPoint.x );
+  return ABS(velocityPoint.y / 2.0f) < ABS(velocityPoint.x);
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
